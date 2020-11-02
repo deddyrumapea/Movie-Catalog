@@ -9,15 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".TvShowDetailActivity"></activity>
+        <activity android:name=".ui.detail.tvshows.TvShowDetailActivity"></activity>
         <activity
-            android:name=".MovieDetailActivity"
-            android:parentActivityName=".CatalogActivity">
+            android:name=".ui.detail.movie.MovieDetailActivity"
+            android:parentActivityName=".ui.catalog.CatalogActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".CatalogActivity" />
+                android:value=".ui.catalog.CatalogActivity" />
         </activity>
-        <activity android:name=".CatalogActivity">
+        <activity android:name=".ui.catalog.CatalogActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

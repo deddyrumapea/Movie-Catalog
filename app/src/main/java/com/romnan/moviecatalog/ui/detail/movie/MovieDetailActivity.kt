@@ -1,7 +1,8 @@
-package com.romnan.moviecatalog
+package com.romnan.moviecatalog.ui.detail.movie
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.romnan.moviecatalog.R
 
 class MovieDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

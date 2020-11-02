@@ -2,4 +2,16 @@
     <string name="app_name">Movie Catalog</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="poster">poster</string>
+    <string name="background_image">background image</string>
+    <string name="play_trailer">Play Trailer</string>
+    <string name="user_score">User\nScore</string>
+    <string name="overview">Overview</string>
+    <string name="director">Director</string>
+    <string name="casts">Casts</string>
+    <string name="status">Status</string>
+    <string name="original_language">Original Language</string>
+    <string name="budget">Budget</string>
+    <string name="revenue">Revenue</string>
+    <string name="keywords">Keywords</string>
 </resources>
