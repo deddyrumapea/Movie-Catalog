@@ -1,5 +1,6 @@
 package com.romnan.moviecatalog.util
 
+import com.romnan.moviecatalog.R
 import com.romnan.moviecatalog.model.Movie
 import com.romnan.moviecatalog.model.TvShow
 
@@ -9,6 +10,7 @@ object DataDummy {
         movies.add(
             Movie(
                 "332562-a-star-is-born",
+                R.drawable.poster_a_star_is_born,
                 "A Star Is Born (2018)",
                 "10/05/2018",
                 "Drama, Romance, Music",
@@ -29,6 +31,7 @@ object DataDummy {
         movies.add(
             Movie(
                 "399579-alita-battle-angel",
+                R.drawable.poster_alita,
                 "Alita: Battle Angel (2019)",
                 "02/14/2019",
                 "Action, Science Fiction, Adventure",
@@ -49,6 +52,7 @@ object DataDummy {
         movies.add(
             Movie(
                 "297802-aquaman",
+                R.drawable.poster_aquaman,
                 "Aquaman (2018)",
                 "12/21/2018",
                 "Action, Adventure, Fantasy",
@@ -69,6 +73,7 @@ object DataDummy {
         movies.add(
             Movie(
                 "424694-bohemian-rhapsody",
+                R.drawable.poster_bohemian,
                 "Bohemian Rhapsody (2018)",
                 "11/02/2018",
                 "Drama, Music",
@@ -89,6 +94,7 @@ object DataDummy {
         movies.add(
             Movie(
                 "438650-cold-pursuit ",
+                R.drawable.poster_cold_pursuit,
                 "Cold Pursuit (2019) ",
                 "02/08/2019",
                 "Action, Crime, Thriller ",
@@ -109,6 +115,7 @@ object DataDummy {
         movies.add(
             Movie(
                 "480530-creed-ii",
+                R.drawable.poster_creed,
                 "Creed II (2018)",
                 "11/21/2018",
                 "Drama",
@@ -129,6 +136,7 @@ object DataDummy {
         movies.add(
             Movie(
                 "338952-fantastic-beasts-the-crimes-of-grindelwald ",
+                R.drawable.poster_crimes,
                 "Fantastic Beasts: The Crimes of Grindelwald (2018)",
                 "11/16/2018",
                 "Adventure, Fantasy, Drama",
@@ -149,6 +157,7 @@ object DataDummy {
         movies.add(
             Movie(
                 "450465-glass",
+                R.drawable.poster_glass,
                 "Glass (2019)",
                 "01/18/2019",
                 "Thriller, Drama, Science Fiction",
@@ -169,6 +178,7 @@ object DataDummy {
         movies.add(
             Movie(
                 "166428-how-to-train-your-dragon-3",
+                R.drawable.poster_how_to_train,
                 "How to Train Your Dragon: The Hidden World (2019)",
                 "02/22/2019",
                 "Animation, Family, Adventure",
@@ -189,6 +199,7 @@ object DataDummy {
         movies.add(
             Movie(
                 "299536-avengers-infinity-war",
+                R.drawable.poster_infinity_war,
                 "Avengers: Infinity War (2018)",
                 "04/27/2018",
                 "Adventure, Action, Science Fiction",
@@ -215,6 +226,7 @@ object DataDummy {
         tvShows.add(
             TvShow(
                 "1412-arrow",
+                R.drawable.poster_arrow,
                 "Arrow (2012)",
                 "Crime, Drama, Mystery, Action & Adventure",
                 "42m",
@@ -234,6 +246,7 @@ object DataDummy {
         tvShows.add(
             TvShow(
                 "79501-doom-patrol",
+                R.drawable.poster_doom_patrol,
                 "Doom Patrol (2019)",
                 "Sci-Fi & Fantasy, Action & Adventure",
                 "49m",
@@ -253,6 +266,7 @@ object DataDummy {
         tvShows.add(
             TvShow(
                 "12609-dragon-ball",
+                R.drawable.poster_dragon_ball,
                 "Dragon Ball (1986)",
                 "Comedy, Sci-Fi & Fantasy, Animation, Action & Adventure",
                 "25m",
@@ -272,6 +286,7 @@ object DataDummy {
         tvShows.add(
             TvShow(
                 "1434-family-guy",
+                R.drawable.poster_family_guy,
                 "Family Guy (1999)",
                 "Animation, Comedy",
                 "22m",
@@ -291,6 +306,7 @@ object DataDummy {
         tvShows.add(
             TvShow(
                 "60735-the-flash",
+                R.drawable.poster_flash,
                 "The Flash (2014)",
                 "Drama, Sci-Fi & Fantasy",
                 "44m",
@@ -310,6 +326,7 @@ object DataDummy {
         tvShows.add(
             TvShow(
                 "60708-gotham",
+                R.drawable.poster_gotham,
                 "Gotham (2014)",
                 "Drama, Fantasy, Crime",
                 "43m",
@@ -329,6 +346,7 @@ object DataDummy {
         tvShows.add(
             TvShow(
                 "1416-grey-s-anatomy",
+                R.drawable.poster_grey_anatomy,
                 "Grey's Anatomy (2005)",
                 "Drama",
                 "43m",
@@ -348,6 +366,7 @@ object DataDummy {
         tvShows.add(
             TvShow(
                 "54155-hanna",
+                R.drawable.poster_hanna,
                 "Hanna (2019)",
                 "Action & Adventure, Drama",
                 "50m",
@@ -367,6 +386,7 @@ object DataDummy {
         tvShows.add(
             TvShow(
                 "62127-marvel-s-iron-fist",
+                R.drawable.poster_iron_fist,
                 "Marvel's Iron Fist (2017)",
                 "Action & Adventure, Drama, Sci-Fi & Fantasy,",
                 "55m",
@@ -386,6 +406,7 @@ object DataDummy {
         tvShows.add(
             TvShow(
                 "31910-naruto-shipp-den",
+                R.drawable.poster_naruto_shipudden,
                 "Naruto Shippūden (2007)",
                 "Animation, Comedy, Drama",
                 "25m",
@@ -405,6 +426,7 @@ object DataDummy {
         tvShows.add(
             TvShow(
                 "1402-the-walking-dead",
+                R.drawable.poster_the_walking_dead,
                 "The Walking Dead (2010)",
                 "Action & Adventure, Drama, Sci-Fi & Fantasy",
                 "42m",

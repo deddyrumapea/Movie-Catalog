@@ -2,6 +2,7 @@ package com.romnan.moviecatalog.model
 
 data class TvShow(
     var id: String,
+    var poster: Int,
     var title: String,
     var genre: String,
     var duration: String,

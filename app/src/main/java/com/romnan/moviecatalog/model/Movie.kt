@@ -2,6 +2,7 @@ package com.romnan.moviecatalog.model
 
 data class Movie(
     var id: String,
+    var poster: Int,
     var title: String,
     var releaseDate: String,
     var genre: String,
