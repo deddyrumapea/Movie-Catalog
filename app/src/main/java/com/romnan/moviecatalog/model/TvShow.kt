@@ -4,6 +4,7 @@ data class TvShow(
     var id: String,
     var poster: Int,
     var title: String,
+    var trailerUrl: String,
     var genre: String,
     var duration: String,
     var score: Int,

@@ -4,6 +4,7 @@ data class Movie(
     var id: String,
     var poster: Int,
     var title: String,
+    var trailerUrl : String,
     var releaseDate: String,
     var genre: String,
     var duration: String,
