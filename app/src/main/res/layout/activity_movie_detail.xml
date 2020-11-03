@@ -24,6 +24,7 @@
             tools:src="@drawable/poster_infinity_war" />
 
         <ImageView
+            android:id="@+id/image_movie_poster"
             android:layout_width="100dp"
             android:layout_height="0dp"
             android:layout_marginVertical="@dimen/margin_16dp"
@@ -74,7 +75,9 @@
             android:id="@+id/progress_bar_score"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:indeterminate="false"
+            tools:progress="70"
+            android:progressDrawable="@drawable/circle"
+            style="?android:progressBarStyleHorizontal"
             app:layout_constraintBottom_toBottomOf="@id/text_score"
             app:layout_constraintLeft_toLeftOf="@id/text_score"
             app:layout_constraintRight_toRightOf="@id/text_score"
@@ -83,8 +86,8 @@
         <View
             android:id="@+id/divider"
             android:layout_width="1dp"
-            android:layout_marginVertical="@dimen/margin_8dp"
             android:layout_height="0dp"
+            android:layout_marginVertical="@dimen/margin_8dp"
             android:background="@android:color/darker_gray"
             app:layout_constraintBottom_toBottomOf="@id/button_play_trailer"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -157,6 +160,7 @@
         <TextView
             android:id="@+id/text_tagline"
             style="@style/DisplayText.Bold"
+            android:paddingHorizontal="@dimen/padding_16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_16dp"
@@ -210,8 +214,8 @@
         <View
             android:id="@+id/divider2"
             android:layout_width="1dp"
-            android:layout_marginVertical="@dimen/margin_16dp"
             android:layout_height="0dp"
+            android:layout_marginVertical="@dimen/margin_16dp"
             android:background="@android:color/darker_gray"
             app:layout_constraintBottom_toBottomOf="@id/text_casts_title"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -234,8 +238,8 @@
             style="@style/DisplayText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingBottom="@dimen/padding_16dp"
             android:paddingHorizontal="@dimen/padding_16dp"
+            android:paddingBottom="@dimen/padding_16dp"
             android:text="@string/casts"
             app:layout_constraintLeft_toLeftOf="@id/text_casts"
             app:layout_constraintTop_toBottomOf="@id/text_casts" />
@@ -274,8 +278,8 @@
             style="@style/DisplayText.Bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="@dimen/padding_16dp"
             android:paddingHorizontal="@dimen/padding_16dp"
+            android:paddingTop="@dimen/padding_16dp"
             android:text="@string/original_language"
             android:textColor="@color/black_text"
             app:layout_constraintTop_toBottomOf="@id/text_status" />
@@ -294,9 +298,9 @@
             android:id="@+id/text_budget_title"
             style="@style/DisplayText.Bold"
             android:layout_width="match_parent"
-            android:paddingTop="@dimen/padding_16dp"
             android:layout_height="wrap_content"
             android:paddingHorizontal="@dimen/padding_16dp"
+            android:paddingTop="@dimen/padding_16dp"
             android:text="@string/budget"
             android:textColor="@color/black_text"
             app:layout_constraintTop_toBottomOf="@id/text_language" />
@@ -317,8 +321,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingHorizontal="@dimen/padding_16dp"
-            android:text="@string/revenue"
             android:paddingTop="@dimen/padding_16dp"
+            android:text="@string/revenue"
             android:textColor="@color/black_text"
             app:layout_constraintTop_toBottomOf="@id/text_budget" />
 
@@ -337,8 +341,8 @@
             style="@style/DisplayText.Bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="@dimen/padding_16dp"
             android:paddingHorizontal="@dimen/padding_16dp"
+            android:paddingTop="@dimen/padding_16dp"
             android:text="@string/keywords"
             android:textColor="@color/black_text"
             app:layout_constraintTop_toBottomOf="@id/text_revenue" />
