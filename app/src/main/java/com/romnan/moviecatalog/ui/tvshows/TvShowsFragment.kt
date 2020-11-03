@@ -1,11 +1,16 @@
 package com.romnan.moviecatalog.ui.tvshows
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.ShareCompat
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.romnan.moviecatalog.R
+import com.romnan.moviecatalog.model.TvShow
+import kotlinx.android.synthetic.main.fragment_tv_shows.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -14,22 +19,10 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [BookmarkFragment.newInstance] factory method to
+ * Use the [TvShowsFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class BookmarkFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
-
+class TvShowsFragment : Fragment(), TvShowsFragmentCallback {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -38,23 +31,36 @@ class BookmarkFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_tv_shows, container, false)
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment BookmarkFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            BookmarkFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        val viewModel = ViewModelProvider(
+            requireActivity(),
+            ViewModelProvider.NewInstanceFactory()
+        )[TvShowsViewModel::class.java]
+
+        if (activity != null) {
+            val tvShows = viewModel.retrieveTvShowData()
+            val tvShowAdapter = TvShowAdapter(this)
+            tvShowAdapter.setTvShows(tvShows)
+
+            with(rv_tv_show) {
+                layoutManager = LinearLayoutManager(context)
+                setHasFixedSize(true)
+                adapter = tvShowAdapter
             }
+        }
+    }
+
+    override fun onClickShare(tvShow: TvShow) {
+        if (activity != null) {
+            val mimeType = "text/plain"
+            ShareCompat.IntentBuilder.from(activity!!).apply {
+                setType(mimeType)
+                setChooserTitle("Share TV Show")
+                setText(resources.getString(R.string.share_text, tvShow.title))
+                startChooser()
+            }
+        }
     }
 }
