@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/padding_16dp">
+
+    <ImageView
+        android:id="@+id/image_error_icon"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/ic_error" />
+
+    <TextView
+        android:id="@+id/text_error_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/image_error_icon"
+        android:layout_marginTop="@dimen/margin_16dp"
+        android:fontFamily="@font/source_sans_pro_regular"
+        android:gravity="center"
+        android:text="@string/error"
+        android:textColor="@color/black_text"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/text_error_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_error_title"
+        android:gravity="center"
+        android:text="@string/opps_something_went_wrong" />
+
+    <Button
+        android:id="@+id/button_go_back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_error_message"
+        android:layout_marginTop="@dimen/margin_16dp"
+        android:layout_marginBottom="@dimen/margin_8dp"
+        android:background="@color/colorAccent"
+        android:text="@string/go_back"
+        android:textColor="@android:color/white"
+        android:textStyle="bold" />
+
+</RelativeLayout>

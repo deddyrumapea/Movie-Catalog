@@ -1,17 +1,19 @@
 package com.romnan.moviecatalog.ui.detail.movie
 
+import android.app.Dialog
 import android.content.Intent
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.romnan.moviecatalog.R
 import com.romnan.moviecatalog.model.Movie
 import kotlinx.android.synthetic.main.activity_movie_detail.*
+import kotlinx.android.synthetic.main.dialog_error.*
 
 class MovieDetailActivity : AppCompatActivity() {
 
@@ -23,16 +25,10 @@ class MovieDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie_detail)
 
+        // Change action bar color and title, set up button
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        // Change action bar color
-        supportActionBar?.setBackgroundDrawable(
-            ColorDrawable(
-                ContextCompat.getColor(
-                    this,
-                    R.color.colorPrimaryDark
-                )
-            )
-        )
+        supportActionBar?.setBackgroundDrawable(ColorDrawable(getColor(R.color.colorPrimaryDark)))
+        supportActionBar?.title = getString(R.string.movie_detail)
 
         val viewModel = ViewModelProvider(
             this,
@@ -45,8 +41,17 @@ class MovieDetailActivity : AppCompatActivity() {
             if (movieId != null) {
                 viewModel.setSelectedMovie(movieId)
                 populateMovieDetails(viewModel.getMovie())
-            }
-        }
+            } else showErrorDialog()
+        } else showErrorDialog()
+
+    }
+
+    private fun showErrorDialog() {
+        val dialog = Dialog(this)
+        dialog.setContentView(R.layout.dialog_error)
+        val btnGoBack = dialog.findViewById<Button>(R.id.button_go_back)
+        btnGoBack.setOnClickListener { finish() }
+        dialog.show()
     }
 
     private fun populateMovieDetails(movie: Movie) {
@@ -60,7 +65,7 @@ class MovieDetailActivity : AppCompatActivity() {
 
         text_movie_title.text = movie.title
         text_score.text = movie.score.toString()
-        progress_bar_score.setProgress(movie.score)
+        progress_bar_score.progress = movie.score
         button_play_trailer.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW).setData(Uri.parse(movie.trailerUrl))
             startActivity(intent)

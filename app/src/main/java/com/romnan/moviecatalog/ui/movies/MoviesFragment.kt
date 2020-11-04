@@ -32,7 +32,7 @@ class MoviesFragment : Fragment() {
             val movies = viewModel.retrieveMovieData()
             val movieAdapter = MovieAdapter()
             movieAdapter.setMovies(movies)
-            Log.d(Companion.TAG, "onActivityCreated: ${movies.size}")
+            Log.d(TAG, "onActivityCreated: ${movies.size}")
 
             with(rv_movie) {
                 layoutManager = LinearLayoutManager(context)

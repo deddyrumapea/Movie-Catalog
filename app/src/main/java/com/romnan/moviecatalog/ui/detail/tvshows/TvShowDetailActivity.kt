@@ -1,19 +1,19 @@
 package com.romnan.moviecatalog.ui.detail.tvshows
 
+import android.app.Dialog
 import android.content.Intent
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
-import android.opengl.Visibility
 import android.os.Bundle
-import android.view.View
 import android.view.View.GONE
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.romnan.moviecatalog.R
 import com.romnan.moviecatalog.model.TvShow
 import kotlinx.android.synthetic.main.activity_tv_show_detail.*
+import kotlinx.android.synthetic.main.dialog_error.*
 
 class TvShowDetailActivity : AppCompatActivity() {
 
@@ -24,29 +24,35 @@ class TvShowDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tv_show_detail)
-        // Change action bar color
-        supportActionBar?.setBackgroundDrawable(
-            ColorDrawable(
-                ContextCompat.getColor(
-                    this,
-                    R.color.colorPrimaryDark
-                )
-            )
-        )
 
+        // Change action bar color and title, set up button
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setBackgroundDrawable(ColorDrawable(getColor(R.color.colorPrimaryDark)))
+        supportActionBar?.title = getString(R.string.tv_show_detail)
+
+        // Create viewholder
         val viewModel = ViewModelProvider(
             this,
             ViewModelProvider.NewInstanceFactory()
         )[TvShowDetailViewModel::class.java]
 
+        // Get extra data
         val extras = intent.extras
         if (extras != null) {
             val tvShowId = extras.getString(EXTRA_TV_SHOW)
             if (tvShowId != null) {
                 viewModel.setSelectedTvShow(tvShowId)
                 populateTvShowDetails(viewModel.getTvShow())
-            }
-        }
+            } else showErrorDialog()
+        } else showErrorDialog()
+    }
+
+    private fun showErrorDialog() {
+        val dialog = Dialog(this)
+        dialog.setContentView(R.layout.dialog_error)
+        val btnGoBack = dialog.findViewById<Button>(R.id.button_go_back)
+        btnGoBack.setOnClickListener { finish() }
+        dialog.show()
     }
 
     private fun populateTvShowDetails(tvShow: TvShow) {
@@ -67,7 +73,7 @@ class TvShowDetailActivity : AppCompatActivity() {
         }
         text_duration.text = tvShow.duration
         text_genre.text = tvShow.genre
-        if (tvShow.tagline != ""){
+        if (tvShow.tagline != "") {
             text_tagline.text = tvShow.tagline
         } else {
             text_tagline.visibility = GONE

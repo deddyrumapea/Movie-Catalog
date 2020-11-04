@@ -4,12 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.app.ShareCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.romnan.moviecatalog.R
-import com.romnan.moviecatalog.model.TvShow
 import kotlinx.android.synthetic.main.fragment_tv_shows.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -22,7 +20,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [TvShowsFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class TvShowsFragment : Fragment(), TvShowsFragmentCallback {
+class TvShowsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -41,25 +39,13 @@ class TvShowsFragment : Fragment(), TvShowsFragmentCallback {
 
         if (activity != null) {
             val tvShows = viewModel.retrieveTvShowData()
-            val tvShowAdapter = TvShowAdapter(this)
+            val tvShowAdapter = TvShowAdapter()
             tvShowAdapter.setTvShows(tvShows)
 
             with(rv_tv_show) {
                 layoutManager = LinearLayoutManager(context)
                 setHasFixedSize(true)
                 adapter = tvShowAdapter
-            }
-        }
-    }
-
-    override fun onClickShare(tvShow: TvShow) {
-        if (activity != null) {
-            val mimeType = "text/plain"
-            ShareCompat.IntentBuilder.from(activity!!).apply {
-                setType(mimeType)
-                setChooserTitle("Share TV Show")
-                setText(resources.getString(R.string.share_text, tvShow.title))
-                startChooser()
             }
         }
     }

@@ -1,20 +1,20 @@
 package com.romnan.moviecatalog.model
 
 data class TvShow(
-    var id: String,
-    var poster: Int,
-    var title: String,
-    var trailerUrl: String,
-    var genre: String,
-    var duration: String,
-    var score: Int,
-    var tagline: String,
-    var overview: String,
-    var creator: String,
-    var casts: String,
-    var status: String,
-    var type: String,
-    var language: String,
-    var keyword: String,
-    var lastSeason: String
+    val id: String,
+    val poster: Int,
+    val title: String,
+    val trailerUrl: String,
+    val genre: String,
+    val duration: String,
+    val score: Int,
+    val tagline: String,
+    val overview: String,
+    val creator: String,
+    val casts: String,
+    val status: String,
+    val type: String,
+    val language: String,
+    val keyword: String,
+    val lastSeason: String
 )

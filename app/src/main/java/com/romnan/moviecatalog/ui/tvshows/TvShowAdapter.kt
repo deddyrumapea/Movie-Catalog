@@ -14,13 +14,12 @@ import com.romnan.moviecatalog.ui.detail.tvshows.TvShowDetailActivity
 import kotlinx.android.synthetic.main.activity_tv_show_detail.view.*
 import kotlinx.android.synthetic.main.item_tv_show.view.*
 
-class TvShowAdapter(private val callback: TvShowsFragmentCallback) :
+class TvShowAdapter :
     RecyclerView.Adapter<TvShowAdapter.TvShowViewHolder>() {
 
     private val tvShowsList = ArrayList<TvShow>()
 
     fun setTvShows(tvShows: ArrayList<TvShow>) {
-        if (tvShows == null) return
         tvShowsList.clear()
         tvShowsList.addAll(tvShows)
     }

@@ -1,21 +1,21 @@
 package com.romnan.moviecatalog.model
 
 data class Movie(
-    var id: String,
-    var poster: Int,
-    var title: String,
-    var trailerUrl : String,
-    var releaseDate: String,
-    var genre: String,
-    var duration: String,
-    var score: Int,
-    var tagline: String,
-    var overview: String,
-    var director: String,
-    var casts: String,
-    var status: String,
-    var language: String,
-    var budget: String,
-    var revenue: String,
-    var keyword: String
+    val id: String,
+    val poster: Int,
+    val title: String,
+    val trailerUrl : String,
+    val releaseDate: String,
+    val genre: String,
+    val duration: String,
+    val score: Int,
+    val tagline: String,
+    val overview: String,
+    val director: String,
+    val casts: String,
+    val status: String,
+    val language: String,
+    val budget: String,
+    val revenue: String,
+    val keyword: String
 )
