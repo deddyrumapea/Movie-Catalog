@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.romnan.moviecatalog.R
-import kotlinx.android.synthetic.main.fragment_movies.*
+import kotlinx.android.synthetic.main.fragment_popular_shows.*
 
 
 class MoviesFragment : Fragment() {
@@ -18,7 +18,7 @@ class MoviesFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? =
-        inflater.inflate(R.layout.fragment_movies, container, false)
+        inflater.inflate(R.layout.fragment_popular_shows, container, false)
 
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -34,7 +34,7 @@ class MoviesFragment : Fragment() {
             movieAdapter.setMovies(movies)
             Log.d(TAG, "onActivityCreated: ${movies.size}")
 
-            with(rv_movie) {
+            with(rv_pop_show) {
                 layoutManager = LinearLayoutManager(context)
                 setHasFixedSize(true)
                 adapter = movieAdapter

@@ -7,12 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.romnan.moviecatalog.R
 import com.romnan.moviecatalog.model.Movie
 import com.romnan.moviecatalog.ui.detail.movie.MovieDetailActivity
-import kotlinx.android.synthetic.main.item_movie.view.*
+import kotlinx.android.synthetic.main.item_pop_show.view.*
 
 class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
@@ -26,7 +25,7 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_movie, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_pop_show, parent, false)
         return MovieViewHolder(view)
     }
 
@@ -40,9 +39,9 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
     class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(movie: Movie) {
             with(itemView) {
-                text_movie_item_title.text = movie.title
-                text_movie_item_genre.text = movie.genre
-                text_movie_item_overview.text = movie.overview
+                text_pop_show_item_title.text = movie.title
+                text_pop_show_item_release_date.text = movie.genre
+                text_pop_show_item_overview.text = movie.overview
 
                 setOnClickListener {
                     val intent = Intent(context, MovieDetailActivity::class.java).apply {
@@ -54,7 +53,7 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
                 Glide.with(context)
                     .load(movie.poster)
                     .apply(RequestOptions.placeholderOf(R.drawable.ic_loading))
-                    .into(image_movie_item_poster)
+                    .into(image_pop_show_item_poster)
             }
         }
 
