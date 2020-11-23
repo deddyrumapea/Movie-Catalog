@@ -2,7 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/card_item_movie"
+    android:id="@+id/card_item_pop_show"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="@dimen/margin_8dp"
@@ -15,7 +15,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/image_movie_item_poster"
+            android:id="@+id/image_pop_show_item_poster"
             android:layout_width="80dp"
             android:layout_height="0dp"
             android:contentDescription="@string/poster"
@@ -26,7 +26,7 @@
             tools:src="@drawable/poster_infinity_war" />
 
         <TextView
-            android:id="@+id/text_movie_item_title"
+            android:id="@+id/text_pop_show_item_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_16dp"
@@ -38,26 +38,26 @@
             android:textColor="@color/black_text"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintLeft_toRightOf="@id/image_movie_item_poster"
+            app:layout_constraintLeft_toRightOf="@id/image_pop_show_item_poster"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@id/image_movie_item_poster"
+            app:layout_constraintTop_toTopOf="@id/image_pop_show_item_poster"
             tools:text="Avengers: Infinity War (2018)" />
 
         <TextView
-            android:id="@+id/text_movie_item_genre"
+            android:id="@+id/text_pop_show_item_release_date"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="1"
             android:paddingHorizontal="@dimen/padding_16dp"
             android:singleLine="true"
-            app:layout_constraintLeft_toLeftOf="@id/text_movie_item_title"
+            app:layout_constraintLeft_toLeftOf="@id/text_pop_show_item_title"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/text_movie_item_title"
-            tools:text="Adventure, Action, Science Fiction" />
+            app:layout_constraintTop_toBottomOf="@id/text_pop_show_item_title"
+            tools:text="January 25, 2016" />
 
         <TextView
-            android:id="@+id/text_movie_item_overview"
+            android:id="@+id/text_pop_show_item_overview"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:ellipsize="end"
@@ -66,9 +66,9 @@
             android:paddingVertical="@dimen/padding_8dp"
             android:singleLine="false"
             android:textColor="@color/black_text"
-            app:layout_constraintLeft_toLeftOf="@id/text_movie_item_title"
-            app:layout_constraintRight_toRightOf="@id/text_movie_item_title"
-            app:layout_constraintTop_toBottomOf="@id/text_movie_item_genre"
+            app:layout_constraintLeft_toLeftOf="@id/text_pop_show_item_title"
+            app:layout_constraintRight_toRightOf="@id/text_pop_show_item_title"
+            app:layout_constraintTop_toBottomOf="@id/text_pop_show_item_release_date"
             tools:text="As the Avengers and their allies have continued to protect the world from threats too large for any one hero to handle, a new danger has emerged from the cosmic shadows: Thanos. A despot of intergalactic infamy, his goal is to collect all six Infinity Stones, artifacts of unimaginable power, and use them to inflict his twisted will on all of reality. Everything the Avengers have fought for has led up to this moment - the fate of Earth and existence itself has never been more uncertain." />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
