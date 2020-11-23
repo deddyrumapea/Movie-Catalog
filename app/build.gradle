@@ -53,5 +53,8 @@ dependencies {
     implementation "com.github.bumptech.glide:glide:$glideVersion"
 
     // Splash screen
-    implementation 'gr.pantrif:easy-android-splash-screen:0.0.1'
+    implementation "gr.pantrif:easy-android-splash-screen:$easySplashScreenVersion"
+
+    // Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
 }
