@@ -13,15 +13,14 @@
         tools:context=".ui.detail.movie.MovieDetailActivity">
 
         <ImageView
-            android:id="@+id/image_movie_background"
+            android:id="@+id/image_movie_backdrop"
             android:layout_width="wrap_content"
             android:layout_height="200dp"
             android:contentDescription="@string/background_image"
             android:foreground="@drawable/fg_poster_shadow"
             android:scaleType="center"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/poster_infinity_war" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/image_movie_poster"
@@ -30,10 +29,9 @@
             android:layout_marginVertical="@dimen/margin_16dp"
             android:layout_marginStart="@dimen/margin_32dp"
             android:contentDescription="@string/poster"
-            app:layout_constraintBottom_toBottomOf="@id/image_movie_background"
-            app:layout_constraintLeft_toLeftOf="@id/image_movie_background"
-            app:layout_constraintTop_toTopOf="@id/image_movie_background"
-            tools:src="@drawable/poster_infinity_war" />
+            app:layout_constraintBottom_toBottomOf="@id/image_movie_backdrop"
+            app:layout_constraintLeft_toLeftOf="@id/image_movie_backdrop"
+            app:layout_constraintTop_toTopOf="@id/image_movie_backdrop" />
 
         <TextView
             android:id="@+id/text_movie_title"
@@ -44,7 +42,7 @@
             android:padding="@dimen/padding_16dp"
             android:textAlignment="center"
             android:textSize="20sp"
-            app:layout_constraintTop_toBottomOf="@id/image_movie_background"
+            app:layout_constraintTop_toBottomOf="@id/image_movie_backdrop"
             tools:text="Avengers : Infinity War (2016)" />
 
         <TextView
@@ -65,7 +63,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/bg_score"
             android:padding="@dimen/padding_16dp"
-            app:layout_constraintBottom_toBottomOf="@id/button_play_trailer"
+            app:layout_constraintBottom_toBottomOf="@id/button_homepage"
             app:layout_constraintLeft_toRightOf="@id/text_user_score"
             app:layout_constraintRight_toLeftOf="@id/divider"
             app:layout_constraintTop_toBottomOf="@id/text_movie_title"
@@ -73,15 +71,15 @@
 
         <ProgressBar
             android:id="@+id/progress_bar_score"
+            style="?android:progressBarStyleHorizontal"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            tools:progress="70"
             android:progressDrawable="@drawable/circle"
-            style="?android:progressBarStyleHorizontal"
             app:layout_constraintBottom_toBottomOf="@id/text_score"
             app:layout_constraintLeft_toLeftOf="@id/text_score"
             app:layout_constraintRight_toRightOf="@id/text_score"
-            app:layout_constraintTop_toTopOf="@id/text_score" />
+            app:layout_constraintTop_toTopOf="@id/text_score"
+            tools:progress="70" />
 
         <View
             android:id="@+id/divider"
@@ -89,21 +87,21 @@
             android:layout_height="0dp"
             android:layout_marginVertical="@dimen/margin_8dp"
             android:background="@android:color/darker_gray"
-            app:layout_constraintBottom_toBottomOf="@id/button_play_trailer"
+            app:layout_constraintBottom_toBottomOf="@id/button_homepage"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/text_movie_title" />
 
         <Button
-            android:id="@+id/button_play_trailer"
+            android:id="@+id/button_homepage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
-            android:drawableStart="@drawable/ic_round_play_arrow"
+            android:drawableStart="@drawable/ic_go_homepage"
             android:drawablePadding="@dimen/padding_8dp"
             android:fontFamily="@font/source_sans_pro_regular"
             android:padding="@dimen/padding_8dp"
-            android:text="@string/play_trailer"
+            android:text="@string/homepage"
             android:textAllCaps="false"
             android:textColor="@android:color/white"
             android:textStyle="bold"
@@ -115,7 +113,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:background="@color/mirage"
-            app:layout_constraintBottom_toBottomOf="@id/text_genre"
+            app:layout_constraintBottom_toBottomOf="@id/text_tagline"
             app:layout_constraintTop_toTopOf="@id/text_release_date" />
 
         <TextView
@@ -148,26 +146,13 @@
             tools:text="2h 29m" />
 
         <TextView
-            android:id="@+id/text_genre"
+            android:id="@+id/text_tagline"
             style="@style/DisplayText.Bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="@dimen/padding_16dp"
             android:textAlignment="center"
             app:layout_constraintTop_toBottomOf="@id/text_release_date"
-            tools:text="Adventure, Action, Science Fiction" />
-
-        <TextView
-            android:id="@+id/text_tagline"
-            style="@style/DisplayText.Bold"
-            android:paddingHorizontal="@dimen/padding_16dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_16dp"
-            android:gravity="center"
-            android:textSize="16sp"
-            android:textStyle="italic"
-            app:layout_constraintTop_toBottomOf="@id/text_genre"
             tools:text="An entire universe. Once and for all." />
 
         <TextView
@@ -191,59 +176,6 @@
             app:layout_constraintTop_toBottomOf="@id/text_overview_title"
             tools:text="As the Avengers and their allies have continued to protect the world from threats too large for any one hero to handle, a new danger has emerged from the cosmic shadows: Thanos. A despot of intergalactic infamy, his goal is to collect all six Infinity Stones, artifacts of unimaginable power, and use them to inflict his twisted will on all of reality. Everything the Avengers have fought for has led up to this moment - the fate of Earth and existence itself has never been more uncertain." />
 
-        <TextView
-            android:id="@+id/text_director"
-            style="@style/DisplayText.Bold"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:paddingHorizontal="@dimen/padding_16dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="@id/divider2"
-            app:layout_constraintTop_toTopOf="@id/divider2"
-            tools:text="Joe Russo" />
-
-        <TextView
-            style="@style/DisplayText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingHorizontal="16dp"
-            android:text="@string/director"
-            app:layout_constraintLeft_toLeftOf="@id/text_director"
-            app:layout_constraintTop_toBottomOf="@id/text_director" />
-
-        <View
-            android:id="@+id/divider2"
-            android:layout_width="1dp"
-            android:layout_height="0dp"
-            android:layout_marginVertical="@dimen/margin_16dp"
-            android:background="@android:color/darker_gray"
-            app:layout_constraintBottom_toBottomOf="@id/text_casts_title"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/text_overview" />
-
-        <TextView
-            android:id="@+id/text_casts"
-            style="@style/DisplayText.Bold"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:paddingHorizontal="@dimen/padding_16dp"
-            app:layout_constraintLeft_toRightOf="@id/divider2"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@id/divider2"
-            tools:text="Robert Downey Jr., Chris Hemsworth, Chris Evans, Scarlett Johansson" />
-
-        <TextView
-            android:id="@+id/text_casts_title"
-            style="@style/DisplayText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingHorizontal="@dimen/padding_16dp"
-            android:paddingBottom="@dimen/padding_16dp"
-            android:text="@string/casts"
-            app:layout_constraintLeft_toLeftOf="@id/text_casts"
-            app:layout_constraintTop_toBottomOf="@id/text_casts" />
-
         <View
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -260,7 +192,7 @@
             android:paddingTop="@dimen/padding_16dp"
             android:text="@string/status"
             android:textColor="@color/black_text"
-            app:layout_constraintTop_toBottomOf="@id/text_casts_title"
+            app:layout_constraintTop_toBottomOf="@id/text_overview"
             app:layout_goneMarginTop="@dimen/margin_16dp" />
 
         <TextView
@@ -274,27 +206,6 @@
             tools:text="Released" />
 
         <TextView
-            android:id="@+id/text_language_title"
-            style="@style/DisplayText.Bold"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingHorizontal="@dimen/padding_16dp"
-            android:paddingTop="@dimen/padding_16dp"
-            android:text="@string/original_language"
-            android:textColor="@color/black_text"
-            app:layout_constraintTop_toBottomOf="@id/text_status" />
-
-        <TextView
-            android:id="@+id/text_language"
-            style="@style/DisplayText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingHorizontal="@dimen/padding_16dp"
-            android:textColor="@color/black_text"
-            app:layout_constraintTop_toBottomOf="@id/text_language_title"
-            tools:text="English" />
-
-        <TextView
             android:id="@+id/text_budget_title"
             style="@style/DisplayText.Bold"
             android:layout_width="match_parent"
@@ -303,7 +214,7 @@
             android:paddingTop="@dimen/padding_16dp"
             android:text="@string/budget"
             android:textColor="@color/black_text"
-            app:layout_constraintTop_toBottomOf="@id/text_language" />
+            app:layout_constraintTop_toBottomOf="@id/text_status" />
 
         <TextView
             android:id="@+id/text_budget"

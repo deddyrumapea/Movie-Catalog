@@ -1,12 +1,10 @@
 <resources>
     <string name="app_name">Movie Catalog</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="poster">poster</string>
     <string name="background_image">background image</string>
     <string name="play_trailer">Play Trailer</string>
     <string name="user_score">User\nScore</string>
     <string name="overview">Overview</string>
-    <string name="director">Director</string>
     <string name="casts">Casts</string>
     <string name="status">Status</string>
     <string name="original_language">Original Language</string>
@@ -21,8 +19,11 @@
     <string name="about">About</string>
     <string name="tv_show_detail">TV Show Detail</string>
     <string name="movie_detail">Movie Detail</string>
-    <string name="about_message">Developed by Deddy Romnan Rumapea\nIcons made by Freepik from Flaticon</string>
+    <string name="about_message">Developed by Deddy Romnan Rumapea\n\nIcons made by Freepik from Flaticon\n\nThis product uses the TMDb API but is not endorsed or certified by TMDb</string>
     <string name="error">Error</string>
     <string name="opps_something_went_wrong">Opps, something went wrong</string>
     <string name="go_back">Go back</string>
+    <string name="image_base_url">http://image.tmdb.org/t/p/w185/%s</string>
+    <string name="homepage">Homepage</string>
+    <string name="minutes">%s minutes</string>
 </resources>
