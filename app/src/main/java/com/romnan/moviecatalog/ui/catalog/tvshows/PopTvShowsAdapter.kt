@@ -1,4 +1,4 @@
-package com.romnan.moviecatalog.ui.tvshows
+package com.romnan.moviecatalog.ui.catalog.tvshows
 
 import android.content.Intent
 import android.view.View

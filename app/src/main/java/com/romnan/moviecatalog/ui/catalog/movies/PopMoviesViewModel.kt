@@ -1,4 +1,4 @@
-package com.romnan.moviecatalog.ui.tvshows
+package com.romnan.moviecatalog.ui.catalog.movies
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -12,20 +12,20 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class PopTvShowsViewModel : ViewModel() {
-    private val _popTvShows = MutableLiveData<List<PopShow>>()
-    val popTvShows: LiveData<List<PopShow>> = _popTvShows
+class PopMoviesViewModel : ViewModel() {
+    private val _popMovies = MutableLiveData<List<PopShow>>()
+    val popMovies: LiveData<List<PopShow>> = _popMovies
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
     companion object {
-        private const val TAG = "PopTvShowsViewModel"
+        private const val TAG = "PopMoviesViewModel"
     }
 
-    fun getPopTvShows() {
+    fun getPopMovies() {
         _isLoading.value = true
-        val client = ApiConfig.getApiService().getPopularTvShows(ApiService.apiKey)
+        val client = ApiConfig.getApiService().getPopularMovies(ApiService.apiKey)
 
         client.enqueue(object : Callback<PopShowResponse> {
             override fun onResponse(
@@ -34,7 +34,8 @@ class PopTvShowsViewModel : ViewModel() {
             ) {
                 _isLoading.value = false
                 if (response.isSuccessful) {
-                    _popTvShows.value = response.body()?.results as List<PopShow>?
+                    _popMovies.value = response.body()?.results as List<PopShow>?
+                    Log.d(TAG, "onResponse: ")
                 } else {
                     Log.e(TAG, "onResponse: ${response.message()}")
                 }

@@ -1,4 +1,4 @@
-package com.romnan.moviecatalog.ui.movies
+package com.romnan.moviecatalog.ui.catalog.tvshows
 
 import android.os.Bundle
 import android.util.Log
@@ -9,11 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.romnan.moviecatalog.R
-import com.romnan.showcatalog.ui.shows.PopShowAdapter
 import kotlinx.android.synthetic.main.fragment_popular_shows.*
 
-
-class PopMoviesFragment : Fragment() {
+class PopTvShowsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -27,21 +25,21 @@ class PopMoviesFragment : Fragment() {
         val viewModel = ViewModelProvider(
             this,
             ViewModelProvider.NewInstanceFactory()
-        )[PopMoviesViewModel::class.java]
+        )[PopTvShowsViewModel::class.java]
 
-        val movieAdapter = PopMoviesAdapter()
+        val tvShowAdapter = PopTvShowsAdapter()
 
         with(rv_pop_show) {
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
-            adapter = movieAdapter
+            adapter = tvShowAdapter
         }
 
-        viewModel.getPopMovies()
+        viewModel.getPopTvShows()
 
-        viewModel.popMovies.observe(this, { movies ->
-            movieAdapter.setShows(movies)
-            Log.d(TAG, "onActivityCreated: ${movies.size}")
+        viewModel.popTvShows.observe(this, { tvShows ->
+            tvShowAdapter.setShows(tvShows)
+            Log.d(TAG, "onActivityCreated: ${tvShows.size}")
         })
 
         viewModel.isLoading.observe(this, {
@@ -51,6 +49,6 @@ class PopMoviesFragment : Fragment() {
     }
 
     companion object {
-        private const val TAG = "PopMoviesFragment"
+        private const val TAG = "PopTvShowsFragment"
     }
 }

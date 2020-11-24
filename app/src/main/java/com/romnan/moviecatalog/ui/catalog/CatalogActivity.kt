@@ -4,12 +4,10 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.romnan.moviecatalog.R
-import com.romnan.moviecatalog.ui.movies.PopMoviesViewModel
 import kotlinx.android.synthetic.main.activity_catalog.*
 
 class CatalogActivity : AppCompatActivity() {
