@@ -1,4 +1,4 @@
-package com.romnan.moviecatalog.ui.movies
+package com.romnan.moviecatalog.ui.tvshows
 
 import android.os.Bundle
 import android.util.Log
@@ -11,8 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.romnan.moviecatalog.R
 import kotlinx.android.synthetic.main.fragment_popular_shows.*
 
-
-class MoviesFragment : Fragment() {
+class PopTvShowsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -24,25 +23,32 @@ class MoviesFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         val viewModel = ViewModelProvider(
-            requireActivity(),
+            this,
             ViewModelProvider.NewInstanceFactory()
-        )[MoviesViewModel::class.java]
+        )[PopTvShowsViewModel::class.java]
 
-        if (activity != null) {
-            val movies = viewModel.retrieveMovieData()
-            val movieAdapter = MovieAdapter()
-            movieAdapter.setMovies(movies)
-            Log.d(TAG, "onActivityCreated: ${movies.size}")
+        val tvShowAdapter = PopTvShowsAdapter()
 
-            with(rv_pop_show) {
-                layoutManager = LinearLayoutManager(context)
-                setHasFixedSize(true)
-                adapter = movieAdapter
-            }
+        with(rv_pop_show) {
+            layoutManager = LinearLayoutManager(context)
+            setHasFixedSize(true)
+            adapter = tvShowAdapter
         }
+
+        viewModel.getPopTvShows()
+
+        viewModel.popTvShows.observe(this, { tvShows ->
+            tvShowAdapter.setShows(tvShows)
+            Log.d(TAG, "onActivityCreated: ${tvShows.size}")
+        })
+
+        viewModel.isLoading.observe(this, {
+            progress_bar.visibility = if (it) View.VISIBLE else View.GONE
+        })
+
     }
 
     companion object {
-        private const val TAG = "MoviesFragment"
+        private const val TAG = "PopTvShowsFragment"
     }
 }

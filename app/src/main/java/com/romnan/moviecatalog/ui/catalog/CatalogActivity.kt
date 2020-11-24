@@ -4,13 +4,16 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.romnan.moviecatalog.R
+import com.romnan.moviecatalog.ui.movies.PopMoviesViewModel
 import kotlinx.android.synthetic.main.activity_catalog.*
 
 class CatalogActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_catalog)
@@ -19,9 +22,8 @@ class CatalogActivity : AppCompatActivity() {
         view_pager.adapter = sectionsPagerAdapter
         tabs.setupWithViewPager(view_pager)
 
+        // Action bar adjustments
         supportActionBar?.elevation = 0f
-
-        // Change action bar color
         supportActionBar?.setBackgroundDrawable(
             ColorDrawable(
                 ContextCompat.getColor(
@@ -45,6 +47,7 @@ class CatalogActivity : AppCompatActivity() {
     private fun showAboutDialog() {
         val builder = AlertDialog.Builder(this)
         builder.setMessage(getString(R.string.about_message))
+        builder.setIcon(R.drawable.ic_logo_tmdb)
         builder.setCancelable(true)
         builder.create().show()
     }
