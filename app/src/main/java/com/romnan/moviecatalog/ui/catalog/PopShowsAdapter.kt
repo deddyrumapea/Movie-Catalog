@@ -11,7 +11,6 @@ import com.romnan.moviecatalog.R
 import com.romnan.moviecatalog.model.PopShow
 import kotlinx.android.synthetic.main.item_pop_show.view.*
 
-
 abstract class PopShowAdapter : RecyclerView.Adapter<PopShowAdapter.ShowViewHolder>() {
 
     private var showsList = ArrayList<PopShow>()
@@ -44,10 +43,12 @@ abstract class PopShowAdapter : RecyclerView.Adapter<PopShowAdapter.ShowViewHold
             with(itemView) {
                 // If it's a movie, use title and release date.
                 // If it's a TV show, use name and first air date.
-                text_pop_show_item_title.text =
-                    if (show.title != null) show.title else show.name
-                text_pop_show_item_release_date.text =
+                val title = if (show.title != null) show.title else show.name
+                val releaseDate =
                     if (show.releaseDate != null) show.releaseDate else show.firstAirDate
+
+                text_pop_show_item_title.text = title
+                text_pop_show_item_release_date.text = releaseDate
                 text_pop_show_item_overview.text = show.overview
 
                 Glide.with(context)
