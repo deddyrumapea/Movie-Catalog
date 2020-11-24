@@ -1,6 +1,6 @@
 package com.romnan.moviecatalog.model
 
-data class TvShow(
+data class TvShowDetail(
     val id: String,
     val poster: Int,
     val title: String,
