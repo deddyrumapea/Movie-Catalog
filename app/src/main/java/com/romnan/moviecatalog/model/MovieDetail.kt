@@ -21,6 +21,9 @@ data class MovieDetail(
     @field:SerializedName("budget")
     val budget: Int,
 
+    @field:SerializedName("genres")
+    val genres: List<GenresItem>,
+
     @field:SerializedName("overview")
     val overview: String,
 
@@ -30,14 +33,17 @@ data class MovieDetail(
     @field:SerializedName("release_date")
     val releaseDate: String,
 
+    @field:SerializedName("spoken_languages")
+    val spokenLanguages: List<SpokenLanguagesItem>,
+
     @field:SerializedName("vote_average")
     val voteAverage: Double,
 
     @field:SerializedName("tagline")
     val tagline: String,
 
-    @field:SerializedName("homepage")
-    val homepage: String,
+    @field:SerializedName("videos")
+    val videos: Videos,
 
     @field:SerializedName("status")
     val status: String

@@ -11,7 +11,8 @@ import retrofit2.http.Query
 interface ApiService {
 
     companion object{
-        val apiKey = "51a6c6939964995030fb073e1bc86edf"
+        const val API_KEY = "51a6c6939964995030fb073e1bc86edf"
+        const val VIDEOS = "videos"
     }
 
     @GET("discover/movie")
@@ -22,14 +23,16 @@ interface ApiService {
 
     @GET("movie/{id}")
     fun getMovieDetail(
+        @Path("id") id: String,
         @Query("api_key") apiKey: String,
-        @Path("id") id: String
+        @Query("append_to_response") appendToResponse: String
     ): Call<MovieDetail>
 
     @GET("tv/{id}")
     fun getTvShowDetail(
+        @Path("id") id: String,
         @Query("api_key") apiKey: String,
-        @Path("id") id: String
+        @Query("append_to_response") appendToResponse: String
     ): Call<TvShowDetail>
 
 }
