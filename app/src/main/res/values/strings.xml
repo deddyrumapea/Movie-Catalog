@@ -5,18 +5,13 @@
     <string name="play_trailer">Play Trailer</string>
     <string name="user_score">User\nScore</string>
     <string name="overview">Overview</string>
-    <string name="casts">Casts</string>
     <string name="status">Status</string>
-    <string name="original_language">Original Language</string>
     <string name="budget">Budget</string>
     <string name="revenue">Revenue</string>
-    <string name="keywords">Keywords</string>
-    <string name="last_season">Last Season</string>
     <string name="type">Type</string>
     <string name="creator">Creator</string>
     <string name="movies">Movies</string>
     <string name="tv_shows">TV Shows</string>
-    <string name="about">About</string>
     <string name="tv_show_detail">TV Show Detail</string>
     <string name="movie_detail">Movie Detail</string>
     <string name="about_message">Developed by Deddy Romnan Rumapea\n\nIcons made by Freepik from Flaticon\n\nThis product uses the TMDb API but is not endorsed or certified by TMDb</string>
@@ -24,6 +19,12 @@
     <string name="opps_something_went_wrong">Opps, something went wrong</string>
     <string name="go_back">Go back</string>
     <string name="image_base_url">http://image.tmdb.org/t/p/w185/%s</string>
-    <string name="homepage">Homepage</string>
-    <string name="minutes">%s minutes</string>
+    <string name="runtime_format">%s minutes</string>
+    <string name="about">About</string>
+    <string name="networks">Networks</string>
+    <string name="spoken_languages">Spoken Languages</string>
+    <string name="production_countries">Production Countries</string>
+    <string name="last_episode">Last Episode</string>
+    <string name="youtube_base_url">https://www.youtube.com/watch?v=%s</string>
+    <string name="last_aired_format">Season %s | %s Episodes\n%s\n%s</string>
 </resources>
