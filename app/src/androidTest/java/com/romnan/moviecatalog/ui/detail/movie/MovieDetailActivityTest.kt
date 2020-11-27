@@ -9,7 +9,6 @@ import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.rule.ActivityTestRule
 import com.romnan.moviecatalog.R
-import com.romnan.moviecatalog.util.DataDummy
 import junit.framework.TestCase.assertTrue
 import org.junit.Rule
 import org.junit.Test
@@ -24,7 +23,7 @@ class MovieDetailActivityTest {
     fun loadMovieDetails() {
         // Create intent
         val movieId = dummyMovie.id
-        val intent = Intent().putExtra(MovieDetailActivity.EXTRA_MOVIE, movieId)
+        val intent = Intent().putExtra(MovieDetailActivity.EXTRA_MOVIE_ID, movieId)
         activityRule.launchActivity(intent)
 
         // Check views

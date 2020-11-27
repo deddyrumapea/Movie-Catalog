@@ -1,6 +1,5 @@
 package com.romnan.moviecatalog.ui.detail.movie
 
-import com.romnan.moviecatalog.util.DataDummy
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Before

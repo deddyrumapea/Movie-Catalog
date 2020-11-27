@@ -8,7 +8,6 @@ import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.rule.ActivityTestRule
 import com.romnan.moviecatalog.R
-import com.romnan.moviecatalog.util.DataDummy
 import org.junit.Rule
 import org.junit.Test
 

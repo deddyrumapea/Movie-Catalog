@@ -1,12 +1,11 @@
 package com.romnan.moviecatalog.ui.detail.tvshows
 
-import com.romnan.moviecatalog.util.DataDummy
 import org.junit.Before
 import org.junit.Test
 
 import org.junit.Assert.*
 
-class TvShowDetailViewModelTest {
+class TvShowDetailDetailViewModelTest {
 
     private lateinit var viewModel: TvShowDetailViewModel
     private val dummyTvShow = DataDummy.generateDummyTvShows()[0]

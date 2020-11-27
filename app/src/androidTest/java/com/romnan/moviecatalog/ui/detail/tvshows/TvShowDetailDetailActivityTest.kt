@@ -9,12 +9,11 @@ import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.rule.ActivityTestRule
 import com.romnan.moviecatalog.R
-import com.romnan.moviecatalog.util.DataDummy
 import junit.framework.TestCase.assertTrue
 import org.junit.Rule
 import org.junit.Test
 
-class TvShowDetailActivityTest {
+class TvShowDetailDetailActivityTest {
     private val dummyTvShow = DataDummy.generateDummyTvShows()[0]
 
     @get:Rule
@@ -24,7 +23,7 @@ class TvShowDetailActivityTest {
     fun loadTvShowDetails() {
         // Create intent
         val tvShowId = dummyTvShow.id
-        val intent = Intent().putExtra(TvShowDetailActivity.EXTRA_TV_SHOW, tvShowId)
+        val intent = Intent().putExtra(TvShowDetailActivity.EXTRA_TV_SHOW_ID, tvShowId)
         activityRule.launchActivity(intent)
 
         // Check views
