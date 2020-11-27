@@ -25,7 +25,7 @@ class PopMoviesViewModel : ViewModel() {
 
     fun getPopMovies() {
         _isLoading.value = true
-        val client = ApiConfig.getApiService().getPopularMovies(ApiService.apiKey)
+        val client = ApiConfig.getApiService().getPopularMovies(ApiService.API_KEY)
 
         client.enqueue(object : Callback<PopShowResponse> {
             override fun onResponse(
