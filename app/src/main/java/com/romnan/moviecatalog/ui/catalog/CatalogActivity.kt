@@ -44,8 +44,8 @@ class CatalogActivity : AppCompatActivity() {
 
     private fun showAboutDialog() {
         val builder = AlertDialog.Builder(this)
+        builder.setTitle(getString(R.string.about))
         builder.setMessage(getString(R.string.about_message))
-        builder.setIcon(R.drawable.ic_logo_tmdb)
         builder.setCancelable(true)
         builder.create().show()
     }
