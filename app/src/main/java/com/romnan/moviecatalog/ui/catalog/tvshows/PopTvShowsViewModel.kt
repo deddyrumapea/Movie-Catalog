@@ -25,7 +25,7 @@ class PopTvShowsViewModel : ViewModel() {
 
     fun getPopTvShows() {
         _isLoading.value = true
-        val client = ApiConfig.getApiService().getPopularTvShows(ApiService.apiKey)
+        val client = ApiConfig.getApiService().getPopularTvShows(ApiService.API_KEY)
 
         client.enqueue(object : Callback<PopShowResponse> {
             override fun onResponse(
