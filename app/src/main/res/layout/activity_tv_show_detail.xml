@@ -12,6 +12,16 @@
         android:background="@color/ebony_clay"
         tools:context=".ui.detail.tvshow.tvshowDetailActivity">
 
+        <ProgressBar
+            android:id="@+id/progress_bar_tv_show_detail"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:paddingTop="4dp"
+            app:layout_constraintBottom_toTopOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <ImageView
             android:id="@+id/image_tvshow_backdrop"
             android:layout_width="wrap_content"

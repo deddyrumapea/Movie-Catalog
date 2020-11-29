@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -11,6 +10,16 @@
         android:layout_height="wrap_content"
         android:background="@color/ebony_clay"
         tools:context=".ui.detail.movie.MovieDetailActivity">
+
+        <ProgressBar
+            android:id="@+id/progress_bar_movie_detail"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:paddingTop="4dp"
+            app:layout_constraintBottom_toTopOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/image_movie_backdrop"
@@ -113,7 +122,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:background="@color/mirage"
-            app:layout_constraintBottom_toBottomOf="@id/text_genre"
+            app:layout_constraintBottom_toBottomOf="@id/text_genre_movie"
             app:layout_constraintTop_toTopOf="@id/text_release_date" />
 
         <TextView

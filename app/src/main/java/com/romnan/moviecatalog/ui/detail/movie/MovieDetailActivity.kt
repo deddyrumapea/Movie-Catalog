@@ -5,6 +5,7 @@ import android.content.Intent
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -67,6 +68,8 @@ class MovieDetailActivity : AppCompatActivity() {
     }
 
     private fun populateMovieDetails(movie: MovieDetail) {
+        progress_bar_movie_detail.visibility = View.GONE;
+
         Glide.with(this)
             .load(String.format(getString(R.string.image_base_url), movie.posterPath))
             .into(image_movie_poster)
