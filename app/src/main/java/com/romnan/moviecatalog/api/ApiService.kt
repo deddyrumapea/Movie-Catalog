@@ -1,8 +1,8 @@
 package com.romnan.moviecatalog.api
 
 import com.romnan.moviecatalog.model.MovieDetail
-import com.romnan.moviecatalog.model.PopShowResponse
-import com.romnan.moviecatalog.model.TvShowDetail
+import com.romnan.moviecatalog.model.DiscoverResponse
+import com.romnan.moviecatalog.model.TvSeriesDetail
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -16,10 +16,10 @@ interface ApiService {
     }
 
     @GET("discover/movie")
-    fun getPopularMovies(@Query("api_key") apiKey: String): Call<PopShowResponse>
+    fun getPopularMovies(@Query("api_key") apiKey: String): Call<DiscoverResponse>
 
     @GET("discover/tv")
-    fun getPopularTvShows(@Query("api_key") apiKey: String): Call<PopShowResponse>
+    fun getPopularTvSeries(@Query("api_key") apiKey: String): Call<DiscoverResponse>
 
     @GET("movie/{id}")
     fun getMovieDetail(
@@ -29,10 +29,10 @@ interface ApiService {
     ): Call<MovieDetail>
 
     @GET("tv/{id}")
-    fun getTvShowDetail(
+    fun getTvSeriesDetail(
         @Path("id") id: String,
         @Query("api_key") apiKey: String,
         @Query("append_to_response") appendToResponse: String
-    ): Call<TvShowDetail>
+    ): Call<TvSeriesDetail>
 
 }

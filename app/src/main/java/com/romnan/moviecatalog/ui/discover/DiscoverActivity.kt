@@ -1,4 +1,4 @@
-package com.romnan.moviecatalog.ui.catalog
+package com.romnan.moviecatalog.ui.discover
 
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -10,7 +10,7 @@ import androidx.core.content.ContextCompat
 import com.romnan.moviecatalog.R
 import kotlinx.android.synthetic.main.activity_catalog.*
 
-class CatalogActivity : AppCompatActivity() {
+class DiscoverActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

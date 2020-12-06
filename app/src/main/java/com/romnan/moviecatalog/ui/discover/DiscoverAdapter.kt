@@ -8,14 +8,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.romnan.moviecatalog.R
-import com.romnan.moviecatalog.model.PopShow
-import kotlinx.android.synthetic.main.item_pop_show.view.*
+import com.romnan.moviecatalog.model.PopularShow
+import kotlinx.android.synthetic.main.item_popular_show.view.*
 
-abstract class PopShowAdapter : RecyclerView.Adapter<PopShowAdapter.ShowViewHolder>() {
+abstract class DiscoverAdapter : RecyclerView.Adapter<DiscoverAdapter.ShowViewHolder>() {
 
-    private var showsList = ArrayList<PopShow>()
+    private var showsList = ArrayList<PopularShow>()
 
-    fun setShows(shows: List<PopShow>) {
+    fun setShows(shows: List<PopularShow>) {
         showsList.clear()
         showsList.addAll(shows)
         notifyDataSetChanged()
@@ -24,7 +24,7 @@ abstract class PopShowAdapter : RecyclerView.Adapter<PopShowAdapter.ShowViewHold
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShowViewHolder {
         val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.item_pop_show, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.item_popular_show, parent, false)
         return ShowViewHolder(view)
     }
 
@@ -39,7 +39,7 @@ abstract class PopShowAdapter : RecyclerView.Adapter<PopShowAdapter.ShowViewHold
     override fun getItemCount(): Int = showsList.size
 
     class ShowViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(show: PopShow) {
+        fun bind(show: PopularShow) {
             with(itemView) {
                 // If it's a movie, use title and release date.
                 // If it's a TV show, use name and first air date.

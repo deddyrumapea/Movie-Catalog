@@ -19,20 +19,20 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.detail.tvshows.TvShowDetailActivity"
-            android:parentActivityName=".ui.catalog.CatalogActivity">
+            android:name=".ui.detail.tvseries.TvSeriesDetailActivity"
+            android:parentActivityName=".ui.discover.DiscoverActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.catalog.CatalogActivity" />
+                android:value=".ui.discover.DiscoverActivity" />
         </activity>
         <activity
             android:name=".ui.detail.movie.MovieDetailActivity"
-            android:parentActivityName=".ui.catalog.CatalogActivity">
+            android:parentActivityName=".ui.discover.DiscoverActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.catalog.CatalogActivity" />
+                android:value=".ui.discover.DiscoverActivity" />
         </activity>
-        <activity android:name=".ui.catalog.CatalogActivity" />
+        <activity android:name=".ui.discover.DiscoverActivity" />
     </application>
 
 </manifest>

@@ -13,7 +13,7 @@
         tools:context=".ui.detail.tvshow.tvshowDetailActivity">
 
         <ProgressBar
-            android:id="@+id/progress_bar_tv_show_detail"
+            android:id="@+id/progress_bar_tv_series_detail"
             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -23,7 +23,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/image_tvshow_backdrop"
+            android:id="@+id/image_tv_series_backdrop"
             android:layout_width="wrap_content"
             android:layout_height="200dp"
             android:contentDescription="@string/background_image"
@@ -33,18 +33,18 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/image_tvshow_poster"
+            android:id="@+id/image_tv_series_poster"
             android:layout_width="100dp"
             android:layout_height="0dp"
             android:layout_marginVertical="@dimen/margin_16dp"
             android:layout_marginStart="@dimen/margin_32dp"
             android:contentDescription="@string/poster"
-            app:layout_constraintBottom_toBottomOf="@id/image_tvshow_backdrop"
-            app:layout_constraintLeft_toLeftOf="@id/image_tvshow_backdrop"
-            app:layout_constraintTop_toTopOf="@id/image_tvshow_backdrop" />
+            app:layout_constraintBottom_toBottomOf="@id/image_tv_series_backdrop"
+            app:layout_constraintLeft_toLeftOf="@id/image_tv_series_backdrop"
+            app:layout_constraintTop_toTopOf="@id/image_tv_series_backdrop" />
 
         <TextView
-            android:id="@+id/text_tvshow_title"
+            android:id="@+id/text_tv_series_title"
             style="@style/DisplayText.Bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -52,7 +52,7 @@
             android:padding="@dimen/padding_16dp"
             android:textAlignment="center"
             android:textSize="20sp"
-            app:layout_constraintTop_toBottomOf="@id/image_tvshow_backdrop"
+            app:layout_constraintTop_toBottomOf="@id/image_tv_series_backdrop"
             tools:text="Avengers : Infinity War (2016)" />
 
         <TextView
@@ -76,7 +76,7 @@
             app:layout_constraintBottom_toBottomOf="@id/button_trailer"
             app:layout_constraintLeft_toRightOf="@id/text_user_score"
             app:layout_constraintRight_toLeftOf="@id/divider"
-            app:layout_constraintTop_toBottomOf="@id/text_tvshow_title"
+            app:layout_constraintTop_toBottomOf="@id/text_tv_series_title"
             tools:text="75" />
 
         <ProgressBar
@@ -100,7 +100,7 @@
             app:layout_constraintBottom_toBottomOf="@id/button_trailer"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/text_tvshow_title" />
+            app:layout_constraintTop_toBottomOf="@id/text_tv_series_title" />
 
         <Button
             android:id="@+id/button_trailer"
@@ -117,7 +117,7 @@
             android:textStyle="bold"
             app:layout_constraintLeft_toRightOf="@id/divider"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/text_tvshow_title" />
+            app:layout_constraintTop_toBottomOf="@id/text_tv_series_title" />
 
         <View
             android:layout_width="match_parent"

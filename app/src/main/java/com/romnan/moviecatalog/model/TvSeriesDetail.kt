@@ -2,7 +2,7 @@ package com.romnan.moviecatalog.model
 
 import com.google.gson.annotations.SerializedName
 
-data class TvShowDetail(
+data class TvSeriesDetail(
 	@field:SerializedName("id")
 	val id: Int,
 
@@ -53,54 +53,4 @@ data class TvShowDetail(
 
 	@field:SerializedName("production_countries")
 	val productionCountries: List<ProductionCountriesItem>
-)
-
-
-data class SpokenLanguagesItem(
-	@field:SerializedName("name")
-	val name: String,
-)
-
-data class ResultsItem(
-	@field:SerializedName("key")
-	val key: String
-)
-
-data class ProductionCountriesItem(
-	@field:SerializedName("name")
-	val name: String
-)
-
-data class LastEpisodeToAir(
-	@field:SerializedName("air_date")
-	val airDate: String,
-
-	@field:SerializedName("overview")
-	val overview: String,
-
-	@field:SerializedName("episode_number")
-	val episodeNumber: Int,
-
-	@field:SerializedName("season_number")
-	val seasonNumber: Int
-)
-
-data class NetworksItem(
-	@field:SerializedName("name")
-	val name: String
-)
-
-data class GenresItem(
-	@field:SerializedName("name")
-	val name: String
-)
-
-data class CreatedByItem(
-	@field:SerializedName("name")
-	val name: String
-)
-
-data class Videos(
-	@field:SerializedName("results")
-	val results: List<ResultsItem>
 )

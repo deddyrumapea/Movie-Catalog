@@ -4,7 +4,7 @@ import android.graphics.Color
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.romnan.moviecatalog.R
-import com.romnan.moviecatalog.ui.catalog.CatalogActivity
+import com.romnan.moviecatalog.ui.discover.DiscoverActivity
 import gr.net.maroulis.library.EasySplashScreen
 
 class SplashScreenActivity : AppCompatActivity() {
@@ -13,7 +13,7 @@ class SplashScreenActivity : AppCompatActivity() {
 
         val easySplashScreen = EasySplashScreen(this)
             .withFullScreen()
-            .withTargetActivity(CatalogActivity::class.java)
+            .withTargetActivity(DiscoverActivity::class.java)
             .withSplashTimeOut(3000)
             .withBackgroundColor(getColor(R.color.colorPrimaryDark))
             .withLogo(R.mipmap.ic_launcher)

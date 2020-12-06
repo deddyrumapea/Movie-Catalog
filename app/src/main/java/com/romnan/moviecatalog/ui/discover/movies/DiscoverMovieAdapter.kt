@@ -1,11 +1,11 @@
-package com.romnan.moviecatalog.ui.catalog.movies
+package com.romnan.moviecatalog.ui.discover.movies
 
 import android.content.Intent
 import android.view.View
 import com.romnan.moviecatalog.ui.detail.movie.MovieDetailActivity
-import com.romnan.showcatalog.ui.shows.PopShowAdapter
+import com.romnan.showcatalog.ui.shows.DiscoverAdapter
 
-class PopMoviesAdapter : PopShowAdapter() {
+class DiscoverMovieAdapter : DiscoverAdapter() {
 
     override fun openDetail(id: String?, view: View) {
         val intent = Intent(view.context, MovieDetailActivity::class.java).apply {

@@ -21,7 +21,6 @@ import kotlinx.android.synthetic.main.activity_movie_detail.text_overview
 import kotlinx.android.synthetic.main.activity_movie_detail.text_score
 import kotlinx.android.synthetic.main.activity_movie_detail.text_status
 import kotlinx.android.synthetic.main.activity_movie_detail.text_tagline
-import kotlinx.android.synthetic.main.activity_tv_show_detail.*
 import java.text.DecimalFormat
 import kotlin.math.roundToInt
 
@@ -68,7 +67,7 @@ class MovieDetailActivity : AppCompatActivity() {
     }
 
     private fun populateMovieDetails(movie: MovieDetail) {
-        progress_bar_movie_detail.visibility = View.GONE;
+        progress_bar_movie_detail.visibility = View.GONE
 
         Glide.with(this)
             .load(String.format(getString(R.string.image_base_url), movie.posterPath))
