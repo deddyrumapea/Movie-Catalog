@@ -1,4 +1,4 @@
-package com.romnan.showcatalog.ui.shows
+package com.romnan.moviecatalog.ui.discover
 
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.romnan.moviecatalog.R
-import com.romnan.moviecatalog.model.PopularShow
+import com.romnan.moviecatalog.data.model.PopularShow
 import kotlinx.android.synthetic.main.item_popular_show.view.*
 
 abstract class DiscoverAdapter : RecyclerView.Adapter<DiscoverAdapter.ShowViewHolder>() {
@@ -43,9 +43,9 @@ abstract class DiscoverAdapter : RecyclerView.Adapter<DiscoverAdapter.ShowViewHo
             with(itemView) {
                 // If it's a movie, use title and release date.
                 // If it's a TV show, use name and first air date.
-                val title = if (show.title != null) show.title else show.name
+                val title = show.title ?: show.name
                 val releaseDate =
-                    if (show.releaseDate != null) show.releaseDate else show.firstAirDate
+                    show.releaseDate ?: show.firstAirDate
 
                 text_pop_show_item_title.text = title
                 text_pop_show_item_release_date.text = releaseDate
