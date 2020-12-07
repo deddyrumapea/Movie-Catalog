@@ -1,8 +1,8 @@
-package com.romnan.moviecatalog.api
+package com.romnan.moviecatalog.data.source.remote.api
 
-import com.romnan.moviecatalog.model.MovieDetail
-import com.romnan.moviecatalog.model.DiscoverResponse
-import com.romnan.moviecatalog.model.TvSeriesDetail
+import com.romnan.moviecatalog.data.model.MovieDetail
+import com.romnan.moviecatalog.data.model.DiscoverResponse
+import com.romnan.moviecatalog.data.model.TvSeriesDetail
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -11,6 +11,7 @@ import retrofit2.http.Query
 interface ApiService {
 
     companion object{
+        // TODO : put api key directly into the path
         const val API_KEY = "51a6c6939964995030fb073e1bc86edf"
         const val VIDEOS = "videos"
     }
