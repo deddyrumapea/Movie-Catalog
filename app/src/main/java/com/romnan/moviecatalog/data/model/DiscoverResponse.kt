@@ -1,10 +1,10 @@
-package com.romnan.moviecatalog.model
+package com.romnan.moviecatalog.data.model
 
 import com.google.gson.annotations.SerializedName
 
 data class DiscoverResponse(
     @field:SerializedName("results")
-    val results: List<PopularShow?>? = null
+    val results: List<PopularShow>
 )
 
 data class PopularShow(

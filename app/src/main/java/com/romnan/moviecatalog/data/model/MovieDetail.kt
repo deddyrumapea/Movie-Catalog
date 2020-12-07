@@ -1,4 +1,4 @@
-package com.romnan.moviecatalog.model
+package com.romnan.moviecatalog.data.model
 
 import com.google.gson.annotations.SerializedName
 
