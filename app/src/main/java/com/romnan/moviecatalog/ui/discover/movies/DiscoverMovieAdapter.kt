@@ -3,7 +3,7 @@ package com.romnan.moviecatalog.ui.discover.movies
 import android.content.Intent
 import android.view.View
 import com.romnan.moviecatalog.ui.detail.movie.MovieDetailActivity
-import com.romnan.showcatalog.ui.shows.DiscoverAdapter
+import com.romnan.moviecatalog.ui.discover.DiscoverAdapter
 
 class DiscoverMovieAdapter : DiscoverAdapter() {
 
