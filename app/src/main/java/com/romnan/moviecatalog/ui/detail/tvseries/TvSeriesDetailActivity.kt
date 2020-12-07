@@ -78,8 +78,7 @@ class TvSeriesDetailActivity : AppCompatActivity() {
             )
             startActivity(intent)
         }
-
-        text_duration.text =
+        if (tvSeries.episodeRunTime.isNotEmpty()) text_duration.text =
             String.format(getString(R.string.runtime_format), tvSeries.episodeRunTime[0])
 
         var genre = ""
@@ -90,12 +89,14 @@ class TvSeriesDetailActivity : AppCompatActivity() {
 
         text_tagline.text = tvSeries.tagline
         text_overview.text = tvSeries.overview
-        text_creator.text = tvSeries.createdBy[0].name
-        text_networks.text = tvSeries.networks[0].name
+        if (tvSeries.createdBy.isNotEmpty()) text_creator.text = tvSeries.createdBy[0].name
+        if (tvSeries.networks.isNotEmpty()) text_networks.text = tvSeries.networks[0].name
         text_status.text = tvSeries.status
         text_type.text = tvSeries.type
-        text_language.text = tvSeries.spokenLanguages[0].name
-        text_production_countries.text = tvSeries.productionCountries[0].name
+        if (tvSeries.spokenLanguages.isNotEmpty()) text_language.text =
+            tvSeries.spokenLanguages[0].name
+        if (tvSeries.productionCountries.isNotEmpty()) text_production_countries.text =
+            tvSeries.productionCountries[0].name
         text_last_aired_episode.text = String.format(
             getString(R.string.last_aired_format),
             tvSeries.lastEpisodeToAir.seasonNumber,
