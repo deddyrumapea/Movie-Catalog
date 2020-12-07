@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.romnan.moviecatalog.R
+import com.romnan.moviecatalog.viewmodel.ViewModelFactory
 import kotlinx.android.synthetic.main.fragment_popular_shows.*
 
 
@@ -23,30 +24,26 @@ class DiscoverMovieFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        val viewModel = ViewModelProvider(
-            this,
-            ViewModelProvider.NewInstanceFactory()
-        )[DiscoverMovieViewModel::class.java]
+        if (activity != null) {
+            val factory = ViewModelFactory.getInstance()
+            val viewModel = ViewModelProvider(this, factory)[DiscoverMovieViewModel::class.java]
 
-        val movieAdapter = DiscoverMovieAdapter()
+            val moviesAdapter = DiscoverMovieAdapter()
 
-        with(rv_pop_show) {
-            layoutManager = LinearLayoutManager(context)
-            setHasFixedSize(true)
-            adapter = movieAdapter
+            progress_bar.visibility = View.VISIBLE
+
+            viewModel.getPopularMovies().observe(this, { movies ->
+                moviesAdapter.setShows(movies)
+                progress_bar.visibility = View.GONE
+                Log.d(TAG, "onActivityCreated: ${movies.size}")
+            })
+
+            with(rv_pop_show) {
+                layoutManager = LinearLayoutManager(context)
+                setHasFixedSize(true)
+                adapter = moviesAdapter
+            }
         }
-
-        viewModel.getPopularMovies()
-
-        viewModel.popularMovies.observe(this, { movies ->
-            movieAdapter.setShows(movies)
-            Log.d(TAG, "onActivityCreated: ${movies.size}")
-        })
-
-        viewModel.isLoading.observe(this, {
-            progress_bar.visibility = if (it) View.VISIBLE else View.GONE
-        })
-
     }
 
     companion object {
