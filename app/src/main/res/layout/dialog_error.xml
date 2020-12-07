@@ -9,6 +9,7 @@
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_centerHorizontal="true"
+        android:contentDescription="@string/error"
         android:src="@drawable/ic_error" />
 
     <TextView
@@ -30,7 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/text_error_title"
         android:gravity="center"
-        android:text="@string/opps_something_went_wrong" />
+        android:text="@string/oops_something_went_wrong" />
 
     <Button
         android:id="@+id/button_go_back"

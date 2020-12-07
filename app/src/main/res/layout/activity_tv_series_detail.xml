@@ -332,7 +332,7 @@
             tools:text="United States of America" />
 
         <TextView
-            android:id="@+id/text_last_aired_episod_title"
+            android:id="@+id/text_last_aired_episode_title"
             style="@style/DisplayText.Bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -349,7 +349,7 @@
             android:layout_height="wrap_content"
             android:paddingHorizontal="@dimen/padding_16dp"
             android:textColor="@color/black_text"
-            app:layout_constraintTop_toBottomOf="@id/text_last_aired_episod_title"
+            app:layout_constraintTop_toBottomOf="@id/text_last_aired_episode_title"
             tools:text="Season 8 2019 | 10 Episodes\nIn Arrow's final season, Oliver Queen is forced to confront the reality of what it means to be a hero." />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
