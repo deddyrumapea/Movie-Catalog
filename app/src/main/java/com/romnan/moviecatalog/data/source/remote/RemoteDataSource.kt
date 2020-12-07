@@ -24,7 +24,7 @@ class RemoteDataSource {
     }
 
     fun getPopularMovies(callback: LoadPopularMoviesCallback) {
-        val client = ApiConfig.getApiService().getPopularMovies(ApiService.API_KEY)
+        val client = ApiConfig.getApiService().getPopularMovies()
 
         val moviesList = ArrayList<PopularShow>()
 
@@ -48,7 +48,7 @@ class RemoteDataSource {
     }
 
     fun getPopularTvSeries(callback: LoadPopularTvSeriesCallback) {
-        val client = ApiConfig.getApiService().getPopularTvSeries(ApiService.API_KEY)
+        val client = ApiConfig.getApiService().getPopularTvSeries()
 
         val tvSeriesList = ArrayList<PopularShow>()
 
@@ -75,7 +75,7 @@ class RemoteDataSource {
 
     fun getMovieDetail(movieId: String, callback: LoadMovieDetailCallback) {
         val client =
-            ApiConfig.getApiService().getMovieDetail(movieId, ApiService.API_KEY, ApiService.VIDEOS)
+            ApiConfig.getApiService().getMovieDetail(movieId)
 
         lateinit var movieDetail: MovieDetail
 
@@ -97,7 +97,7 @@ class RemoteDataSource {
 
     fun getTvSeriesDetail(tvShowId: String, callback: LoadTvSeriesDetailCallback) {
         val client = ApiConfig.getApiService()
-            .getTvSeriesDetail(tvShowId, ApiService.API_KEY, ApiService.VIDEOS)
+            .getTvSeriesDetail(tvShowId)
 
         lateinit var tvSeriesDetail: TvSeriesDetail
 
