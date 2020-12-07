@@ -3,7 +3,7 @@ package com.romnan.moviecatalog.ui.discover.tvseries
 import android.content.Intent
 import android.view.View
 import com.romnan.moviecatalog.ui.detail.tvseries.TvSeriesDetailActivity
-import com.romnan.showcatalog.ui.shows.DiscoverAdapter
+import com.romnan.moviecatalog.ui.discover.DiscoverAdapter
 
 class DiscoverTvSeriesAdapter : DiscoverAdapter() {
     override fun openDetail(id: String?, view: View) {
