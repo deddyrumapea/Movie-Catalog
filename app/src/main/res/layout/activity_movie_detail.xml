@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/ebony_clay"
+        android:id="@+id/layout_movie_detail"
         tools:context=".ui.detail.movie.MovieDetailActivity">
 
         <ProgressBar
@@ -219,7 +220,7 @@
             app:layout_goneMarginTop="@dimen/margin_16dp" />
 
         <TextView
-            android:id="@+id/text_status"
+            android:id="@+id/text_movie_status"
             style="@style/DisplayText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -237,7 +238,7 @@
             android:paddingTop="@dimen/padding_16dp"
             android:text="@string/budget"
             android:textColor="@color/black_text"
-            app:layout_constraintTop_toBottomOf="@id/text_status" />
+            app:layout_constraintTop_toBottomOf="@id/text_movie_status" />
 
         <TextView
             android:id="@+id/text_budget"
