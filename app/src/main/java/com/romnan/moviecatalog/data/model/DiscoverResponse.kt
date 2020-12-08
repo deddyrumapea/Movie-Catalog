@@ -9,7 +9,7 @@ data class DiscoverResponse(
 
 data class PopularShow(
     @field:SerializedName("id")
-    val id: String? = null,
+    val id: String,
 
     @field:SerializedName("poster_path")
     val posterPath: String? = null,
