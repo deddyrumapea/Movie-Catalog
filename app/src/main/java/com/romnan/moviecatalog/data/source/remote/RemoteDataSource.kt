@@ -1,12 +1,11 @@
 package com.romnan.moviecatalog.data.source.remote
 
 import android.util.Log
-import com.romnan.moviecatalog.data.source.remote.api.ApiConfig
-import com.romnan.moviecatalog.data.source.remote.api.ApiService
 import com.romnan.moviecatalog.data.model.DiscoverResponse
 import com.romnan.moviecatalog.data.model.MovieDetail
 import com.romnan.moviecatalog.data.model.PopularShow
 import com.romnan.moviecatalog.data.model.TvSeriesDetail
+import com.romnan.moviecatalog.data.source.remote.api.ApiConfig
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -59,7 +58,6 @@ class RemoteDataSource {
             ) {
                 if (response.isSuccessful) {
                     response.body()?.results?.let { tvSeriesList.addAll(it) }
-                    Log.d(TAG, "received data size: ${response.body()?.results?.size}")
                     callback.onPopularTvSeriesReceived(tvSeriesList)
                 } else {
                     Log.e(TAG, "onResponse: ${response.message()}")
