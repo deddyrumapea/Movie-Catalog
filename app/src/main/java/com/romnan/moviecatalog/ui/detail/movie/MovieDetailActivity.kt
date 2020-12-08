@@ -90,7 +90,7 @@ class MovieDetailActivity : AppCompatActivity() {
         text_duration.text = String.format(getString(R.string.runtime_format), movie.runtime)
         text_tagline.text = movie.tagline
         text_overview.text = movie.overview
-        text_status.text = movie.status
+        text_movie_status.text = movie.status
         text_language.text = movie.spokenLanguages[0].name
         text_budget.text = DecimalFormat("#,###").format(movie.budget)
         text_revenue.text = DecimalFormat("#,###").format(movie.revenue)

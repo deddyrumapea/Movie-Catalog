@@ -91,7 +91,7 @@ class TvSeriesDetailActivity : AppCompatActivity() {
         text_overview.text = tvSeries.overview
         if (tvSeries.createdBy.isNotEmpty()) text_creator.text = tvSeries.createdBy[0].name
         if (tvSeries.networks.isNotEmpty()) text_networks.text = tvSeries.networks[0].name
-        text_status.text = tvSeries.status
+        text_tv_series_status.text = tvSeries.status
         text_type.text = tvSeries.type
         if (tvSeries.spokenLanguages.isNotEmpty()) text_language.text =
             tvSeries.spokenLanguages[0].name
