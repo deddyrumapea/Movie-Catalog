@@ -9,6 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/layout_tv_series_detail"
         android:background="@color/ebony_clay"
         tools:context=".ui.detail.tvshow.tvshowDetailActivity">
 
@@ -258,7 +259,7 @@
             app:layout_goneMarginTop="@dimen/margin_16dp" />
 
         <TextView
-            android:id="@+id/text_status"
+            android:id="@+id/text_tv_series_status"
             style="@style/DisplayText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -297,7 +298,7 @@
             android:paddingTop="@dimen/padding_16dp"
             android:text="@string/spoken_languages"
             android:textColor="@color/black_text"
-            app:layout_constraintTop_toBottomOf="@id/text_status" />
+            app:layout_constraintTop_toBottomOf="@id/text_tv_series_status" />
 
         <TextView
             android:id="@+id/text_language"
