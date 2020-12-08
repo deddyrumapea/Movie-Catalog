@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_pop_show"
+        android:id="@+id/rv_popular_movies"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:clipToPadding="false"
@@ -21,7 +21,7 @@
     </androidx.recyclerview.widget.RecyclerView>
 
     <ProgressBar
-        android:id="@+id/progress_bar"
+        android:id="@+id/progress_bar_popular_movies"
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
