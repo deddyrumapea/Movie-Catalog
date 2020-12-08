@@ -10,7 +10,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.romnan.moviecatalog.R
 import com.romnan.moviecatalog.viewmodel.ViewModelFactory
-import kotlinx.android.synthetic.main.fragment_popular_shows.*
+import kotlinx.android.synthetic.main.fragment_discover_tv_series.*
+
 
 class DiscoverTvSeriesFragment : Fragment() {
     override fun onCreateView(
@@ -18,7 +19,7 @@ class DiscoverTvSeriesFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? =
-        inflater.inflate(R.layout.fragment_popular_shows, container, false)
+        inflater.inflate(R.layout.fragment_discover_tv_series, container, false)
 
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -33,11 +34,11 @@ class DiscoverTvSeriesFragment : Fragment() {
 
             viewModel.getPopularTvSeries().observe(this, { tvSeries ->
                 tvSeriesAdapter.setShows(tvSeries)
-                progress_bar.visibility = View.GONE
+                progress_bar_popular_tv_series.visibility = View.GONE
                 Log.d(TAG, "onActivityCreated: ${tvSeries.size}")
             })
 
-            with(rv_pop_show) {
+            with(rv_popular_tv_series) {
                 layoutManager = LinearLayoutManager(context)
                 setHasFixedSize(true)
                 adapter = tvSeriesAdapter

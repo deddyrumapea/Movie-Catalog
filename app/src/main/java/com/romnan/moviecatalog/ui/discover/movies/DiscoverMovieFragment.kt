@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.romnan.moviecatalog.R
 import com.romnan.moviecatalog.viewmodel.ViewModelFactory
-import kotlinx.android.synthetic.main.fragment_popular_shows.*
+import kotlinx.android.synthetic.main.fragment_discover_movie.*
 
 
 class DiscoverMovieFragment : Fragment() {
@@ -19,7 +19,7 @@ class DiscoverMovieFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? =
-        inflater.inflate(R.layout.fragment_popular_shows, container, false)
+        inflater.inflate(R.layout.fragment_discover_movie, container, false)
 
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -30,15 +30,15 @@ class DiscoverMovieFragment : Fragment() {
 
             val moviesAdapter = DiscoverMovieAdapter()
 
-            progress_bar.visibility = View.VISIBLE
+            progress_bar_popular_movies.visibility = View.VISIBLE
 
             viewModel.getPopularMovies().observe(this, { movies ->
                 moviesAdapter.setShows(movies)
-                progress_bar.visibility = View.GONE
+                progress_bar_popular_movies.visibility = View.GONE
                 Log.d(TAG, "onActivityCreated: ${movies.size}")
             })
 
-            with(rv_pop_show) {
+            with(rv_popular_movies) {
                 layoutManager = LinearLayoutManager(context)
                 setHasFixedSize(true)
                 adapter = moviesAdapter
