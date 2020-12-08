@@ -6,6 +6,7 @@ import com.romnan.moviecatalog.data.model.MovieDetail
 import com.romnan.moviecatalog.data.model.PopularShow
 import com.romnan.moviecatalog.data.model.TvSeriesDetail
 import com.romnan.moviecatalog.data.source.remote.api.ApiConfig
+import com.romnan.moviecatalog.utils.EspressoIdlingResource
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -23,6 +24,8 @@ class RemoteDataSource {
     }
 
     fun getPopularMovies(callback: LoadPopularMoviesCallback) {
+        EspressoIdlingResource.increment() //TODO: delete
+
         val client = ApiConfig.getApiService().getPopularMovies()
 
         val moviesList = ArrayList<PopularShow>()
@@ -35,6 +38,7 @@ class RemoteDataSource {
                 if (response.isSuccessful) {
                     response.body()?.results?.let { moviesList.addAll(it) }
                     callback.onPopularMoviesReceived(moviesList)
+                    EspressoIdlingResource.decrement() //TODO : delete
                 } else {
                     Log.e(TAG, "onResponse: ${response.message()}")
                 }
@@ -47,6 +51,8 @@ class RemoteDataSource {
     }
 
     fun getPopularTvSeries(callback: LoadPopularTvSeriesCallback) {
+        EspressoIdlingResource.increment() //TODO: delete
+
         val client = ApiConfig.getApiService().getPopularTvSeries()
 
         val tvSeriesList = ArrayList<PopularShow>()
@@ -59,6 +65,7 @@ class RemoteDataSource {
                 if (response.isSuccessful) {
                     response.body()?.results?.let { tvSeriesList.addAll(it) }
                     callback.onPopularTvSeriesReceived(tvSeriesList)
+                    EspressoIdlingResource.decrement() //TODO : delete
                 } else {
                     Log.e(TAG, "onResponse: ${response.message()}")
                 }
@@ -72,6 +79,8 @@ class RemoteDataSource {
     }
 
     fun getMovieDetail(movieId: String, callback: LoadMovieDetailCallback) {
+        EspressoIdlingResource.increment() //TODO: delete
+
         val client =
             ApiConfig.getApiService().getMovieDetail(movieId)
 
@@ -82,6 +91,7 @@ class RemoteDataSource {
                 if (response.isSuccessful) {
                     movieDetail = response.body()!!
                     callback.onMovieDetailReceived(movieDetail)
+                    EspressoIdlingResource.decrement() //TODO : delete
                 } else {
                     Log.e(TAG, "onResponse: ${response.message()}")
                 }
@@ -94,6 +104,8 @@ class RemoteDataSource {
     }
 
     fun getTvSeriesDetail(tvShowId: String, callback: LoadTvSeriesDetailCallback) {
+        EspressoIdlingResource.increment() //TODO: delete
+
         val client = ApiConfig.getApiService()
             .getTvSeriesDetail(tvShowId)
 
@@ -107,6 +119,7 @@ class RemoteDataSource {
                 if (response.isSuccessful) {
                     tvSeriesDetail = response.body()!!
                     callback.onTvSeriesDetailReceived(tvSeriesDetail)
+                    EspressoIdlingResource.decrement() //TODO : delete
                 } else {
                     Log.e(TAG, "onResponse: ${response.message()}")
                 }
