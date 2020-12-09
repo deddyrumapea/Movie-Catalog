@@ -32,7 +32,7 @@ class DiscoverMovieFragment : Fragment() {
 
             progress_bar_popular_movies.visibility = View.VISIBLE
 
-            viewModel.getPopularMovies().observe(this, { movies ->
+            viewModel.getPopularMovies().observe(viewLifecycleOwner, { movies ->
                 moviesAdapter.setShows(movies)
                 progress_bar_popular_movies.visibility = View.GONE
                 Log.d(TAG, "onActivityCreated: ${movies.size}")

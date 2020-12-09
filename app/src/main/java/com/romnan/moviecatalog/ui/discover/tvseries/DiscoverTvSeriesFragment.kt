@@ -32,7 +32,7 @@ class DiscoverTvSeriesFragment : Fragment() {
 
             viewModel.getPopularTvSeries()
 
-            viewModel.getPopularTvSeries().observe(this, { tvSeries ->
+            viewModel.getPopularTvSeries().observe(viewLifecycleOwner, { tvSeries ->
                 tvSeriesAdapter.setShows(tvSeries)
                 progress_bar_popular_tv_series.visibility = View.GONE
                 Log.d(TAG, "onActivityCreated: ${tvSeries.size}")
