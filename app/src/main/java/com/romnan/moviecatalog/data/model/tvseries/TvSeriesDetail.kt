@@ -1,8 +1,14 @@
 package com.romnan.moviecatalog.data.model
 
+import androidx.annotation.NonNull
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
+@Entity(tableName = "tv_series_detail")
 data class TvSeriesDetail(
+	@PrimaryKey
+	@NonNull
 	@field:SerializedName("id")
 	val id: Int,
 
@@ -53,4 +59,33 @@ data class TvSeriesDetail(
 
 	@field:SerializedName("production_countries")
 	val productionCountries: List<ProductionCountriesItem>
+)
+
+data class NetworksItem(
+	@field:SerializedName("name")
+	val name: String
+)
+
+data class CreatedByItem(
+	@field:SerializedName("name")
+	val name: String
+)
+
+data class LastEpisodeToAir(
+	@field:SerializedName("air_date")
+	val airDate: String,
+
+	@field:SerializedName("overview")
+	val overview: String,
+
+	@field:SerializedName("episode_number")
+	val episodeNumber: Int,
+
+	@field:SerializedName("season_number")
+	val seasonNumber: Int
+)
+
+data class ProductionCountriesItem(
+	@field:SerializedName("name")
+	val name: String
 )

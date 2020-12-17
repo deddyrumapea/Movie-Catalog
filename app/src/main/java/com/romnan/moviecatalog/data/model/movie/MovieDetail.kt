@@ -1,8 +1,17 @@
-package com.romnan.moviecatalog.data.model
+package com.romnan.moviecatalog.data.model.movie
 
+import androidx.annotation.NonNull
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
+import com.romnan.moviecatalog.data.model.GenresItem
+import com.romnan.moviecatalog.data.model.SpokenLanguagesItem
+import com.romnan.moviecatalog.data.model.Videos
 
+@Entity(tableName = "movie_detail")
 data class MovieDetail(
+    @PrimaryKey
+    @NonNull
     @field:SerializedName("id")
     val id: Int,
 
