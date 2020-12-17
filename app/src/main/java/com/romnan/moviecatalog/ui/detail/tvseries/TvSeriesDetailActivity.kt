@@ -38,8 +38,8 @@ class TvSeriesDetailActivity : AppCompatActivity() {
         // Get intent extras
         val extras = intent.extras
         if (extras != null) {
-            val tvShowId = extras.getString(EXTRA_TV_SERIES_ID)
-            if (tvShowId != null) {
+            val tvShowId = extras.getInt(EXTRA_TV_SERIES_ID)
+            if (tvShowId != 0) {
                 viewModel.getTvSeriesDetail(tvShowId).observe(this, { populateTvSeriesDetails(it) })
             } else showErrorDialog()
         } else showErrorDialog()

@@ -2,9 +2,10 @@ package com.romnan.moviecatalog.data.source
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.romnan.moviecatalog.data.model.MovieDetail
-import com.romnan.moviecatalog.data.model.PopularShow
 import com.romnan.moviecatalog.data.model.TvSeriesDetail
+import com.romnan.moviecatalog.data.model.movie.MovieDetail
+import com.romnan.moviecatalog.data.model.movie.PopularMovie
+import com.romnan.moviecatalog.data.model.tvseries.PopularTvSeries
 import com.romnan.moviecatalog.data.source.remote.RemoteDataSource
 
 class MovieCatalogRepository private constructor(private val remoteDataSource: RemoteDataSource) :
@@ -19,11 +20,11 @@ class MovieCatalogRepository private constructor(private val remoteDataSource: R
             }
     }
 
-    override fun getPopularMovies(): LiveData<List<PopularShow>> {
-        val result = MutableLiveData<List<PopularShow>>()
+    override fun getPopularMovies(): LiveData<List<PopularMovie>> {
+        val result = MutableLiveData<List<PopularMovie>>()
 
         remoteDataSource.getPopularMovies(object : RemoteDataSource.LoadPopularMoviesCallback {
-            override fun onPopularMoviesReceived(moviesResponse: List<PopularShow>) {
+            override fun onPopularMoviesReceived(moviesResponse: List<PopularMovie>) {
                 result.postValue(moviesResponse)
             }
         })
@@ -31,11 +32,11 @@ class MovieCatalogRepository private constructor(private val remoteDataSource: R
         return result
     }
 
-    override fun getPopularTvSeries(): LiveData<List<PopularShow>> {
-        val result = MutableLiveData<List<PopularShow>>()
+    override fun getPopularTvSeries(): LiveData<List<PopularTvSeries>> {
+        val result = MutableLiveData<List<PopularTvSeries>>()
 
         remoteDataSource.getPopularTvSeries(object : RemoteDataSource.LoadPopularTvSeriesCallback {
-            override fun onPopularTvSeriesReceived(tvSeriesResponse: List<PopularShow>) {
+            override fun onPopularTvSeriesReceived(tvSeriesResponse: List<PopularTvSeries>) {
                 result.postValue(tvSeriesResponse)
             }
         })
@@ -43,7 +44,7 @@ class MovieCatalogRepository private constructor(private val remoteDataSource: R
         return result
     }
 
-    override fun getMovieDetail(movieId: String): LiveData<MovieDetail> {
+    override fun getMovieDetail(movieId: Int): LiveData<MovieDetail> {
         val result = MutableLiveData<MovieDetail>()
 
         remoteDataSource.getMovieDetail(movieId, object : RemoteDataSource.LoadMovieDetailCallback {
@@ -55,7 +56,7 @@ class MovieCatalogRepository private constructor(private val remoteDataSource: R
         return result
     }
 
-    override fun getTvSeriesDetail(tvSeriesId: String): LiveData<TvSeriesDetail> {
+    override fun getTvSeriesDetail(tvSeriesId: Int): LiveData<TvSeriesDetail> {
         val result = MutableLiveData<TvSeriesDetail>()
 
         remoteDataSource.getTvSeriesDetail(

@@ -4,7 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.nhaarman.mockitokotlin2.verify
-import com.romnan.moviecatalog.data.model.PopularShow
+import com.romnan.moviecatalog.data.model.movie.PopularMovie
 import com.romnan.moviecatalog.data.source.MovieCatalogRepository
 import com.romnan.moviecatalog.utils.DummyGenerator
 import junit.framework.TestCase.assertEquals
@@ -29,7 +29,7 @@ class DiscoverMovieViewModelTest {
     private lateinit var repository: MovieCatalogRepository
 
     @Mock
-    private lateinit var observer: Observer<List<PopularShow>>
+    private lateinit var observer: Observer<List<PopularMovie>>
 
     @Before
     fun setUp() {
@@ -39,7 +39,7 @@ class DiscoverMovieViewModelTest {
     @Test
     fun getPopularMovies() {
         val dummyMovies = DummyGenerator.getPopularMovies()
-        val movies = MutableLiveData<List<PopularShow>>()
+        val movies = MutableLiveData<List<PopularMovie>>()
         movies.value = dummyMovies
 
         `when`(repository.getPopularMovies()).thenReturn(movies)

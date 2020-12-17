@@ -1,10 +1,12 @@
 package com.romnan.moviecatalog.data.source.remote
 
 import android.util.Log
-import com.romnan.moviecatalog.data.model.DiscoverResponse
-import com.romnan.moviecatalog.data.model.MovieDetail
-import com.romnan.moviecatalog.data.model.PopularShow
 import com.romnan.moviecatalog.data.model.TvSeriesDetail
+import com.romnan.moviecatalog.data.model.movie.MovieDetail
+import com.romnan.moviecatalog.data.model.movie.PopularMovie
+import com.romnan.moviecatalog.data.model.movie.PopularMovieResponse
+import com.romnan.moviecatalog.data.model.tvseries.PopularTvSeries
+import com.romnan.moviecatalog.data.model.tvseries.PopularTvSeriesResponse
 import com.romnan.moviecatalog.data.source.remote.api.ApiConfig
 import com.romnan.moviecatalog.utils.EspressoIdlingResource
 import retrofit2.Call
@@ -28,12 +30,12 @@ class RemoteDataSource {
 
         val client = ApiConfig.getApiService().getPopularMovies()
 
-        val moviesList = ArrayList<PopularShow>()
+        val moviesList = ArrayList<PopularMovie>()
 
-        client.enqueue(object : Callback<DiscoverResponse> {
+        client.enqueue(object : Callback<PopularMovieResponse> {
             override fun onResponse(
-                call: Call<DiscoverResponse>,
-                response: Response<DiscoverResponse>
+                call: Call<PopularMovieResponse>,
+                response: Response<PopularMovieResponse>
             ) {
                 if (response.isSuccessful) {
                     response.body()?.results?.let { moviesList.addAll(it) }
@@ -44,7 +46,7 @@ class RemoteDataSource {
                 }
             }
 
-            override fun onFailure(call: Call<DiscoverResponse>, t: Throwable) {
+            override fun onFailure(call: Call<PopularMovieResponse>, t: Throwable) {
                 Log.e(TAG, "onFailure: ${t.message.toString()}")
             }
         })
@@ -55,12 +57,12 @@ class RemoteDataSource {
 
         val client = ApiConfig.getApiService().getPopularTvSeries()
 
-        val tvSeriesList = ArrayList<PopularShow>()
+        val tvSeriesList = ArrayList<PopularTvSeries>()
 
-        client.enqueue(object : Callback<DiscoverResponse> {
+        client.enqueue(object : Callback<PopularTvSeriesResponse> {
             override fun onResponse(
-                call: Call<DiscoverResponse>,
-                response: Response<DiscoverResponse>
+                call: Call<PopularTvSeriesResponse>,
+                response: Response<PopularTvSeriesResponse>
             ) {
                 if (response.isSuccessful) {
                     response.body()?.results?.let { tvSeriesList.addAll(it) }
@@ -71,14 +73,14 @@ class RemoteDataSource {
                 }
             }
 
-            override fun onFailure(call: Call<DiscoverResponse>, t: Throwable) {
+            override fun onFailure(call: Call<PopularTvSeriesResponse>, t: Throwable) {
                 Log.e(TAG, "onFailure: ${t.message.toString()}")
             }
 
         })
     }
 
-    fun getMovieDetail(movieId: String, callback: LoadMovieDetailCallback) {
+    fun getMovieDetail(movieId: Int, callback: LoadMovieDetailCallback) {
         EspressoIdlingResource.increment() //TODO: delete
 
         val client =
@@ -103,7 +105,7 @@ class RemoteDataSource {
         })
     }
 
-    fun getTvSeriesDetail(tvShowId: String, callback: LoadTvSeriesDetailCallback) {
+    fun getTvSeriesDetail(tvShowId: Int, callback: LoadTvSeriesDetailCallback) {
         EspressoIdlingResource.increment() //TODO: delete
 
         val client = ApiConfig.getApiService()
@@ -132,11 +134,11 @@ class RemoteDataSource {
     }
 
     interface LoadPopularMoviesCallback {
-        fun onPopularMoviesReceived(moviesResponse: List<PopularShow>)
+        fun onPopularMoviesReceived(moviesResponse: List<PopularMovie>)
     }
 
     interface LoadPopularTvSeriesCallback {
-        fun onPopularTvSeriesReceived(tvSeriesResponse: List<PopularShow>)
+        fun onPopularTvSeriesReceived(tvSeriesResponse: List<PopularTvSeries>)
     }
 
     interface LoadMovieDetailCallback {

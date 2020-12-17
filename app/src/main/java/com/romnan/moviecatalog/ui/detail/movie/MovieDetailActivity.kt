@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.romnan.moviecatalog.R
-import com.romnan.moviecatalog.data.model.MovieDetail
+import com.romnan.moviecatalog.data.model.movie.MovieDetail
 import com.romnan.moviecatalog.viewmodel.ViewModelFactory
 import kotlinx.android.synthetic.main.activity_movie_detail.*
 import java.text.DecimalFormat
@@ -39,8 +39,8 @@ class MovieDetailActivity : AppCompatActivity() {
         // Get intent extras
         val extras = intent.extras
         if (extras != null) {
-            val movieId = extras.getString(EXTRA_MOVIE_ID)
-            if (movieId != null) {
+            val movieId = extras.getInt(EXTRA_MOVIE_ID, 0)
+            if (movieId != 0) {
                 viewModel.getMovieDetail(movieId).observe(this, { populateMovieDetails(it) })
             } else showErrorDialog()
         } else showErrorDialog()

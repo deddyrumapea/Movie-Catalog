@@ -8,6 +8,6 @@ import com.romnan.moviecatalog.data.source.MovieCatalogRepository
 class TvSeriesDetailViewModel(private val repository: MovieCatalogRepository) : ViewModel() {
     companion object
 
-    fun getTvSeriesDetail(tvShowId: String): LiveData<TvSeriesDetail> =
+    fun getTvSeriesDetail(tvShowId: Int): LiveData<TvSeriesDetail> =
         repository.getTvSeriesDetail(tvShowId)
 }
