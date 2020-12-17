@@ -419,30 +419,26 @@ object DummyGenerator {
     }
 
     fun getMovieDetail(): MovieDetail = MovieDetail(
-        577922,
-        "Tenet",
-        "/k68nPLbIST6NP96JmTxmZijEvCA.jpg",
-        "/wzJRB4MKi3yK138bJyuL9nx47y6.jpg",
-        347100000,
-        205000000,
+        590995,
+        "The Craft: Legacy",
+        "/lhMIra0pqWNuD6CIXoTmGwZ0EBS.jpg",
+        "/lIE7kfdLBRd0KENNtOaIqPPWNqh.jpg",
+        0,
+        0,
         arrayListOf(
-            GenresItem("Action"),
-            GenresItem("Thriller"),
-            GenresItem("Science Fiction")
+            GenresItem("Horror"),
+            GenresItem("Drama"),
+            GenresItem("Fantasy")
         ),
-        "Armed with only one word - Tenet - and fighting for the survival of the entire world, the Protagonist journeys through a twilight world of international espionage on a mission that will unfold in something beyond real time.",
-        150,
-        "2020 - 08 - 22",
+        "An eclectic foursome of aspiring teenage witches get more than they bargained for as they lean into their newfound powers.",
+        94,
+        "2020-10-28",
         arrayListOf(SpokenLanguagesItem("English")),
-        7.4,
-        "Time runs out.",
+        6.2,
+        "Let the ritual begin",
         Videos(
             arrayListOf(
-                ResultsItem("LdOM0x0XDMo"),
-                ResultsItem("L3pk_TBkihU"),
-                ResultsItem("AZGcmvrTX9M"),
-                ResultsItem("u0hCSxqnjT0"),
-                ResultsItem("gxuT5yqZJh8")
+                ResultsItem("J60ueFp-jv8")
             )
         ),
         "Released"
