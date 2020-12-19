@@ -25,8 +25,9 @@ class DiscoverTvSeriesFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         if (activity != null) {
-            val factory = ViewModelFactory.getInstance()
-            val viewModel = ViewModelProvider(this, factory)[DiscoverTvSeriesViewModel::class.java]
+            val factory = ViewModelFactory.getInstance(requireActivity())
+            val viewModel =
+                ViewModelProvider(requireActivity(), factory)[DiscoverTvSeriesViewModel::class.java]
 
             val tvSeriesAdapter = DiscoverTvSeriesAdapter()
 
