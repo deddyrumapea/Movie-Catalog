@@ -1,5 +1,6 @@
 package com.romnan.moviecatalog.ui.discover
 
+import android.content.Intent
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.Menu
@@ -8,6 +9,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.romnan.moviecatalog.R
+import com.romnan.moviecatalog.ui.favorite.FavoriteActivity
 import kotlinx.android.synthetic.main.activity_discover.*
 
 class DiscoverActivity : AppCompatActivity() {
@@ -16,7 +18,7 @@ class DiscoverActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_discover)
 
-        val sectionsPagerAdapter = SectionsPagerAdapter(this, supportFragmentManager)
+        val sectionsPagerAdapter = DiscoverPagerAdapter(this, supportFragmentManager)
         view_pager.adapter = sectionsPagerAdapter
         tabs.setupWithViewPager(view_pager)
 
@@ -38,9 +40,16 @@ class DiscoverActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.menu_about) showAboutDialog()
+        when (item.itemId) {
+            R.id.menu_favorite -> openFavoriteActivity()
+            R.id.menu_about -> showAboutDialog()
+        }
         return true
     }
+
+    private fun openFavoriteActivity() =
+        startActivity(Intent(this, FavoriteActivity::class.java))
+
 
     private fun showAboutDialog() {
         val builder = AlertDialog.Builder(this)
