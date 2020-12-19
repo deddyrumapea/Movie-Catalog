@@ -17,6 +17,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".ui.detail.tvseries.TvSeriesDetailActivity"
             android:parentActivityName=".ui.discover.DiscoverActivity">
@@ -24,13 +25,23 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.discover.DiscoverActivity" />
         </activity>
+
         <activity
             android:name=".ui.detail.movie.MovieDetailActivity"
-            android:parentActivityName=".ui.discover.DiscoverActivity">
+            android:label="@string/movie_detail">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.discover.DiscoverActivity" />
         </activity>
+
+        <activity
+            android:name=".ui.favorite.FavoriteActivity"
+            android:label="@string/title_activity_favorite">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.discover.DiscoverActivity" />
+        </activity>
+
         <activity android:name=".ui.discover.DiscoverActivity" />
     </application>
 
