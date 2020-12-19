@@ -15,4 +15,20 @@ interface MovieCatalogDataSource {
     fun getMovieDetail(movieId: Int): LiveData<MovieDetail>
 
     fun getTvSeriesDetail(tvSeriesId: Int): LiveData<TvSeriesDetail>
+
+    fun insertFavoriteMovie(movie: MovieDetail)
+
+    fun insertFavoriteTvSeries(tvSeries: TvSeriesDetail)
+
+    fun deleteFavoriteMovie(movie: MovieDetail)
+
+    fun deleteFavoriteTvSeries(tvSeries: TvSeriesDetail)
+
+    fun getFavoriteMovies(): LiveData<List<MovieDetail>>
+
+    fun getFavoriteTvSeries(): LiveData<List<TvSeriesDetail>>
+
+    fun isFavoriteMovie(movieId: Int): LiveData<Boolean>
+
+    fun isFavoriteTvSeries(tvSeriesId: Int): LiveData<Boolean>
 }

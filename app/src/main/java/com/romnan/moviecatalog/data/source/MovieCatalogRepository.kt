@@ -6,17 +6,27 @@ import com.romnan.moviecatalog.data.model.TvSeriesDetail
 import com.romnan.moviecatalog.data.model.movie.MovieDetail
 import com.romnan.moviecatalog.data.model.movie.PopularMovie
 import com.romnan.moviecatalog.data.model.tvseries.PopularTvSeries
+import com.romnan.moviecatalog.data.source.local.LocalDataSource
 import com.romnan.moviecatalog.data.source.remote.RemoteDataSource
+import com.romnan.moviecatalog.utils.AppExecutors
 
-class MovieCatalogRepository private constructor(private val remoteDataSource: RemoteDataSource) :
-    MovieCatalogDataSource {
+class MovieCatalogRepository private constructor(
+    private val remoteDataSource: RemoteDataSource,
+    private val localDataSource: LocalDataSource,
+    private val appExecutors: AppExecutors
+) : MovieCatalogDataSource {
+
     companion object {
         @Volatile
         private var instance: MovieCatalogRepository? = null
 
-        fun getInstance(remoteDataSource: RemoteDataSource): MovieCatalogRepository =
+        fun getInstance(
+            remoteDataSource: RemoteDataSource,
+            localDataSource: LocalDataSource,
+            appExecutors: AppExecutors
+        ): MovieCatalogRepository =
             instance ?: synchronized(this) {
-                instance ?: MovieCatalogRepository(remoteDataSource)
+                instance ?: MovieCatalogRepository(remoteDataSource, localDataSource, appExecutors)
             }
     }
 
@@ -69,4 +79,37 @@ class MovieCatalogRepository private constructor(private val remoteDataSource: R
 
         return result
     }
+
+    override fun insertFavoriteMovie(movie: MovieDetail) =
+        appExecutors.diskIO().execute {
+            localDataSource.insertFavoriteMovie(movie)
+        }
+
+    override fun insertFavoriteTvSeries(tvSeries: TvSeriesDetail) =
+        appExecutors.diskIO().execute {
+            localDataSource.insertFavoriteTvSeries(tvSeries)
+        }
+
+    override fun deleteFavoriteMovie(movie: MovieDetail) =
+        appExecutors.diskIO().execute {
+            localDataSource.deleteFavoriteMovie(movie)
+        }
+
+    override fun deleteFavoriteTvSeries(tvSeries: TvSeriesDetail) =
+        appExecutors.diskIO().execute {
+            localDataSource.deleteFavoriteTvSeries(tvSeries)
+        }
+
+    override fun getFavoriteMovies(): LiveData<List<MovieDetail>> =
+        localDataSource.getFavoriteMovies()
+
+    override fun getFavoriteTvSeries(): LiveData<List<TvSeriesDetail>> =
+        localDataSource.getFavoriteTvSeries()
+
+    override fun isFavoriteMovie(movieId: Int): LiveData<Boolean> =
+        localDataSource.isFavoriteMovie(movieId)
+
+
+    override fun isFavoriteTvSeries(tvSeriesId: Int): LiveData<Boolean> =
+        localDataSource.isFavoriteTvSeries(tvSeriesId)
 }
