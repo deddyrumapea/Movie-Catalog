@@ -1,6 +1,6 @@
 package com.romnan.moviecatalog.utils
 
-import com.romnan.moviecatalog.data.model.*
+import com.romnan.moviecatalog.data.model.TvSeriesDetail
 import com.romnan.moviecatalog.data.model.movie.MovieDetail
 import com.romnan.moviecatalog.data.model.movie.PopularMovie
 import com.romnan.moviecatalog.data.model.tvseries.PopularTvSeries
@@ -425,22 +425,11 @@ object DummyGenerator {
         "/lIE7kfdLBRd0KENNtOaIqPPWNqh.jpg",
         0,
         0,
-        arrayListOf(
-            GenresItem("Horror"),
-            GenresItem("Drama"),
-            GenresItem("Fantasy")
-        ),
         "An eclectic foursome of aspiring teenage witches get more than they bargained for as they lean into their newfound powers.",
         94,
         "2020-10-28",
-        arrayListOf(SpokenLanguagesItem("English")),
         6.2,
         "Let the ritual begin",
-        Videos(
-            arrayListOf(
-                ResultsItem("J60ueFp-jv8")
-            )
-        ),
         "Released"
     )
 
@@ -450,33 +439,11 @@ object DummyGenerator {
         "/9ijMGlJKqcslswWUzTEwScm82Gs.jpg",
         "The Mandalorian",
         8.5,
-        Videos(
-            arrayListOf(
-                ResultsItem("aOC8E8z_ifw"),
-                ResultsItem("XmI7WKrAtqs"),
-                ResultsItem("o3CUM-iFEFk"),
-                ResultsItem("2RVnrBLOBcI")
-            )
-        ),
-        arrayListOf(35, 48),
-        arrayListOf(
-            GenresItem("Sci - Fi & Fantasy"),
-            GenresItem("Action & Adventure"),
-            GenresItem("Western")
-        ),
         "Bounty hunting is a complicated profession.",
+        "2019-11-12",
+        2,
         "After the fall of the Galactic Empire, lawlessness has spread throughout the galaxy . A lone gunfighter makes his way through the outer reaches, earning his keep as a bounty hunter.",
-        arrayListOf(CreatedByItem("Jon Favreau")),
-        arrayListOf(NetworksItem("Disney+")),
         "Returning Series",
-        arrayListOf(SpokenLanguagesItem("English")),
-        "Scripted",
-        LastEpisodeToAir(
-            "2020 - 12 - 04",
-            "The Mandalorian and Child travel to an ancient site.",
-            6,
-            2
-        ),
-        arrayListOf(ProductionCountriesItem("United States of America"))
+        "Scripted"
     )
 }
