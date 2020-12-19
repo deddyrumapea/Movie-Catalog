@@ -6,10 +6,10 @@
     android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_movie_detail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/ebony_clay"
-        android:id="@+id/layout_movie_detail"
         tools:context=".ui.detail.movie.MovieDetailActivity">
 
         <ProgressBar
@@ -73,7 +73,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/bg_score"
             android:padding="@dimen/padding_16dp"
-            app:layout_constraintBottom_toBottomOf="@id/button_trailer"
+            app:layout_constraintBottom_toBottomOf="@id/btn_favorite"
             app:layout_constraintLeft_toRightOf="@id/text_user_score"
             app:layout_constraintRight_toLeftOf="@id/divider"
             app:layout_constraintTop_toBottomOf="@id/text_movie_title"
@@ -97,23 +97,22 @@
             android:layout_height="0dp"
             android:layout_marginVertical="@dimen/margin_8dp"
             android:background="@android:color/darker_gray"
-            app:layout_constraintBottom_toBottomOf="@id/button_trailer"
+            app:layout_constraintBottom_toBottomOf="@id/btn_favorite"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/text_movie_title" />
 
-        <Button
-            android:id="@+id/button_trailer"
+        <ToggleButton
+            android:id="@+id/btn_favorite"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
-            android:drawableStart="@drawable/ic_round_play_arrow"
+            android:layout_height="36dp"
+            android:background="@drawable/selector_toggle_button"
             android:drawablePadding="@dimen/padding_8dp"
+            android:elevation="4dp"
             android:fontFamily="@font/source_sans_pro_regular"
-            android:padding="@dimen/padding_8dp"
-            android:text="@string/play_trailer"
-            android:textAllCaps="false"
-            android:textColor="@android:color/white"
+            android:textColor="@drawable/selector_toggle_text"
+            android:textOff="@string/favorite"
+            android:textOn="@string/favorited"
             android:textStyle="bold"
             app:layout_constraintLeft_toRightOf="@id/divider"
             app:layout_constraintRight_toRightOf="parent"
@@ -123,7 +122,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:background="@color/mirage"
-            app:layout_constraintBottom_toBottomOf="@id/text_genre_movie"
+            app:layout_constraintBottom_toBottomOf="@id/text_tagline"
             app:layout_constraintTop_toTopOf="@id/text_release_date" />
 
         <TextView
@@ -134,7 +133,7 @@
             android:layout_marginTop="@dimen/margin_32dp"
             android:drawablePadding="@dimen/padding_8dp"
             android:gravity="center"
-            android:padding="@dimen/padding_8dp"
+            android:paddingVertical="@dimen/padding_16dp"
             app:drawableLeftCompat="@drawable/ic_date"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toLeftOf="@id/text_duration"
@@ -148,7 +147,7 @@
             android:layout_height="wrap_content"
             android:drawablePadding="@dimen/padding_8dp"
             android:gravity="center"
-            android:padding="@dimen/padding_8dp"
+            android:paddingVertical="@dimen/padding_16dp"
             app:drawableLeftCompat="@drawable/ic_timer"
             app:layout_constraintLeft_toRightOf="@id/text_release_date"
             app:layout_constraintRight_toRightOf="parent"
@@ -156,26 +155,15 @@
             tools:text="2h 29m" />
 
         <TextView
-            android:id="@+id/text_genre_movie"
-            style="@style/DisplayText.Bold"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="@dimen/padding_16dp"
-            android:textAlignment="center"
-            app:layout_constraintTop_toBottomOf="@id/text_duration"
-            tools:text="Adventure, Action, Science Fiction" />
-
-        <TextView
             android:id="@+id/text_tagline"
             style="@style/DisplayText.Bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_16dp"
             android:gravity="center"
-            android:paddingHorizontal="@dimen/padding_16dp"
+            android:paddingBottom="@dimen/padding_16dp"
             android:textSize="16sp"
             android:textStyle="italic"
-            app:layout_constraintTop_toBottomOf="@id/text_genre_movie"
+            app:layout_constraintTop_toBottomOf="@id/text_duration"
             tools:text="An entire universe. Once and for all." />
 
 
@@ -185,6 +173,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="start"
+            android:layout_marginTop="@dimen/margin_16dp"
             android:padding="@dimen/padding_16dp"
             android:text="@string/overview"
             android:textSize="18sp"
@@ -196,7 +185,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingHorizontal="@dimen/padding_16dp"
-            android:paddingBottom="@dimen/padding_16dp"
+            android:paddingBottom="@dimen/padding_32dp"
             app:layout_constraintTop_toBottomOf="@id/text_overview_title"
             tools:text="As the Avengers and their allies have continued to protect the world from threats too large for any one hero to handle, a new danger has emerged from the cosmic shadows: Thanos. A despot of intergalactic infamy, his goal is to collect all six Infinity Stones, artifacts of unimaginable power, and use them to inflict his twisted will on all of reality. Everything the Avengers have fought for has led up to this moment - the fate of Earth and existence itself has never been more uncertain." />
 
@@ -204,7 +193,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:background="@android:color/white"
-            app:layout_constraintBottom_toBottomOf="@id/text_language"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="@id/text_status_title" />
 
         <TextView
@@ -267,31 +256,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingHorizontal="@dimen/padding_16dp"
+            android:paddingBottom="@dimen/padding_32dp"
             android:textColor="@color/black_text"
             app:layout_constraintTop_toBottomOf="@id/text_revenue_title"
             tools:text="$2,046,239,637.00" />
-
-        <TextView
-            android:id="@+id/text_language_title"
-            style="@style/DisplayText.Bold"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingHorizontal="@dimen/padding_16dp"
-            android:paddingTop="@dimen/padding_16dp"
-            android:text="@string/spoken_languages"
-            android:textColor="@color/black_text"
-            app:layout_constraintTop_toBottomOf="@id/text_revenue" />
-
-        <TextView
-            android:id="@+id/text_language"
-            style="@style/DisplayText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingHorizontal="@dimen/padding_16dp"
-            android:paddingBottom="@dimen/padding_32dp"
-            android:textColor="@color/black_text"
-            app:layout_constraintTop_toBottomOf="@id/text_language_title"
-            tools:text="English" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>

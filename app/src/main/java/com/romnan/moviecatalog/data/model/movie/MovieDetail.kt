@@ -1,14 +1,14 @@
 package com.romnan.moviecatalog.data.model.movie
 
+import android.os.Parcelable
 import androidx.annotation.NonNull
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
-import com.romnan.moviecatalog.data.model.GenresItem
-import com.romnan.moviecatalog.data.model.SpokenLanguagesItem
-import com.romnan.moviecatalog.data.model.Videos
+import kotlinx.android.parcel.Parcelize
 
-@Entity(tableName = "movie_detail")
+@Parcelize
+@Entity(tableName = "favorite_movie")
 data class MovieDetail(
     @PrimaryKey
     @NonNull
@@ -30,9 +30,6 @@ data class MovieDetail(
     @field:SerializedName("budget")
     val budget: Int,
 
-    @field:SerializedName("genres")
-    val genres: List<GenresItem>,
-
     @field:SerializedName("overview")
     val overview: String,
 
@@ -42,18 +39,12 @@ data class MovieDetail(
     @field:SerializedName("release_date")
     val releaseDate: String,
 
-    @field:SerializedName("spoken_languages")
-    val spokenLanguages: List<SpokenLanguagesItem>,
-
     @field:SerializedName("vote_average")
     val voteAverage: Double,
 
     @field:SerializedName("tagline")
     val tagline: String,
 
-    @field:SerializedName("videos")
-    val videos: Videos,
-
     @field:SerializedName("status")
     val status: String
-)
+) : Parcelable
