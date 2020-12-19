@@ -1,7 +1,7 @@
 package com.romnan.moviecatalog.data.source.remote.api
 
-import com.romnan.moviecatalog.data.model.movie.MovieDetail
 import com.romnan.moviecatalog.data.model.TvSeriesDetail
+import com.romnan.moviecatalog.data.model.movie.MovieDetail
 import com.romnan.moviecatalog.data.model.movie.PopularMovieResponse
 import com.romnan.moviecatalog.data.model.tvseries.PopularTvSeriesResponse
 import retrofit2.Call
@@ -12,7 +12,6 @@ interface ApiService {
 
     companion object {
         const val API_KEY = "51a6c6939964995030fb073e1bc86edf"
-        const val VIDEOS = "videos"
     }
 
     @GET("discover/movie?api_key=$API_KEY")
@@ -21,12 +20,12 @@ interface ApiService {
     @GET("discover/tv?api_key=$API_KEY")
     fun getPopularTvSeries(): Call<PopularTvSeriesResponse>
 
-    @GET("movie/{id}?api_key=$API_KEY&append_to_response=$VIDEOS")
+    @GET("movie/{id}?api_key=$API_KEY")
     fun getMovieDetail(
         @Path("id") id: Int
     ): Call<MovieDetail>
 
-    @GET("tv/{id}?api_key=$API_KEY&append_to_response=$VIDEOS")
+    @GET("tv/{id}?api_key=$API_KEY")
     fun getTvSeriesDetail(
         @Path("id") id: Int
     ): Call<TvSeriesDetail>
