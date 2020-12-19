@@ -1,4 +1,4 @@
-package com.romnan.moviecatalog.ui.discover.movies
+package com.romnan.moviecatalog.ui.discover.movie
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
