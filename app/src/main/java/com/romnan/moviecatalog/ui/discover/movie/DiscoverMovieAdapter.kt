@@ -1,4 +1,4 @@
-package com.romnan.moviecatalog.ui.discover.movies
+package com.romnan.moviecatalog.ui.discover.movie
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -35,7 +35,6 @@ class DiscoverMovieAdapter : RecyclerView.Adapter<DiscoverMovieAdapter.PopularMo
     }
 
     override fun getItemCount() = moviesList.size
-
 
     fun openDetail(id: Int, view: View) {
         val intent = Intent(view.context, MovieDetailActivity::class.java).apply {

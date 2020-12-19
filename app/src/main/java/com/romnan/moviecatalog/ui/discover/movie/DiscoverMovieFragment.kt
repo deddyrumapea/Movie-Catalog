@@ -1,4 +1,4 @@
-package com.romnan.moviecatalog.ui.discover.movies
+package com.romnan.moviecatalog.ui.discover.movie
 
 import android.os.Bundle
 import android.util.Log
@@ -25,8 +25,9 @@ class DiscoverMovieFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         if (activity != null) {
-            val factory = ViewModelFactory.getInstance()
-            val viewModel = ViewModelProvider(this, factory)[DiscoverMovieViewModel::class.java]
+            val factory = ViewModelFactory.getInstance(requireActivity())
+            val viewModel =
+                ViewModelProvider(requireActivity(), factory)[DiscoverMovieViewModel::class.java]
 
             val moviesAdapter = DiscoverMovieAdapter()
 

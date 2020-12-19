@@ -6,10 +6,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.romnan.moviecatalog.R
-import com.romnan.moviecatalog.ui.discover.movies.DiscoverMovieFragment
+import com.romnan.moviecatalog.ui.discover.movie.DiscoverMovieFragment
 import com.romnan.moviecatalog.ui.discover.tvseries.DiscoverTvSeriesFragment
 
-class SectionsPagerAdapter(private val mContext: Context, fm: FragmentManager) :
+class DiscoverPagerAdapter(private val mContext: Context, fm: FragmentManager) :
     FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     companion object {
