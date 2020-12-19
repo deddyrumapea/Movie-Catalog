@@ -1,9 +1,7 @@
 package com.romnan.moviecatalog.ui.detail.tvseries
 
 import android.app.Dialog
-import android.content.Intent
 import android.graphics.drawable.ColorDrawable
-import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -19,29 +17,36 @@ import kotlin.math.roundToInt
 class TvSeriesDetailActivity : AppCompatActivity() {
 
     companion object {
+        const val EXTRA_TV_SERIES = "extra_tv_series"
         const val EXTRA_TV_SERIES_ID = "extra_tvShow_id"
     }
+
+    private lateinit var viewModel: TvSeriesDetailViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tv_series_detail)
 
-        // Change action bar color and title, set up button
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        // Action bar adjustments
         supportActionBar?.setBackgroundDrawable(ColorDrawable(getColor(R.color.colorPrimaryDark)))
-        supportActionBar?.title = getString(R.string.tv_series_detail)
 
         // Setup ViewModel
-        val factory = ViewModelFactory.getInstance()
-        val viewModel = ViewModelProvider(this, factory)[TvSeriesDetailViewModel::class.java]
+        val factory = ViewModelFactory.getInstance(this)
+        viewModel = ViewModelProvider(this, factory)[TvSeriesDetailViewModel::class.java]
 
         // Get intent extras
         val extras = intent.extras
         if (extras != null) {
-            val tvShowId = extras.getInt(EXTRA_TV_SERIES_ID)
-            if (tvShowId != 0) {
-                viewModel.getTvSeriesDetail(tvShowId).observe(this, { populateTvSeriesDetails(it) })
+            val tvSeries = extras.getParcelable<TvSeriesDetail>(EXTRA_TV_SERIES)
+            val tvSeriesId = extras.getInt(EXTRA_TV_SERIES_ID)
+
+            if (tvSeries != null) {
+                populateTvSeriesDetails(tvSeries)
+            } else if (tvSeriesId != 0) {
+                viewModel.getTvSeriesDetail(tvSeriesId)
+                    .observe(this, { populateTvSeriesDetails(it) })
             } else showErrorDialog()
+
         } else showErrorDialog()
     }
 
@@ -54,6 +59,15 @@ class TvSeriesDetailActivity : AppCompatActivity() {
     }
 
     private fun populateTvSeriesDetails(tvSeries: TvSeriesDetail) {
+        viewModel.isFavoriteTvSeries(tvSeries.id).observe(this, { isFavorite ->
+            btn_favorite.isChecked = isFavorite
+        })
+
+        btn_favorite.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked) viewModel.insertFavoriteTvSeries(tvSeries)
+            else viewModel.insertFavoriteTvSeries(tvSeries)
+        }
+
         progress_bar_tv_series_detail.visibility = View.GONE
 
         Glide.with(this)
@@ -67,43 +81,13 @@ class TvSeriesDetailActivity : AppCompatActivity() {
         text_tv_series_title.text = tvSeries.name
         text_score.text = tvSeries.voteAverage.toString()
         progress_bar_score.progress = (tvSeries.voteAverage * 10).roundToInt()
-        button_trailer.setOnClickListener {
-            val intent = Intent(Intent.ACTION_VIEW).setData(
-                Uri.parse(
-                    String.format(
-                        getString(R.string.youtube_base_url),
-                        tvSeries.videos.results[0].key
-                    )
-                )
-            )
-            startActivity(intent)
-        }
-        if (tvSeries.episodeRunTime.isNotEmpty()) text_duration.text =
-            String.format(getString(R.string.runtime_format), tvSeries.episodeRunTime[0])
-
-        var genre = ""
-        tvSeries.genres.forEach {
-            genre += " ${it.name} "
-        }
-        text_genre.text = genre
-
+        text_first_air_date.text = tvSeries.firstAirDate
+        text_season_count.text =
+            String.format(getString(R.string.seasons), tvSeries.numberOfSeasons)
         text_tagline.text = tvSeries.tagline
         text_overview.text = tvSeries.overview
-        if (tvSeries.createdBy.isNotEmpty()) text_creator.text = tvSeries.createdBy[0].name
-        if (tvSeries.networks.isNotEmpty()) text_networks.text = tvSeries.networks[0].name
         text_tv_series_status.text = tvSeries.status
         text_type.text = tvSeries.type
-        if (tvSeries.spokenLanguages.isNotEmpty()) text_language.text =
-            tvSeries.spokenLanguages[0].name
-        if (tvSeries.productionCountries.isNotEmpty()) text_production_countries.text =
-            tvSeries.productionCountries[0].name
-        text_last_aired_episode.text = String.format(
-            getString(R.string.last_aired_format),
-            tvSeries.lastEpisodeToAir.seasonNumber,
-            tvSeries.lastEpisodeToAir.episodeNumber,
-            tvSeries.lastEpisodeToAir.overview,
-            tvSeries.lastEpisodeToAir.airDate
-        )
     }
 
 }

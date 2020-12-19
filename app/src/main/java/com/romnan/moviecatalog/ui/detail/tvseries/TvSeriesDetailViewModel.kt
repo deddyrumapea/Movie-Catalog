@@ -10,4 +10,10 @@ class TvSeriesDetailViewModel(private val repository: MovieCatalogRepository) : 
 
     fun getTvSeriesDetail(tvShowId: Int): LiveData<TvSeriesDetail> =
         repository.getTvSeriesDetail(tvShowId)
+
+    fun insertFavoriteTvSeries(tvSeries: TvSeriesDetail) = repository.insertFavoriteTvSeries(tvSeries)
+
+    fun deleteFavoriteTvSeries(tvSeries: TvSeriesDetail) = repository.deleteFavoriteTvSeries(tvSeries)
+
+    fun isFavoriteTvSeries(tvSeriesId: Int) = repository.isFavoriteTvSeries(tvSeriesId)
 }
