@@ -1,6 +1,7 @@
 package com.romnan.moviecatalog.data.source.local.room
 
 import androidx.lifecycle.LiveData
+import androidx.paging.DataSource
 import androidx.room.*
 import com.romnan.moviecatalog.data.model.TvSeriesDetail
 import com.romnan.moviecatalog.data.model.movie.MovieDetail
@@ -20,10 +21,10 @@ interface FavoriteDao {
     fun deleteFavoriteTvSeries(tvSeries: TvSeriesDetail)
 
     @Query("SELECT * FROM favorite_movie")
-    fun getFavoriteMovies(): LiveData<List<MovieDetail>>
+    fun getFavoriteMovies(): DataSource.Factory<Int, MovieDetail>
 
     @Query("SELECT * FROM favorite_tv_series")
-    fun getFavoriteTvSeries(): LiveData<List<TvSeriesDetail>>
+    fun getFavoriteTvSeries(): DataSource.Factory<Int, TvSeriesDetail>
 
     @Query("SELECT EXISTS(SELECT * FROM favorite_movie WHERE id = :movieId)")
     fun isFavoriteMovie(movieId: Int): LiveData<Boolean>

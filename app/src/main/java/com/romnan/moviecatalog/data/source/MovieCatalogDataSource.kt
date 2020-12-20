@@ -1,6 +1,8 @@
 package com.romnan.moviecatalog.data.source
 
 import androidx.lifecycle.LiveData
+import androidx.paging.DataSource
+import androidx.paging.PagedList
 import com.romnan.moviecatalog.data.model.TvSeriesDetail
 import com.romnan.moviecatalog.data.model.movie.MovieDetail
 import com.romnan.moviecatalog.data.model.movie.PopularMovie
@@ -24,9 +26,9 @@ interface MovieCatalogDataSource {
 
     fun deleteFavoriteTvSeries(tvSeries: TvSeriesDetail)
 
-    fun getFavoriteMovies(): LiveData<List<MovieDetail>>
+    fun getFavoriteMovies(): DataSource.Factory<Int, MovieDetail>
 
-    fun getFavoriteTvSeries(): LiveData<List<TvSeriesDetail>>
+    fun getFavoriteTvSeries(): DataSource.Factory<Int, TvSeriesDetail>
 
     fun isFavoriteMovie(movieId: Int): LiveData<Boolean>
 

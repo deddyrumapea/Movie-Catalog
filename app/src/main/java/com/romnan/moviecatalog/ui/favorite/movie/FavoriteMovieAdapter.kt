@@ -1,9 +1,12 @@
 package com.romnan.moviecatalog.ui.favorite.movie
 
+import android.app.Activity
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.paging.PagedListAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -12,40 +15,46 @@ import com.romnan.moviecatalog.data.model.movie.MovieDetail
 import com.romnan.moviecatalog.ui.detail.movie.MovieDetailActivity
 import kotlinx.android.synthetic.main.item_popular_show.view.*
 
-class FavoriteMovieAdapter : RecyclerView.Adapter<FavoriteMovieAdapter.FavoriteMovieViewHolder>() {
+class FavoriteMovieAdapter(private val activity: Activity) :
+    PagedListAdapter<MovieDetail, FavoriteMovieAdapter.FavMovieViewHolder>(DIFF_CALLBACK) {
 
-    private var moviesList = ArrayList<MovieDetail>()
+    companion object {
+        private val DIFF_CALLBACK: DiffUtil.ItemCallback<MovieDetail> =
+            object : DiffUtil.ItemCallback<MovieDetail>() {
+                override fun areItemsTheSame(oldItem: MovieDetail, newItem: MovieDetail): Boolean {
+                    return oldItem.id == newItem.id
+                }
 
-    fun setMovies(movies: List<MovieDetail>) {
-        moviesList.clear()
-        moviesList.addAll(movies)
-        notifyDataSetChanged()
+                override fun areContentsTheSame(
+                    oldItem: MovieDetail,
+                    newItem: MovieDetail
+                ): Boolean {
+                    return oldItem == newItem
+                }
+
+            }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoriteMovieViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavMovieViewHolder {
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.item_popular_show, parent, false)
-
-        return FavoriteMovieViewHolder(view)
+        return FavMovieViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: FavoriteMovieViewHolder, position: Int) {
-        val movie = moviesList[position]
+    override fun onBindViewHolder(holder: FavMovieViewHolder, position: Int) {
+        val movie = getItem(position) as MovieDetail
         holder.bind(movie)
-        holder.itemView.setOnClickListener { openDetail(movie, it) }
+        holder.itemView.setOnClickListener { openDetail(movie) }
     }
 
-    override fun getItemCount() = moviesList.size
-
-
-    private fun openDetail(movie: MovieDetail, view: View) {
-        val intent = Intent(view.context, MovieDetailActivity::class.java).apply {
+    private fun openDetail(movie: MovieDetail) {
+        val intent = Intent(activity, MovieDetailActivity::class.java).apply {
             putExtra(MovieDetailActivity.EXTRA_MOVIE, movie)
         }
-        view.context.startActivity(intent)
+        activity.startActivity(intent)
     }
 
-    class FavoriteMovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class FavMovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(movie: MovieDetail) {
             with(itemView) {
                 text_pop_show_item_title.text = movie.title

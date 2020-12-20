@@ -1,6 +1,7 @@
 package com.romnan.moviecatalog.data.source.local
 
 import androidx.lifecycle.LiveData
+import androidx.paging.DataSource
 import com.romnan.moviecatalog.data.model.TvSeriesDetail
 import com.romnan.moviecatalog.data.model.movie.MovieDetail
 import com.romnan.moviecatalog.data.source.local.room.FavoriteDao
@@ -23,9 +24,9 @@ class LocalDataSource private constructor(private val mFavoriteDao: FavoriteDao)
     fun deleteFavoriteTvSeries(tvSeries: TvSeriesDetail) =
         mFavoriteDao.deleteFavoriteTvSeries(tvSeries)
 
-    fun getFavoriteMovies(): LiveData<List<MovieDetail>> = mFavoriteDao.getFavoriteMovies()
+    fun getFavoriteMovies(): DataSource.Factory<Int, MovieDetail> = mFavoriteDao.getFavoriteMovies()
 
-    fun getFavoriteTvSeries(): LiveData<List<TvSeriesDetail>> = mFavoriteDao.getFavoriteTvSeries()
+    fun getFavoriteTvSeries(): DataSource.Factory<Int, TvSeriesDetail> = mFavoriteDao.getFavoriteTvSeries()
 
     fun isFavoriteMovie(movieId: Int): LiveData<Boolean> = mFavoriteDao.isFavoriteMovie(movieId)
 

@@ -1,10 +1,12 @@
-
 package com.romnan.moviecatalog.ui.favorite.tvseries
 
+import android.app.Activity
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.paging.PagedListAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -13,41 +15,48 @@ import com.romnan.moviecatalog.data.model.TvSeriesDetail
 import com.romnan.moviecatalog.ui.detail.tvseries.TvSeriesDetailActivity
 import kotlinx.android.synthetic.main.item_popular_show.view.*
 
-class FavoriteTvSeriesAdapter :
-    RecyclerView.Adapter<FavoriteTvSeriesAdapter.FavoriteTvSeriesViewHolder>() {
+class FavoriteTvSeriesAdapter(private val activity: Activity) :
+    PagedListAdapter<TvSeriesDetail, FavoriteTvSeriesAdapter.FavTvSeriesViewHolder>(DIFF_CALLBACK) {
+    companion object {
+        private val DIFF_CALLBACK: DiffUtil.ItemCallback<TvSeriesDetail> =
+            object : DiffUtil.ItemCallback<TvSeriesDetail>() {
+                override fun areItemsTheSame(
+                    oldItem: TvSeriesDetail,
+                    newItem: TvSeriesDetail
+                ): Boolean {
+                    return oldItem.id == newItem.id
+                }
 
-    private var tvSeriesList = ArrayList<TvSeriesDetail>()
-
-    fun setTvSeries(tvSeries: List<TvSeriesDetail>) {
-        tvSeriesList.clear()
-        tvSeriesList.addAll(tvSeries)
-        notifyDataSetChanged()
+                override fun areContentsTheSame(
+                    oldItem: TvSeriesDetail,
+                    newItem: TvSeriesDetail
+                ): Boolean {
+                    return oldItem == newItem
+                }
+            }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoriteTvSeriesViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavTvSeriesViewHolder {
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.item_popular_show, parent, false)
 
-        return FavoriteTvSeriesViewHolder(view)
+        return FavTvSeriesViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: FavoriteTvSeriesViewHolder, position: Int) {
-        val tvSeries = tvSeriesList[position]
+    override fun onBindViewHolder(holder: FavTvSeriesViewHolder, position: Int) {
+        val tvSeries = getItem(position) as TvSeriesDetail
         holder.bind(tvSeries)
-        holder.itemView.setOnClickListener { openDetail(tvSeries, it) }
+        holder.itemView.setOnClickListener { openDetail(tvSeries) }
     }
 
-    override fun getItemCount() = tvSeriesList.size
-
-
-    private fun openDetail(tvSeries: TvSeriesDetail, view: View) {
-        val intent = Intent(view.context, TvSeriesDetailActivity::class.java).apply {
+    private fun openDetail(tvSeries: TvSeriesDetail) {
+        val intent = Intent(activity, TvSeriesDetailActivity::class.java).apply {
             putExtra(TvSeriesDetailActivity.EXTRA_TV_SERIES, tvSeries)
         }
-        view.context.startActivity(intent)
+        activity.startActivity(intent)
     }
 
-    class FavoriteTvSeriesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class FavTvSeriesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(tvSeries: TvSeriesDetail) {
             with(itemView) {
                 text_pop_show_item_title.text = tvSeries.name

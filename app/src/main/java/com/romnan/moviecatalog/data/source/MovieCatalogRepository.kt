@@ -2,6 +2,7 @@ package com.romnan.moviecatalog.data.source
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.paging.DataSource
 import com.romnan.moviecatalog.data.model.TvSeriesDetail
 import com.romnan.moviecatalog.data.model.movie.MovieDetail
 import com.romnan.moviecatalog.data.model.movie.PopularMovie
@@ -9,6 +10,7 @@ import com.romnan.moviecatalog.data.model.tvseries.PopularTvSeries
 import com.romnan.moviecatalog.data.source.local.LocalDataSource
 import com.romnan.moviecatalog.data.source.remote.RemoteDataSource
 import com.romnan.moviecatalog.utils.AppExecutors
+
 
 class MovieCatalogRepository private constructor(
     private val remoteDataSource: RemoteDataSource,
@@ -100,11 +102,13 @@ class MovieCatalogRepository private constructor(
             localDataSource.deleteFavoriteTvSeries(tvSeries)
         }
 
-    override fun getFavoriteMovies(): LiveData<List<MovieDetail>> =
-        localDataSource.getFavoriteMovies()
+    override fun getFavoriteMovies(): DataSource.Factory<Int, MovieDetail> {
+        return localDataSource.getFavoriteMovies()
+    }
 
-    override fun getFavoriteTvSeries(): LiveData<List<TvSeriesDetail>> =
-        localDataSource.getFavoriteTvSeries()
+    override fun getFavoriteTvSeries(): DataSource.Factory<Int, TvSeriesDetail> {
+        return localDataSource.getFavoriteTvSeries()
+    }
 
     override fun isFavoriteMovie(movieId: Int): LiveData<Boolean> =
         localDataSource.isFavoriteMovie(movieId)

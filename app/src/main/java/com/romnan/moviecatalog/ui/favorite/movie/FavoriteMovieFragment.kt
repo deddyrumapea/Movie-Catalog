@@ -28,13 +28,15 @@ class FavoriteMovieFragment : Fragment() {
             val viewModel =
                 ViewModelProvider(requireActivity(), factory)[FavoriteMovieViewModel::class.java]
 
-            val moviesAdapter = FavoriteMovieAdapter()
+            val moviesAdapter = FavoriteMovieAdapter(requireActivity())
 
-            progress_bar_popular_movies.visibility = View.VISIBLE
+            progress_bar_favorite_movie.visibility = View.VISIBLE
 
             viewModel.getFavoriteMovies().observe(viewLifecycleOwner, { movies ->
-                moviesAdapter.setMovies(movies)
-                progress_bar_popular_movies.visibility = View.GONE
+                if (movies != null) {
+                    moviesAdapter.submitList(movies)
+                    progress_bar_favorite_movie.visibility = View.GONE
+                }
             })
 
             with(rv_popular_movies) {

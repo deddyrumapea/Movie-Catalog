@@ -27,13 +27,15 @@ class FavoriteTvSeriesFragment : Fragment() {
             val viewModel =
                 ViewModelProvider(requireActivity(), factory)[FavoriteTvSeriesViewModel::class.java]
 
-            val tvSeriesAdapter = FavoriteTvSeriesAdapter()
+            val tvSeriesAdapter = FavoriteTvSeriesAdapter(requireActivity())
 
             progress_bar_favorite_tv_series.visibility = View.VISIBLE
 
             viewModel.getFavoriteTvSeries().observe(viewLifecycleOwner, { tvSeries ->
-                tvSeriesAdapter.setTvSeries(tvSeries)
-                progress_bar_favorite_tv_series.visibility = View.GONE
+                if (tvSeries != null) {
+                    tvSeriesAdapter.submitList(tvSeries)
+                    progress_bar_favorite_tv_series.visibility = View.GONE
+                }
             })
 
             with(rv_favorite_tv_series) {

@@ -31,8 +31,6 @@ class DiscoverTvSeriesFragment : Fragment() {
 
             val tvSeriesAdapter = DiscoverTvSeriesAdapter()
 
-            viewModel.getPopularTvSeries()
-
             viewModel.getPopularTvSeries().observe(viewLifecycleOwner, { tvSeries ->
                 tvSeriesAdapter.setTvSeries(tvSeries)
                 progress_bar_popular_tv_series.visibility = View.GONE
