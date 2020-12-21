@@ -1,7 +1,6 @@
 package com.romnan.moviecatalog.ui.discover.movie
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,14 +28,13 @@ class DiscoverMovieFragment : Fragment() {
             val viewModel =
                 ViewModelProvider(requireActivity(), factory)[DiscoverMovieViewModel::class.java]
 
-            val moviesAdapter = DiscoverMovieAdapter()
+            val moviesAdapter = DiscoverMovieAdapter(requireActivity())
 
             progress_bar_popular_movies.visibility = View.VISIBLE
 
             viewModel.getPopularMovies().observe(viewLifecycleOwner, { movies ->
                 moviesAdapter.setMovies(movies)
                 progress_bar_popular_movies.visibility = View.GONE
-                Log.d(TAG, "onActivityCreated: ${movies.size}")
             })
 
             with(rv_popular_movies) {
