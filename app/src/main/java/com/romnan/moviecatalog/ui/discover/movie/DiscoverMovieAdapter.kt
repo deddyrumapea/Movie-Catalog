@@ -1,25 +1,56 @@
 package com.romnan.moviecatalog.ui.discover.movie
 
+import android.app.Activity
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.paging.PagedList
+import androidx.paging.PagedListAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.romnan.moviecatalog.R
 import com.romnan.moviecatalog.data.model.movie.PopularMovie
 import com.romnan.moviecatalog.ui.detail.movie.MovieDetailActivity
+import com.romnan.moviecatalog.utils.DataSourceHelper
 import kotlinx.android.synthetic.main.item_popular_show.view.*
 
-class DiscoverMovieAdapter : RecyclerView.Adapter<DiscoverMovieAdapter.PopularMovieViewHolder>() {
+class DiscoverMovieAdapter(private val activity: Activity) :
+    PagedListAdapter<PopularMovie, DiscoverMovieAdapter.PopularMovieViewHolder>(DIFF_CALLBACK) {
 
-    private var moviesList = ArrayList<PopularMovie>()
+    companion object {
+        private val DIFF_CALLBACK: DiffUtil.ItemCallback<PopularMovie> =
+            object : DiffUtil.ItemCallback<PopularMovie>() {
+                override fun areItemsTheSame(
+                    oldItem: PopularMovie,
+                    newItem: PopularMovie
+                ): Boolean {
+                    return oldItem.id == newItem.id
+                }
+
+                override fun areContentsTheSame(
+                    oldItem: PopularMovie,
+                    newItem: PopularMovie
+                ): Boolean {
+                    return oldItem == newItem
+                }
+
+            }
+    }
 
     fun setMovies(movies: List<PopularMovie>) {
-        moviesList.clear()
-        moviesList.addAll(movies)
-        notifyDataSetChanged()
+        val config = PagedList.Config.Builder()
+            .setInitialLoadSizeHint(DataSourceHelper.PAGE_SIZE)
+            .build()
+
+        val pagedMovies: PagedList<PopularMovie> = PagedList.Builder(
+            DataSourceHelper<PopularMovie>(movies),
+            config
+        ).setInitialKey(0).build()
+
+        submitList(pagedMovies)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PopularMovieViewHolder {
@@ -28,22 +59,21 @@ class DiscoverMovieAdapter : RecyclerView.Adapter<DiscoverMovieAdapter.PopularMo
         return PopularMovieViewHolder(view)
     }
 
-    override fun onBindViewHolder(holderPopularMovie: PopularMovieViewHolder, position: Int) {
-        val movie = moviesList[position]
-        holderPopularMovie.bind(movie)
-        holderPopularMovie.itemView.setOnClickListener { openDetail(movie.id, it) }
+    override fun onBindViewHolder(holder: PopularMovieViewHolder, position: Int) {
+        val movie = getItem(position) as PopularMovie
+        holder.bind(movie)
+        holder.itemView.setOnClickListener { openDetail(movie.id) }
     }
 
-    override fun getItemCount() = moviesList.size
-
-    fun openDetail(id: Int, view: View) {
-        val intent = Intent(view.context, MovieDetailActivity::class.java).apply {
+    fun openDetail(id: Int) {
+        val intent = Intent(activity, MovieDetailActivity::class.java).apply {
             putExtra(MovieDetailActivity.EXTRA_MOVIE_ID, id)
         }
-        view.context.startActivity(intent)
+        activity.startActivity(intent)
     }
 
-    class PopularMovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+    inner class PopularMovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(movie: PopularMovie) {
             with(itemView) {
                 text_pop_show_item_title.text = movie.title
