@@ -36,6 +36,8 @@ class RemoteDataSource {
                         params: LoadInitialParams<Int>,
                         callback: LoadInitialCallback<Int, PopularMovie>
                     ) {
+                        EspressoIdlingResource.increment() //TODO: delete
+
                         val client =
                             ApiConfig.getApiService().getPopularMovies(ApiService.API_KEY, 1)
 
@@ -47,10 +49,12 @@ class RemoteDataSource {
                                 if (response.body() != null) {
                                     callback.onResult(response.body()!!.results, null, 2)
                                 }
+                                EspressoIdlingResource.decrement() //TODO : delete
                             }
 
                             override fun onFailure(call: Call<PopularMovieResponse>, t: Throwable) {
                                 Log.e(TAG, "onFailure: ${t.message.toString()}")
+                                EspressoIdlingResource.decrement() //TODO : delete
                             }
 
                         })
@@ -60,6 +64,8 @@ class RemoteDataSource {
                         params: LoadParams<Int>,
                         callback: LoadCallback<Int, PopularMovie>
                     ) {
+                        EspressoIdlingResource.increment() //TODO: delete
+
                         val client = ApiConfig.getApiService()
                             .getPopularMovies(ApiService.API_KEY, params.key)
 
@@ -72,10 +78,12 @@ class RemoteDataSource {
                                 if (response.body() != null) {
                                     callback.onResult(response.body()!!.results, key)
                                 }
+                                EspressoIdlingResource.decrement() //TODO : delete
                             }
 
                             override fun onFailure(call: Call<PopularMovieResponse>, t: Throwable) {
                                 Log.e(TAG, "onFailure: ${t.message.toString()}")
+                                EspressoIdlingResource.decrement() //TODO : delete
                             }
                         })
                     }
@@ -84,6 +92,8 @@ class RemoteDataSource {
                         params: LoadParams<Int>,
                         callback: LoadCallback<Int, PopularMovie>
                     ) {
+                        EspressoIdlingResource.increment() //TODO: delete
+
                         val client = ApiConfig.getApiService()
                             .getPopularMovies(ApiService.API_KEY, params.key)
 
@@ -99,10 +109,12 @@ class RemoteDataSource {
                                     val key = if (hasMore) params.key + 1 else null
                                     callback.onResult(moviesResponse.results, key)
                                 }
+                                EspressoIdlingResource.decrement() //TODO : delete
                             }
 
                             override fun onFailure(call: Call<PopularMovieResponse>, t: Throwable) {
                                 Log.e(TAG, "onFailure: ${t.message.toString()}")
+                                EspressoIdlingResource.decrement() //TODO : delete
                             }
                         })
                     }
@@ -118,6 +130,8 @@ class RemoteDataSource {
                         params: LoadInitialParams<Int>,
                         callback: LoadInitialCallback<Int, PopularTvSeries>
                     ) {
+                        EspressoIdlingResource.increment() //TODO: delete
+
                         val client =
                             ApiConfig.getApiService().getPopularTvSeries(ApiService.API_KEY, 1)
 
@@ -129,6 +143,7 @@ class RemoteDataSource {
                                 if (response.body() != null) {
                                     callback.onResult(response.body()!!.results, null, 2)
                                 }
+                                EspressoIdlingResource.decrement() //TODO : delete
                             }
 
                             override fun onFailure(
@@ -136,6 +151,7 @@ class RemoteDataSource {
                                 t: Throwable
                             ) {
                                 Log.e(TAG, "onFailure: ${t.message.toString()}")
+                                EspressoIdlingResource.decrement() //TODO : delete
                             }
 
                         })
@@ -145,6 +161,8 @@ class RemoteDataSource {
                         params: LoadParams<Int>,
                         callback: LoadCallback<Int, PopularTvSeries>
                     ) {
+                        EspressoIdlingResource.increment() //TODO: delete
+
                         val client = ApiConfig.getApiService()
                             .getPopularTvSeries(ApiService.API_KEY, params.key)
 
@@ -157,6 +175,7 @@ class RemoteDataSource {
                                 if (response.body() != null) {
                                     callback.onResult(response.body()!!.results, key)
                                 }
+                                EspressoIdlingResource.decrement() //TODO : delete
                             }
 
                             override fun onFailure(
@@ -164,6 +183,7 @@ class RemoteDataSource {
                                 t: Throwable
                             ) {
                                 Log.e(TAG, "onFailure: ${t.message.toString()}")
+                                EspressoIdlingResource.decrement() //TODO : delete
                             }
 
                         })
@@ -173,6 +193,8 @@ class RemoteDataSource {
                         params: LoadParams<Int>,
                         callback: LoadCallback<Int, PopularTvSeries>
                     ) {
+                        EspressoIdlingResource.increment() //TODO: delete
+
                         val client = ApiConfig.getApiService()
                             .getPopularTvSeries(ApiService.API_KEY, params.key)
 
@@ -189,6 +211,7 @@ class RemoteDataSource {
                                     val key = if (hasMore) params.key + 1 else null
                                     callback.onResult(tvSeriesResponse.results, key)
                                 }
+                                EspressoIdlingResource.decrement() //TODO : delete
                             }
 
                             override fun onFailure(
@@ -196,6 +219,7 @@ class RemoteDataSource {
                                 t: Throwable
                             ) {
                                 Log.e(TAG, "onFailure: ${t.message.toString()}")
+                                EspressoIdlingResource.decrement() //TODO : delete
                             }
 
                         })
