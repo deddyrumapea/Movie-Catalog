@@ -7,6 +7,7 @@ import com.romnan.moviecatalog.data.model.tvseries.PopularTvSeriesResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface ApiService {
 
@@ -14,20 +15,28 @@ interface ApiService {
         const val API_KEY = "51a6c6939964995030fb073e1bc86edf"
     }
 
-    @GET("discover/movie?api_key=$API_KEY")
-    fun getPopularMovies(): Call<PopularMovieResponse>
+    @GET("discover/movie")
+    fun getPopularMovies(
+        @Query("api_key") apiKey: String,
+        @Query("page") page: Int
+    ): Call<PopularMovieResponse>
 
-    @GET("discover/tv?api_key=$API_KEY")
-    fun getPopularTvSeries(): Call<PopularTvSeriesResponse>
+    @GET("discover/tv")
+    fun getPopularTvSeries(
+        @Query("api_key") apiKey: String,
+        @Query("page") page: Int
+    ): Call<PopularTvSeriesResponse>
 
-    @GET("movie/{id}?api_key=$API_KEY")
+    @GET("movie/{id}")
     fun getMovieDetail(
-        @Path("id") id: Int
+        @Path("id") id: Int,
+        @Query("api_key") apiKey: String
     ): Call<MovieDetail>
 
-    @GET("tv/{id}?api_key=$API_KEY")
+    @GET("tv/{id}")
     fun getTvSeriesDetail(
-        @Path("id") id: Int
+        @Path("id") id: Int,
+        @Query("api_key") apiKey: String
     ): Call<TvSeriesDetail>
 
 }

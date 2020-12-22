@@ -1,6 +1,8 @@
 package com.romnan.moviecatalog.data.source.remote
 
 import android.util.Log
+import androidx.paging.DataSource
+import androidx.paging.PageKeyedDataSource
 import com.romnan.moviecatalog.data.model.TvSeriesDetail
 import com.romnan.moviecatalog.data.model.movie.MovieDetail
 import com.romnan.moviecatalog.data.model.movie.PopularMovie
@@ -8,6 +10,7 @@ import com.romnan.moviecatalog.data.model.movie.PopularMovieResponse
 import com.romnan.moviecatalog.data.model.tvseries.PopularTvSeries
 import com.romnan.moviecatalog.data.model.tvseries.PopularTvSeriesResponse
 import com.romnan.moviecatalog.data.source.remote.api.ApiConfig
+import com.romnan.moviecatalog.data.source.remote.api.ApiService
 import com.romnan.moviecatalog.utils.EspressoIdlingResource
 import retrofit2.Call
 import retrofit2.Callback
@@ -25,66 +28,190 @@ class RemoteDataSource {
         }
     }
 
-    fun getPopularMovies(callback: LoadPopularMoviesCallback) {
-        EspressoIdlingResource.increment() //TODO: delete
+    fun getPopularMovies(): DataSource.Factory<Int, PopularMovie> =
+        object : DataSource.Factory<Int, PopularMovie>() {
+            override fun create(): DataSource<Int, PopularMovie> {
+                return object : PageKeyedDataSource<Int, PopularMovie>() {
+                    override fun loadInitial(
+                        params: LoadInitialParams<Int>,
+                        callback: LoadInitialCallback<Int, PopularMovie>
+                    ) {
+                        val client =
+                            ApiConfig.getApiService().getPopularMovies(ApiService.API_KEY, 1)
 
-        val client = ApiConfig.getApiService().getPopularMovies()
+                        client.enqueue(object : Callback<PopularMovieResponse> {
+                            override fun onResponse(
+                                call: Call<PopularMovieResponse>,
+                                response: Response<PopularMovieResponse>
+                            ) {
+                                if (response.body() != null) {
+                                    callback.onResult(response.body()!!.results, null, 2)
+                                }
+                            }
 
-        val moviesList = ArrayList<PopularMovie>()
+                            override fun onFailure(call: Call<PopularMovieResponse>, t: Throwable) {
+                                Log.e(TAG, "onFailure: ${t.message.toString()}")
+                            }
 
-        client.enqueue(object : Callback<PopularMovieResponse> {
-            override fun onResponse(
-                call: Call<PopularMovieResponse>,
-                response: Response<PopularMovieResponse>
-            ) {
-                if (response.isSuccessful) {
-                    response.body()?.results?.let { moviesList.addAll(it) }
-                    callback.onPopularMoviesReceived(moviesList)
-                    EspressoIdlingResource.decrement() //TODO : delete
-                } else {
-                    Log.e(TAG, "onResponse: ${response.message()}")
+                        })
+                    }
+
+                    override fun loadBefore(
+                        params: LoadParams<Int>,
+                        callback: LoadCallback<Int, PopularMovie>
+                    ) {
+                        val client = ApiConfig.getApiService()
+                            .getPopularMovies(ApiService.API_KEY, params.key)
+
+                        client.enqueue(object : Callback<PopularMovieResponse> {
+                            override fun onResponse(
+                                call: Call<PopularMovieResponse>,
+                                response: Response<PopularMovieResponse>
+                            ) {
+                                val key = if (params.key > 1) params.key - 1 else null
+                                if (response.body() != null) {
+                                    callback.onResult(response.body()!!.results, key)
+                                }
+                            }
+
+                            override fun onFailure(call: Call<PopularMovieResponse>, t: Throwable) {
+                                Log.e(TAG, "onFailure: ${t.message.toString()}")
+                            }
+                        })
+                    }
+
+                    override fun loadAfter(
+                        params: LoadParams<Int>,
+                        callback: LoadCallback<Int, PopularMovie>
+                    ) {
+                        val client = ApiConfig.getApiService()
+                            .getPopularMovies(ApiService.API_KEY, params.key)
+
+                        client.enqueue(object : Callback<PopularMovieResponse> {
+                            override fun onResponse(
+                                call: Call<PopularMovieResponse>,
+                                response: Response<PopularMovieResponse>
+                            ) {
+                                val moviesResponse = response.body()
+                                if (moviesResponse != null) {
+                                    val hasMore =
+                                        moviesResponse.page < moviesResponse.totalPages
+                                    val key = if (hasMore) params.key + 1 else null
+                                    callback.onResult(moviesResponse.results, key)
+                                }
+                            }
+
+                            override fun onFailure(call: Call<PopularMovieResponse>, t: Throwable) {
+                                Log.e(TAG, "onFailure: ${t.message.toString()}")
+                            }
+                        })
+                    }
+                }
+            }
+        }
+
+    fun getPopularTvSeries(): DataSource.Factory<Int, PopularTvSeries> =
+        object : DataSource.Factory<Int, PopularTvSeries>() {
+            override fun create(): DataSource<Int, PopularTvSeries> {
+                return object : PageKeyedDataSource<Int, PopularTvSeries>() {
+                    override fun loadInitial(
+                        params: LoadInitialParams<Int>,
+                        callback: LoadInitialCallback<Int, PopularTvSeries>
+                    ) {
+                        val client =
+                            ApiConfig.getApiService().getPopularTvSeries(ApiService.API_KEY, 1)
+
+                        client.enqueue(object : Callback<PopularTvSeriesResponse> {
+                            override fun onResponse(
+                                call: Call<PopularTvSeriesResponse>,
+                                response: Response<PopularTvSeriesResponse>
+                            ) {
+                                if (response.body() != null) {
+                                    callback.onResult(response.body()!!.results, null, 2)
+                                }
+                            }
+
+                            override fun onFailure(
+                                call: Call<PopularTvSeriesResponse>,
+                                t: Throwable
+                            ) {
+                                Log.e(TAG, "onFailure: ${t.message.toString()}")
+                            }
+
+                        })
+                    }
+
+                    override fun loadBefore(
+                        params: LoadParams<Int>,
+                        callback: LoadCallback<Int, PopularTvSeries>
+                    ) {
+                        val client = ApiConfig.getApiService()
+                            .getPopularTvSeries(ApiService.API_KEY, params.key)
+
+                        client.enqueue(object : Callback<PopularTvSeriesResponse> {
+                            override fun onResponse(
+                                call: Call<PopularTvSeriesResponse>,
+                                response: Response<PopularTvSeriesResponse>
+                            ) {
+                                val key = if (params.key > 1) params.key - 1 else null
+                                if (response.body() != null) {
+                                    callback.onResult(response.body()!!.results, key)
+                                }
+                            }
+
+                            override fun onFailure(
+                                call: Call<PopularTvSeriesResponse>,
+                                t: Throwable
+                            ) {
+                                Log.e(TAG, "onFailure: ${t.message.toString()}")
+                            }
+
+                        })
+                    }
+
+                    override fun loadAfter(
+                        params: LoadParams<Int>,
+                        callback: LoadCallback<Int, PopularTvSeries>
+                    ) {
+                        val client = ApiConfig.getApiService()
+                            .getPopularTvSeries(ApiService.API_KEY, params.key)
+
+                        client.enqueue(object : Callback<PopularTvSeriesResponse> {
+                            override fun onResponse(
+                                call: Call<PopularTvSeriesResponse>,
+                                response: Response<PopularTvSeriesResponse>
+                            ) {
+                                val tvSeriesResponse = response.body()
+                                if (tvSeriesResponse != null) {
+                                    val hasMore =
+                                        tvSeriesResponse.page < tvSeriesResponse.totalPages
+
+                                    val key = if (hasMore) params.key + 1 else null
+                                    callback.onResult(tvSeriesResponse.results, key)
+                                }
+                            }
+
+                            override fun onFailure(
+                                call: Call<PopularTvSeriesResponse>,
+                                t: Throwable
+                            ) {
+                                Log.e(TAG, "onFailure: ${t.message.toString()}")
+                            }
+
+                        })
+                    }
+
                 }
             }
 
-            override fun onFailure(call: Call<PopularMovieResponse>, t: Throwable) {
-                Log.e(TAG, "onFailure: ${t.message.toString()}")
-            }
-        })
-    }
+        }
 
-    fun getPopularTvSeries(callback: LoadPopularTvSeriesCallback) {
-        EspressoIdlingResource.increment() //TODO: delete
-
-        val client = ApiConfig.getApiService().getPopularTvSeries()
-
-        val tvSeriesList = ArrayList<PopularTvSeries>()
-
-        client.enqueue(object : Callback<PopularTvSeriesResponse> {
-            override fun onResponse(
-                call: Call<PopularTvSeriesResponse>,
-                response: Response<PopularTvSeriesResponse>
-            ) {
-                if (response.isSuccessful) {
-                    response.body()?.results?.let { tvSeriesList.addAll(it) }
-                    callback.onPopularTvSeriesReceived(tvSeriesList)
-                    EspressoIdlingResource.decrement() //TODO : delete
-                } else {
-                    Log.e(TAG, "onResponse: ${response.message()}")
-                }
-            }
-
-            override fun onFailure(call: Call<PopularTvSeriesResponse>, t: Throwable) {
-                Log.e(TAG, "onFailure: ${t.message.toString()}")
-            }
-
-        })
-    }
 
     fun getMovieDetail(movieId: Int, callback: LoadMovieDetailCallback) {
         EspressoIdlingResource.increment() //TODO: delete
 
         val client =
-            ApiConfig.getApiService().getMovieDetail(movieId)
+            ApiConfig.getApiService().getMovieDetail(movieId, ApiService.API_KEY)
 
         lateinit var movieDetail: MovieDetail
 
@@ -109,7 +236,7 @@ class RemoteDataSource {
         EspressoIdlingResource.increment() //TODO: delete
 
         val client = ApiConfig.getApiService()
-            .getTvSeriesDetail(tvShowId)
+            .getTvSeriesDetail(tvShowId, ApiService.API_KEY)
 
         lateinit var tvSeriesDetail: TvSeriesDetail
 
@@ -133,12 +260,11 @@ class RemoteDataSource {
         })
     }
 
-    interface LoadPopularMoviesCallback {
-        fun onPopularMoviesReceived(moviesResponse: List<PopularMovie>)
-    }
+    class PopularTvSeriesDataSourceFactory : DataSource.Factory<Int, PopularTvSeries>() {
+        override fun create(): DataSource<Int, PopularTvSeries> {
+            TODO("Not yet implemented")
+        }
 
-    interface LoadPopularTvSeriesCallback {
-        fun onPopularTvSeriesReceived(tvSeriesResponse: List<PopularTvSeries>)
     }
 
     interface LoadMovieDetailCallback {

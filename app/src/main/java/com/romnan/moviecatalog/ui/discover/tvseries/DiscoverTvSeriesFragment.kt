@@ -1,13 +1,13 @@
 package com.romnan.moviecatalog.ui.discover.tvseries
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.romnan.moviecatalog.R
 import com.romnan.moviecatalog.viewmodel.ViewModelFactory
 import kotlinx.android.synthetic.main.fragment_discover_tv_series.*
@@ -29,12 +29,21 @@ class DiscoverTvSeriesFragment : Fragment() {
             val viewModel =
                 ViewModelProvider(requireActivity(), factory)[DiscoverTvSeriesViewModel::class.java]
 
-            val tvSeriesAdapter = DiscoverTvSeriesAdapter()
+            val tvSeriesAdapter = DiscoverTvSeriesAdapter(requireActivity())
 
             viewModel.getPopularTvSeries().observe(viewLifecycleOwner, { tvSeries ->
-                tvSeriesAdapter.setTvSeries(tvSeries)
-                progress_bar_popular_tv_series.visibility = View.GONE
-                Log.d(TAG, "onActivityCreated: ${tvSeries.size}")
+                tvSeriesAdapter.submitList(tvSeries)
+            })
+
+            tvSeriesAdapter.registerAdapterDataObserver(object :
+                RecyclerView.AdapterDataObserver() {
+                override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {
+                    super.onItemRangeInserted(positionStart, itemCount)
+                    if (itemCount > 0) {
+                        progress_bar_popular_tv_series.visibility = View.GONE
+                        tvSeriesAdapter.unregisterAdapterDataObserver(this)
+                    }
+                }
             })
 
             with(rv_popular_tv_series) {

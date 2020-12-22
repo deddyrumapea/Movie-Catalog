@@ -5,7 +5,6 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.paging.PagedList
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -14,8 +13,8 @@ import com.bumptech.glide.request.RequestOptions
 import com.romnan.moviecatalog.R
 import com.romnan.moviecatalog.data.model.movie.PopularMovie
 import com.romnan.moviecatalog.ui.detail.movie.MovieDetailActivity
-import com.romnan.moviecatalog.utils.DataSourceHelper
 import kotlinx.android.synthetic.main.item_popular_show.view.*
+
 
 class DiscoverMovieAdapter(private val activity: Activity) :
     PagedListAdapter<PopularMovie, DiscoverMovieAdapter.PopularMovieViewHolder>(DIFF_CALLBACK) {
@@ -40,19 +39,6 @@ class DiscoverMovieAdapter(private val activity: Activity) :
             }
     }
 
-    fun setMovies(movies: List<PopularMovie>) {
-        val config = PagedList.Config.Builder()
-            .setInitialLoadSizeHint(DataSourceHelper.PAGE_SIZE)
-            .build()
-
-        val pagedMovies: PagedList<PopularMovie> = PagedList.Builder(
-            DataSourceHelper<PopularMovie>(movies),
-            config
-        ).setInitialKey(0).build()
-
-        submitList(pagedMovies)
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PopularMovieViewHolder {
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.item_popular_show, parent, false)
@@ -71,7 +57,6 @@ class DiscoverMovieAdapter(private val activity: Activity) :
         }
         activity.startActivity(intent)
     }
-
 
     inner class PopularMovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(movie: PopularMovie) {

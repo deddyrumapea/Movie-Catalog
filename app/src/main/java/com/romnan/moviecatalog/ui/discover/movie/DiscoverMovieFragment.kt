@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.romnan.moviecatalog.R
 import com.romnan.moviecatalog.viewmodel.ViewModelFactory
 import kotlinx.android.synthetic.main.fragment_discover_movie.*
@@ -32,9 +33,19 @@ class DiscoverMovieFragment : Fragment() {
 
             progress_bar_popular_movies.visibility = View.VISIBLE
 
+
             viewModel.getPopularMovies().observe(viewLifecycleOwner, { movies ->
-                moviesAdapter.setMovies(movies)
-                progress_bar_popular_movies.visibility = View.GONE
+                moviesAdapter.submitList(movies)
+            })
+
+            moviesAdapter.registerAdapterDataObserver(object : RecyclerView.AdapterDataObserver() {
+                override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {
+                    super.onItemRangeInserted(positionStart, itemCount)
+                    if (itemCount > 0) {
+                        progress_bar_popular_movies.visibility = View.GONE
+                        moviesAdapter.unregisterAdapterDataObserver(this)
+                    }
+                }
             })
 
             with(rv_popular_movies) {

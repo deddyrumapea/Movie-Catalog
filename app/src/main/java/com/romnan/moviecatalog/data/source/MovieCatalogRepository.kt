@@ -32,29 +32,12 @@ class MovieCatalogRepository private constructor(
             }
     }
 
-    override fun getPopularMovies(): LiveData<List<PopularMovie>> {
-        val result = MutableLiveData<List<PopularMovie>>()
+    override fun getPopularMovies(): DataSource.Factory<Int, PopularMovie> =
+        remoteDataSource.getPopularMovies()
 
-        remoteDataSource.getPopularMovies(object : RemoteDataSource.LoadPopularMoviesCallback {
-            override fun onPopularMoviesReceived(moviesResponse: List<PopularMovie>) {
-                result.postValue(moviesResponse)
-            }
-        })
+    override fun getPopularTvSeries(): DataSource.Factory<Int, PopularTvSeries> =
+        remoteDataSource.getPopularTvSeries()
 
-        return result
-    }
-
-    override fun getPopularTvSeries(): LiveData<List<PopularTvSeries>> {
-        val result = MutableLiveData<List<PopularTvSeries>>()
-
-        remoteDataSource.getPopularTvSeries(object : RemoteDataSource.LoadPopularTvSeriesCallback {
-            override fun onPopularTvSeriesReceived(tvSeriesResponse: List<PopularTvSeries>) {
-                result.postValue(tvSeriesResponse)
-            }
-        })
-
-        return result
-    }
 
     override fun getMovieDetail(movieId: Int): LiveData<MovieDetail> {
         val result = MutableLiveData<MovieDetail>()
