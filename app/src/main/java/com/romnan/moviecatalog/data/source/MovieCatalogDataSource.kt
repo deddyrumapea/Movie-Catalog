@@ -2,6 +2,7 @@ package com.romnan.moviecatalog.data.source
 
 import androidx.lifecycle.LiveData
 import androidx.paging.DataSource
+import androidx.paging.PagedList
 import com.romnan.moviecatalog.data.model.TvSeriesDetail
 import com.romnan.moviecatalog.data.model.movie.MovieDetail
 import com.romnan.moviecatalog.data.model.movie.PopularMovie
@@ -9,9 +10,9 @@ import com.romnan.moviecatalog.data.model.tvseries.PopularTvSeries
 
 interface MovieCatalogDataSource {
 
-    fun getPopularMovies(): DataSource.Factory<Int, PopularMovie>
+    fun getPopularMovies(): LiveData<PagedList<PopularMovie>>
 
-    fun getPopularTvSeries(): DataSource.Factory<Int, PopularTvSeries>
+    fun getPopularTvSeries(): LiveData<PagedList<PopularTvSeries>>
 
     fun getMovieDetail(movieId: Int): LiveData<MovieDetail>
 

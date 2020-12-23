@@ -1,3 +1,4 @@
+
 package com.romnan.moviecatalog.ui.discover.tvseries
 
 import androidx.lifecycle.LiveData
@@ -10,12 +11,5 @@ import com.romnan.moviecatalog.data.source.MovieCatalogRepository
 class DiscoverTvSeriesViewModel(private val repository: MovieCatalogRepository) : ViewModel() {
     companion object
 
-    fun getPopularTvSeries(): LiveData<PagedList<PopularTvSeries>> {
-        val config = PagedList.Config.Builder()
-            .setEnablePlaceholders(false)
-            .setPageSize(20)
-            .build()
-
-        return LivePagedListBuilder(repository.getPopularTvSeries(), config).build()
-    }
+    fun getPopularTvSeries(): LiveData<PagedList<PopularTvSeries>> = repository.getPopularTvSeries()
 }

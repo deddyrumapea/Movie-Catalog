@@ -3,6 +3,8 @@ package com.romnan.moviecatalog.data.source
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
+import androidx.paging.LivePagedListBuilder
+import androidx.paging.PagedList
 import com.romnan.moviecatalog.data.model.TvSeriesDetail
 import com.romnan.moviecatalog.data.model.movie.MovieDetail
 import com.romnan.moviecatalog.data.model.movie.PopularMovie
@@ -32,11 +34,12 @@ class MovieCatalogRepository private constructor(
             }
     }
 
-    override fun getPopularMovies(): DataSource.Factory<Int, PopularMovie> =
-        remoteDataSource.getPopularMovies()
+    override fun getPopularMovies(): LiveData<PagedList<PopularMovie>> =
+        LivePagedListBuilder(remoteDataSource.getPopularMovies(), 20).build()
 
-    override fun getPopularTvSeries(): DataSource.Factory<Int, PopularTvSeries> =
-        remoteDataSource.getPopularTvSeries()
+
+    override fun getPopularTvSeries(): LiveData<PagedList<PopularTvSeries>> =
+        LivePagedListBuilder(remoteDataSource.getPopularTvSeries(), 20).build()
 
     override fun getMovieDetail(movieId: Int): LiveData<MovieDetail> {
         val result = MutableLiveData<MovieDetail>()
