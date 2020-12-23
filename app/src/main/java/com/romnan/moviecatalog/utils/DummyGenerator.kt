@@ -419,17 +419,17 @@ object DummyGenerator {
     }
 
     fun getMovieDetail(): MovieDetail = MovieDetail(
-        590995,
-        "The Craft: Legacy",
-        "/lhMIra0pqWNuD6CIXoTmGwZ0EBS.jpg",
-        "/lIE7kfdLBRd0KENNtOaIqPPWNqh.jpg",
-        0,
-        0,
-        "An eclectic foursome of aspiring teenage witches get more than they bargained for as they lean into their newfound powers.",
-        94,
-        "2020-10-28",
-        6.2,
-        "Let the ritual begin",
+        577922,
+        "Tenet",
+        "/k68nPLbIST6NP96JmTxmZijEvCA.jpg",
+        "/wzJRB4MKi3yK138bJyuL9nx47y6.jpg",
+        347100000,
+        205000000,
+        "Armed with only one word - Tenet - and fighting for the survival of the entire world, the Protagonist journeys through a twilight world of international espionage on a mission that will unfold in something beyond real time.",
+        150,
+        "2020 - 08 - 22",
+        7.4,
+        "Time runs out.",
         "Released"
     )
 
