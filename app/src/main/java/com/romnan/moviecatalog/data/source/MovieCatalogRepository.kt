@@ -38,7 +38,6 @@ class MovieCatalogRepository private constructor(
     override fun getPopularTvSeries(): DataSource.Factory<Int, PopularTvSeries> =
         remoteDataSource.getPopularTvSeries()
 
-
     override fun getMovieDetail(movieId: Int): LiveData<MovieDetail> {
         val result = MutableLiveData<MovieDetail>()
 
@@ -95,7 +94,6 @@ class MovieCatalogRepository private constructor(
 
     override fun isFavoriteMovie(movieId: Int): LiveData<Boolean> =
         localDataSource.isFavoriteMovie(movieId)
-
 
     override fun isFavoriteTvSeries(tvSeriesId: Int): LiveData<Boolean> =
         localDataSource.isFavoriteTvSeries(tvSeriesId)
