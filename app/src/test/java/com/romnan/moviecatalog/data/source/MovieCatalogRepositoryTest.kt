@@ -51,7 +51,7 @@ class MovieCatalogRepositoryTest {
         val moviesList = PagedListUtil.mockPagedList(DummyGenerator.getPopularMovies())
         verify(remote).getPopularMovies()
         assertNotNull(moviesList)
-        assertEquals(dummyPopularTvSeries.size.toLong(), moviesList.size.toLong())
+        assertEquals(dummyPopularMovies.size.toLong(), moviesList.size.toLong())
     }
 
     @Test
