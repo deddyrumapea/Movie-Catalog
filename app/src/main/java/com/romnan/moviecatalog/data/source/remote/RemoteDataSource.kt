@@ -230,7 +230,6 @@ class RemoteDataSource {
 
         }
 
-
     fun getMovieDetail(movieId: Int, callback: LoadMovieDetailCallback) {
         EspressoIdlingResource.increment() //TODO: delete
 
@@ -282,13 +281,6 @@ class RemoteDataSource {
                 Log.e(TAG, "onFailure: ${t.message.toString()}")
             }
         })
-    }
-
-    class PopularTvSeriesDataSourceFactory : DataSource.Factory<Int, PopularTvSeries>() {
-        override fun create(): DataSource<Int, PopularTvSeries> {
-            TODO("Not yet implemented")
-        }
-
     }
 
     interface LoadMovieDetailCallback {
