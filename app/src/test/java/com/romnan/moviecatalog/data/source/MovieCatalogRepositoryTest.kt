@@ -1,17 +1,24 @@
 package com.romnan.moviecatalog.data.source
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.paging.DataSource
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.doAnswer
 import com.nhaarman.mockitokotlin2.eq
 import com.nhaarman.mockitokotlin2.verify
+import com.romnan.moviecatalog.data.model.movie.PopularMovie
+import com.romnan.moviecatalog.data.model.tvseries.PopularTvSeries
+import com.romnan.moviecatalog.data.source.local.LocalDataSource
 import com.romnan.moviecatalog.data.source.remote.RemoteDataSource
+import com.romnan.moviecatalog.utils.AppExecutors
 import com.romnan.moviecatalog.utils.DummyGenerator
 import com.romnan.moviecatalog.utils.LiveDataTestUtil
+import com.romnan.moviecatalog.utils.PagedListUtil
 import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertNotNull
 import org.junit.Rule
 import org.junit.Test
+import org.mockito.Mockito.`when`
 import org.mockito.Mockito.mock
 
 class MovieCatalogRepositoryTest {
@@ -20,7 +27,10 @@ class MovieCatalogRepositoryTest {
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
     private val remote = mock(RemoteDataSource::class.java)
-    private val repository = FakeMovieCatalogRepository(remote)
+    private val local = mock(LocalDataSource::class.java)
+    private val appExecutors = mock(AppExecutors::class.java)
+
+    private val repository = FakeMovieCatalogRepository(remote, local, appExecutors)
 
     private val dummyPopularMovies = DummyGenerator.getPopularMovies()
     private val dummyMovieDetail = DummyGenerator.getMovieDetail()
@@ -32,28 +42,30 @@ class MovieCatalogRepositoryTest {
 
     @Test
     fun getPopularMovies() {
-        doAnswer { invocationOnMock ->
-            (invocationOnMock.arguments[0] as RemoteDataSource.LoadPopularMoviesCallback)
-                .onPopularMoviesReceived(dummyPopularMovies)
-            null
-        }.`when`(remote).getPopularMovies(any())
-        val popularMovies = LiveDataTestUtil.getValue(repository.getPopularMovies())
-        verify(remote).getPopularMovies(any())
-        assertNotNull(popularMovies)
-        assertEquals(dummyPopularMovies, popularMovies)
+        val dataSourceFactory =
+            mock(DataSource.Factory::class.java) as DataSource.Factory<Int, PopularMovie>
+
+        `when`(remote.getPopularMovies()).thenReturn(dataSourceFactory)
+        repository.getPopularMovies()
+
+        val moviesList = PagedListUtil.mockPagedList(DummyGenerator.getPopularMovies())
+        verify(remote).getPopularMovies()
+        assertNotNull(moviesList)
+        assertEquals(dummyPopularTvSeries.size.toLong(), moviesList.size.toLong())
     }
 
     @Test
     fun getPopularTvSeries() {
-        doAnswer { invocationOnMock ->
-            (invocationOnMock.arguments[0] as RemoteDataSource.LoadPopularTvSeriesCallback)
-                .onPopularTvSeriesReceived(dummyPopularTvSeries)
-            null
-        }.`when`(remote).getPopularTvSeries(any())
-        val popularTvSeries = LiveDataTestUtil.getValue(repository.getPopularTvSeries())
-        verify(remote).getPopularTvSeries(any())
-        assertNotNull(popularTvSeries)
-        assertEquals(dummyPopularTvSeries, popularTvSeries)
+        val dataSourceFactory =
+            mock(DataSource.Factory::class.java) as DataSource.Factory<Int, PopularTvSeries>
+
+        `when`(remote.getPopularTvSeries()).thenReturn(dataSourceFactory)
+        repository.getPopularTvSeries()
+
+        val tvSeriesList = PagedListUtil.mockPagedList(DummyGenerator.getPopularTvSeries())
+        verify(remote).getPopularTvSeries()
+        assertNotNull(tvSeriesList)
+        assertEquals(dummyPopularTvSeries.size.toLong(), tvSeriesList.size.toLong())
     }
 
     @Test
