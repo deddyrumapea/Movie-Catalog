@@ -3,7 +3,7 @@ package com.romnan.moviecatalog.ui.detail.tvseries
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import com.romnan.moviecatalog.data.model.TvSeriesDetail
+import com.romnan.moviecatalog.data.model.tvseries.TvSeriesDetail
 import com.romnan.moviecatalog.data.source.MovieCatalogRepository
 import com.romnan.moviecatalog.utils.DummyGenerator
 import junit.framework.TestCase.assertEquals

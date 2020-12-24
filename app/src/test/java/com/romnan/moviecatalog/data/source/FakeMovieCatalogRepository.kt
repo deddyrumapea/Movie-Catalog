@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
-import com.romnan.moviecatalog.data.model.TvSeriesDetail
+import com.romnan.moviecatalog.data.model.tvseries.TvSeriesDetail
 import com.romnan.moviecatalog.data.model.movie.MovieDetail
 import com.romnan.moviecatalog.data.model.movie.PopularMovie
 import com.romnan.moviecatalog.data.model.tvseries.PopularTvSeries
@@ -19,23 +19,7 @@ class FakeMovieCatalogRepository constructor(
     private val appExecutors: AppExecutors
 ) : MovieCatalogDataSource {
 
-    companion object {
-        @Volatile
-        private var instance: FakeMovieCatalogRepository? = null
-
-        fun getInstance(
-            remoteDataSource: RemoteDataSource,
-            localDataSource: LocalDataSource,
-            appExecutors: AppExecutors
-        ): FakeMovieCatalogRepository =
-            instance ?: synchronized(this) {
-                instance ?: FakeMovieCatalogRepository(
-                    remoteDataSource,
-                    localDataSource,
-                    appExecutors
-                )
-            }
-    }
+    companion object;
 
 
     override fun getPopularMovies(): LiveData<PagedList<PopularMovie>> =

@@ -1,4 +1,4 @@
-package com.romnan.moviecatalog.data.model
+package com.romnan.moviecatalog.data.model.tvseries
 
 import android.os.Parcelable
 import androidx.annotation.NonNull

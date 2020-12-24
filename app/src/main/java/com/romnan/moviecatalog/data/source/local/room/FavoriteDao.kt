@@ -3,7 +3,7 @@ package com.romnan.moviecatalog.data.source.local.room
 import androidx.lifecycle.LiveData
 import androidx.paging.DataSource
 import androidx.room.*
-import com.romnan.moviecatalog.data.model.TvSeriesDetail
+import com.romnan.moviecatalog.data.model.tvseries.TvSeriesDetail
 import com.romnan.moviecatalog.data.model.movie.MovieDetail
 
 @Dao

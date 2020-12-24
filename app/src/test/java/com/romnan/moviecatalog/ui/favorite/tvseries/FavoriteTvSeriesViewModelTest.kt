@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.paging.PagedList
 import com.nhaarman.mockitokotlin2.verify
-import com.romnan.moviecatalog.data.model.TvSeriesDetail
+import com.romnan.moviecatalog.data.model.tvseries.TvSeriesDetail
 import com.romnan.moviecatalog.data.source.MovieCatalogRepository
 import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertNotNull

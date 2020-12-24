@@ -1,6 +1,6 @@
 package com.romnan.moviecatalog.data.source.remote.api
 
-import com.romnan.moviecatalog.data.model.TvSeriesDetail
+import com.romnan.moviecatalog.data.model.tvseries.TvSeriesDetail
 import com.romnan.moviecatalog.data.model.movie.MovieDetail
 import com.romnan.moviecatalog.data.model.movie.PopularMovieResponse
 import com.romnan.moviecatalog.data.model.tvseries.PopularTvSeriesResponse

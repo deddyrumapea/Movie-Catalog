@@ -2,7 +2,7 @@ package com.romnan.moviecatalog.ui.detail.tvseries
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import com.romnan.moviecatalog.data.model.TvSeriesDetail
+import com.romnan.moviecatalog.data.model.tvseries.TvSeriesDetail
 import com.romnan.moviecatalog.data.source.MovieCatalogRepository
 
 class TvSeriesDetailViewModel(private val repository: MovieCatalogRepository) : ViewModel() {
@@ -12,8 +12,6 @@ class TvSeriesDetailViewModel(private val repository: MovieCatalogRepository) : 
         repository.getTvSeriesDetail(tvShowId)
 
     fun insertFavoriteTvSeries(tvSeries: TvSeriesDetail) = repository.insertFavoriteTvSeries(tvSeries)
-
-    fun deleteFavoriteTvSeries(tvSeries: TvSeriesDetail) = repository.deleteFavoriteTvSeries(tvSeries)
 
     fun isFavoriteTvSeries(tvSeriesId: Int) = repository.isFavoriteTvSeries(tvSeriesId)
 }

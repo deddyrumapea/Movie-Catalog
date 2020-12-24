@@ -56,7 +56,5 @@ class DiscoverMovieFragment : Fragment() {
         }
     }
 
-    companion object {
-        private const val TAG = "DiscoverMovieFragment"
-    }
+    companion object
 }

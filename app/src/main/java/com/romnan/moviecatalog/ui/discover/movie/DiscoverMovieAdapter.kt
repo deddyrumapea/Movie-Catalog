@@ -51,7 +51,7 @@ class DiscoverMovieAdapter(private val activity: Activity) :
         holder.itemView.setOnClickListener { openDetail(movie.id) }
     }
 
-    fun openDetail(id: Int) {
+    private fun openDetail(id: Int) {
         val intent = Intent(activity, MovieDetailActivity::class.java).apply {
             putExtra(MovieDetailActivity.EXTRA_MOVIE_ID, id)
         }

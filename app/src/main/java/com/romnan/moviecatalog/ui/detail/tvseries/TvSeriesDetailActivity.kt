@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.romnan.moviecatalog.R
-import com.romnan.moviecatalog.data.model.TvSeriesDetail
+import com.romnan.moviecatalog.data.model.tvseries.TvSeriesDetail
 import com.romnan.moviecatalog.viewmodel.ViewModelFactory
 import kotlinx.android.synthetic.main.activity_tv_series_detail.*
 import kotlin.math.roundToInt
