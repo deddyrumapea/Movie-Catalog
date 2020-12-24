@@ -1,11 +1,15 @@
 package com.romnan.moviecatalog.ui.detail.tvseries
 
 import android.content.Intent
+import androidx.recyclerview.widget.RecyclerView
 import androidx.test.core.app.ActivityScenario
+import androidx.test.espresso.Espresso
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.Espresso.pressBack
 import androidx.test.espresso.IdlingRegistry
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.rule.ActivityTestRule
 import com.romnan.moviecatalog.R
@@ -53,6 +57,22 @@ class TvSeriesDetailActivityTest {
 
         onView(withId(R.id.text_tagline)).check(matches(isDisplayed()))
         onView(withId(R.id.text_tagline)).check(matches(withText(dummyTvSeries.tagline)))
+    }
+
+    @Test
+    fun addTvSeriesToFavorite() {
+        // Do it 10 times to add 10 tv series to favorite
+        onView(withText(R.string.tv_series)).perform(click())
+        for (i in 1..10) {
+            onView(withId(R.id.rv_popular_tv_series)).perform(
+                RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(i, click())
+            )
+            onView(withId(R.id.btn_favorite)).check(matches(isDisplayed()))
+            onView(withId(R.id.btn_favorite)).check(matches(withText(R.string.favorite)))
+            onView(withId(R.id.btn_favorite)).perform(click())
+            onView(withId(R.id.btn_favorite)).check(matches(withText(R.string.favorited)))
+            pressBack()
+        }
     }
 
     @Test
