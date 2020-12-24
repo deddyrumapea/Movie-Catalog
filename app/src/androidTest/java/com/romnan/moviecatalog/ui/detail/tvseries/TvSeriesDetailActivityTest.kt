@@ -51,6 +51,9 @@ class TvSeriesDetailActivityTest {
         onView(withId(R.id.text_score)).check(matches(isDisplayed()))
         onView(withId(R.id.text_score)).check(matches(withText(dummyTvSeries.voteAverage.toString())))
 
+        onView(withId(R.id.text_duration)).check(matches(isDisplayed()))
+        onView(withId(R.id.text_duration)).check(matches(withText("${dummyTvSeries.episodeRunTime[0]} minutes")))
+
         onView(withId(R.id.text_tagline)).check(matches(isDisplayed()))
         onView(withId(R.id.text_tagline)).check(matches(withText(dummyTvSeries.tagline)))
     }
