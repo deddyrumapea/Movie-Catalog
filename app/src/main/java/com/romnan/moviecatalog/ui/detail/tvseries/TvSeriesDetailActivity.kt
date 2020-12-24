@@ -3,6 +3,7 @@ package com.romnan.moviecatalog.ui.detail.tvseries
 import android.app.Dialog
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
@@ -90,4 +91,8 @@ class TvSeriesDetailActivity : AppCompatActivity() {
         text_type.text = tvSeries.type
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) finish()
+        return true
+    }
 }

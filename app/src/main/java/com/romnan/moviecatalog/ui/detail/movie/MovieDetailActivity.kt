@@ -3,6 +3,7 @@ package com.romnan.moviecatalog.ui.detail.movie
 import android.app.Dialog
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
@@ -90,5 +91,10 @@ class MovieDetailActivity : AppCompatActivity() {
         text_movie_status.text = movie.status
         text_budget.text = DecimalFormat("#,###").format(movie.budget)
         text_revenue.text = DecimalFormat("#,###").format(movie.revenue)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) finish()
+        return true
     }
 }
