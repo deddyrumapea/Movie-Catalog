@@ -39,7 +39,7 @@ class FavoriteMovieFragment : Fragment() {
                 }
             })
 
-            with(rv_popular_movies) {
+            with(rv_favorite_movies) {
                 layoutManager = LinearLayoutManager(context)
                 setHasFixedSize(true)
                 adapter = moviesAdapter
