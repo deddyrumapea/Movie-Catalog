@@ -26,9 +26,9 @@ interface MovieCatalogDataSource {
 
     fun deleteFavoriteTvSeries(tvSeries: TvSeriesDetail)
 
-    fun getFavoriteMovies(): DataSource.Factory<Int, MovieDetail>
+    fun getFavoriteMovies(): LiveData<PagedList<MovieDetail>>
 
-    fun getFavoriteTvSeries(): DataSource.Factory<Int, TvSeriesDetail>
+    fun getFavoriteTvSeries(): LiveData<PagedList<TvSeriesDetail>>
 
     fun isFavoriteMovie(movieId: Int): LiveData<Boolean>
 

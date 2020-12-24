@@ -2,7 +2,6 @@ package com.romnan.moviecatalog.data.source
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.paging.DataSource
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import com.romnan.moviecatalog.data.model.TvSeriesDetail
@@ -87,12 +86,12 @@ class MovieCatalogRepository private constructor(
             localDataSource.deleteFavoriteTvSeries(tvSeries)
         }
 
-    override fun getFavoriteMovies(): DataSource.Factory<Int, MovieDetail> {
-        return localDataSource.getFavoriteMovies()
+    override fun getFavoriteMovies(): LiveData<PagedList<MovieDetail>> {
+        return LivePagedListBuilder(localDataSource.getFavoriteMovies(), 20).build()
     }
 
-    override fun getFavoriteTvSeries(): DataSource.Factory<Int, TvSeriesDetail> {
-        return localDataSource.getFavoriteTvSeries()
+    override fun getFavoriteTvSeries(): LiveData<PagedList<TvSeriesDetail>> {
+        return LivePagedListBuilder(localDataSource.getFavoriteTvSeries(), 20).build()
     }
 
     override fun isFavoriteMovie(movieId: Int): LiveData<Boolean> =

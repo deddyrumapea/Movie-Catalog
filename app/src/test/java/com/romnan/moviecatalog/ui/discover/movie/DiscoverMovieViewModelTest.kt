@@ -3,10 +3,10 @@ package com.romnan.moviecatalog.ui.discover.movie
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
+import androidx.paging.PagedList
 import com.nhaarman.mockitokotlin2.verify
 import com.romnan.moviecatalog.data.model.movie.PopularMovie
 import com.romnan.moviecatalog.data.source.MovieCatalogRepository
-import com.romnan.moviecatalog.utils.DummyGenerator
 import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertNotNull
 import org.junit.Before
@@ -29,7 +29,10 @@ class DiscoverMovieViewModelTest {
     private lateinit var repository: MovieCatalogRepository
 
     @Mock
-    private lateinit var observer: Observer<List<PopularMovie>>
+    private lateinit var observer: Observer<PagedList<PopularMovie>>
+
+    @Mock
+    private lateinit var pagedList: PagedList<PopularMovie>
 
     @Before
     fun setUp() {
@@ -38,15 +41,16 @@ class DiscoverMovieViewModelTest {
 
     @Test
     fun getPopularMovies() {
-        val dummyMovies = DummyGenerator.getPopularMovies()
-        val movies = MutableLiveData<List<PopularMovie>>()
+        val dummyMovies = pagedList
+        `when`(dummyMovies.size).thenReturn(20)
+        val movies = MutableLiveData<PagedList<PopularMovie>>()
         movies.value = dummyMovies
 
         `when`(repository.getPopularMovies()).thenReturn(movies)
-        val moviesList = viewModel.getPopularMovies().value
+        val movieEntities = viewModel.getPopularMovies().value
         verify(repository).getPopularMovies()
-        assertNotNull(movies)
-        assertEquals(20, moviesList?.size)
+        assertNotNull(movieEntities)
+        assertEquals(20, movieEntities?.size)
 
         viewModel.getPopularMovies().observeForever(observer)
         verify(observer).onChanged(dummyMovies)

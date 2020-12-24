@@ -3,10 +3,9 @@ package com.romnan.moviecatalog.ui.discover.tvseries
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import com.nhaarman.mockitokotlin2.verify
+import androidx.paging.PagedList
 import com.romnan.moviecatalog.data.model.tvseries.PopularTvSeries
 import com.romnan.moviecatalog.data.source.MovieCatalogRepository
-import com.romnan.moviecatalog.utils.DummyGenerator
 import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertNotNull
 import org.junit.Before
@@ -15,6 +14,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito.`when`
+import org.mockito.Mockito.verify
 import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
@@ -29,7 +29,10 @@ class DiscoverTvSeriesViewModelTest {
     private lateinit var repository: MovieCatalogRepository
 
     @Mock
-    private lateinit var observer: Observer<List<PopularTvSeries>>
+    private lateinit var observer: Observer<PagedList<PopularTvSeries>>
+
+    @Mock
+    private lateinit var pagedList: PagedList<PopularTvSeries>
 
     @Before
     fun setUp() {
@@ -38,14 +41,16 @@ class DiscoverTvSeriesViewModelTest {
 
     @Test
     fun getPopularTvSeries() {
-        val dummyTvSeries = DummyGenerator.getPopularTvSeries()
-        val tvSeries = MutableLiveData<List<PopularTvSeries>>()
+        val dummyTvSeries = pagedList
+        `when`(dummyTvSeries.size).thenReturn(20)
+        val tvSeries = MutableLiveData<PagedList<PopularTvSeries>>()
         tvSeries.value = dummyTvSeries
 
         `when`(repository.getPopularTvSeries()).thenReturn(tvSeries)
-        val tvSeriesList = viewModel.getPopularTvSeries().value
-        assertNotNull(tvSeriesList)
-        assertEquals(20, tvSeriesList?.size)
+        val tvSeriesEntities = viewModel.getPopularTvSeries().value
+        verify(repository).getPopularTvSeries()
+        assertNotNull(tvSeriesEntities)
+        assertEquals(20, tvSeriesEntities?.size)
 
         viewModel.getPopularTvSeries().observeForever(observer)
         verify(observer).onChanged(dummyTvSeries)
