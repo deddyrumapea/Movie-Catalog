@@ -3,12 +3,12 @@ package com.romnan.moviecatalog.data.source.remote
 import android.util.Log
 import androidx.paging.DataSource
 import androidx.paging.PageKeyedDataSource
-import com.romnan.moviecatalog.data.model.tvseries.TvSeriesDetail
 import com.romnan.moviecatalog.data.model.movie.MovieDetail
 import com.romnan.moviecatalog.data.model.movie.PopularMovie
 import com.romnan.moviecatalog.data.model.movie.PopularMovieResponse
 import com.romnan.moviecatalog.data.model.tvseries.PopularTvSeries
 import com.romnan.moviecatalog.data.model.tvseries.PopularTvSeriesResponse
+import com.romnan.moviecatalog.data.model.tvseries.TvSeriesDetail
 import com.romnan.moviecatalog.data.source.remote.api.ApiConfig
 import com.romnan.moviecatalog.data.source.remote.api.ApiService
 import com.romnan.moviecatalog.utils.EspressoIdlingResource
@@ -46,8 +46,9 @@ class RemoteDataSource {
                                 call: Call<PopularMovieResponse>,
                                 response: Response<PopularMovieResponse>
                             ) {
-                                if (response.body() != null) {
-                                    callback.onResult(response.body()!!.results, null, 2)
+                                val responseBody = response.body()
+                                if (responseBody != null) {
+                                    callback.onResult(responseBody.results, null, 2)
                                 }
                                 EspressoIdlingResource.decrement() //TODO : delete
                             }
@@ -75,8 +76,10 @@ class RemoteDataSource {
                                 response: Response<PopularMovieResponse>
                             ) {
                                 val key = if (params.key > 1) params.key - 1 else null
-                                if (response.body() != null) {
-                                    callback.onResult(response.body()!!.results, key)
+                                val responseBody = response.body()
+
+                                if (responseBody != null) {
+                                    callback.onResult(responseBody.results, key)
                                 }
                                 EspressoIdlingResource.decrement() //TODO : delete
                             }
@@ -102,12 +105,12 @@ class RemoteDataSource {
                                 call: Call<PopularMovieResponse>,
                                 response: Response<PopularMovieResponse>
                             ) {
-                                val moviesResponse = response.body()
-                                if (moviesResponse != null) {
+                                val responseBody = response.body()
+                                if (responseBody != null) {
                                     val hasMore =
-                                        moviesResponse.page < moviesResponse.totalPages
+                                        responseBody.page < responseBody.totalPages
                                     val key = if (hasMore) params.key + 1 else null
-                                    callback.onResult(moviesResponse.results, key)
+                                    callback.onResult(responseBody.results, key)
                                 }
                                 EspressoIdlingResource.decrement() //TODO : delete
                             }
@@ -140,8 +143,9 @@ class RemoteDataSource {
                                 call: Call<PopularTvSeriesResponse>,
                                 response: Response<PopularTvSeriesResponse>
                             ) {
-                                if (response.body() != null) {
-                                    callback.onResult(response.body()!!.results, null, 2)
+                                val responseBody = response.body()
+                                if (responseBody != null) {
+                                    callback.onResult(responseBody.results, null, 2)
                                 }
                                 EspressoIdlingResource.decrement() //TODO : delete
                             }
@@ -172,8 +176,10 @@ class RemoteDataSource {
                                 response: Response<PopularTvSeriesResponse>
                             ) {
                                 val key = if (params.key > 1) params.key - 1 else null
-                                if (response.body() != null) {
-                                    callback.onResult(response.body()!!.results, key)
+
+                                val responseBody = response.body()
+                                if (responseBody != null) {
+                                    callback.onResult(responseBody.results, key)
                                 }
                                 EspressoIdlingResource.decrement() //TODO : delete
                             }
@@ -203,13 +209,13 @@ class RemoteDataSource {
                                 call: Call<PopularTvSeriesResponse>,
                                 response: Response<PopularTvSeriesResponse>
                             ) {
-                                val tvSeriesResponse = response.body()
-                                if (tvSeriesResponse != null) {
+                                val responseBody = response.body()
+                                if (responseBody != null) {
                                     val hasMore =
-                                        tvSeriesResponse.page < tvSeriesResponse.totalPages
+                                        responseBody.page < responseBody.totalPages
 
                                     val key = if (hasMore) params.key + 1 else null
-                                    callback.onResult(tvSeriesResponse.results, key)
+                                    callback.onResult(responseBody.results, key)
                                 }
                                 EspressoIdlingResource.decrement() //TODO : delete
                             }
@@ -236,13 +242,14 @@ class RemoteDataSource {
         val client =
             ApiConfig.getApiService().getMovieDetail(movieId, ApiService.API_KEY)
 
-        lateinit var movieDetail: MovieDetail
 
         client.enqueue(object : Callback<MovieDetail> {
             override fun onResponse(call: Call<MovieDetail>, response: Response<MovieDetail>) {
                 if (response.isSuccessful) {
-                    movieDetail = response.body()!!
-                    callback.onMovieDetailReceived(movieDetail)
+                    val responseBody = response.body()
+                    if (responseBody != null) {
+                        callback.onMovieDetailReceived(responseBody)
+                    }
                     EspressoIdlingResource.decrement() //TODO : delete
                 } else {
                     Log.e(TAG, "onResponse: ${response.message()}")
@@ -261,16 +268,16 @@ class RemoteDataSource {
         val client = ApiConfig.getApiService()
             .getTvSeriesDetail(tvShowId, ApiService.API_KEY)
 
-        lateinit var tvSeriesDetail: TvSeriesDetail
-
         client.enqueue(object : Callback<TvSeriesDetail> {
             override fun onResponse(
                 call: Call<TvSeriesDetail>,
                 response: Response<TvSeriesDetail>
             ) {
                 if (response.isSuccessful) {
-                    tvSeriesDetail = response.body()!!
-                    callback.onTvSeriesDetailReceived(tvSeriesDetail)
+                    val responseBody = response.body()
+                    if (responseBody != null) {
+                        callback.onTvSeriesDetailReceived(responseBody)
+                    }
                     EspressoIdlingResource.decrement() //TODO : delete
                 } else {
                     Log.e(TAG, "onResponse: ${response.message()}")
