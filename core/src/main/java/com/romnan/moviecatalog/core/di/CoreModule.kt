@@ -8,6 +8,8 @@ import com.romnan.moviecatalog.core.data.source.remote.RemoteDataSource
 import com.romnan.moviecatalog.core.data.source.remote.api.ApiService
 import com.romnan.moviecatalog.core.domain.repository.IMovieCatalogRepository
 import com.romnan.moviecatalog.core.utils.AppExecutors
+import net.sqlcipher.database.SQLiteDatabase
+import net.sqlcipher.database.SupportFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
@@ -19,8 +21,13 @@ import java.util.concurrent.TimeUnit
 val databaseModule = module {
     factory { get<MovieCatalogDatabase>().movieCatalogDao() }
     single {
+        val passPhrase: ByteArray = SQLiteDatabase.getBytes("romnan".toCharArray())
+        val factory = SupportFactory(passPhrase)
+
         Room.databaseBuilder(androidContext(), MovieCatalogDatabase::class.java, "MovieCatalog.db")
-            .fallbackToDestructiveMigration().build()
+            .fallbackToDestructiveMigration()
+            .openHelperFactory(factory)
+            .build()
     }
 }
 
