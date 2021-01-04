@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/ebony_clay"
-        tools:context=".ui.detail.movie.MovieDetailActivity">
+        tools:context=".detail.movie.MovieDetailActivity">
 
         <ProgressBar
             android:id="@+id/progress_bar_movie_detail"

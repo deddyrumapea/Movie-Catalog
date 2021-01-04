@@ -16,7 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/item_popular_show">
+        tools:listitem="@layout/item_show">
 
     </androidx.recyclerview.widget.RecyclerView>
 
@@ -28,6 +28,24 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_error_discover_tv_series"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_16dp"
+        android:drawablePadding="@dimen/padding_16dp"
+        android:fontFamily="@font/source_sans_pro_regular"
+        android:gravity="center"
+        android:padding="@dimen/padding_16dp"
+        android:text="@string/oops_something_went_wrong"
+        android:textColor="@color/black_text"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:drawableTopCompat="@drawable/ic_error"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
