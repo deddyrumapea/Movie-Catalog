@@ -15,11 +15,12 @@
     <string name="error">Error</string>
     <string name="oops_something_went_wrong">Oops, something went wrong</string>
     <string name="go_back">Go back</string>
-    <string name="image_base_url">https://image.tmdb.org/t/p/w185/%s</string>
     <string name="runtime_format">%s minutes</string>
     <string name="about">About</string>
-    <string name="title_activity_favorite">Favorites</string>
     <string name="favorite">Favorite</string>
     <string name="favorited">Favorited</string>
-    <string name="seasons">%d Seasons</string>
+    <plurals name="seasons">
+        <item quantity="one">%d Season</item>
+        <item quantity="other">%d Seasons</item>
+    </plurals>
 </resources>
