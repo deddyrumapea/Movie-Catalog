@@ -84,6 +84,7 @@ class TvSeriesDetailActivity : AppCompatActivity() {
                 tvSeries.numberOfSeasons
             )
         text_tagline.text = tvSeries.tagline
+        if (tvSeries.tagline.isEmpty()) text_tagline.visibility = View.GONE
         text_overview.text = tvSeries.overview
         text_tv_series_status.text = tvSeries.status
         text_type.text = tvSeries.type
