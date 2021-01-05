@@ -15,6 +15,14 @@
     <application>
         <activity
             android:name=".FavoriteActivity"
-            android:label="@string/favorite" />
+            android:label="@string/favorite">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data
+                    android:host="favorite"
+                    android:scheme="moviecatalog" />
+            </intent-filter>
+        </activity>
     </application>
 </manifest>

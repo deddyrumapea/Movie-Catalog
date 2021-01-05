@@ -2,6 +2,7 @@ package com.romnan.moviecatalog.discover
 
 import android.content.Intent
 import android.graphics.drawable.ColorDrawable
+import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -49,8 +50,8 @@ class DiscoverActivity : AppCompatActivity() {
     private fun openFavoriteActivity() =
         startActivity(
             Intent(
-                this,
-                Class.forName("com.romnan.favorite.FavoriteActivity")
+                Intent.ACTION_VIEW,
+                Uri.parse("moviecatalog://favorite")
             )
         )
 
