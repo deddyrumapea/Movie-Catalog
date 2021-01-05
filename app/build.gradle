@@ -46,6 +46,7 @@ android {
         viewBinding true
     }
     dynamicFeatures = [':favorite']
+    buildToolsVersion '30.0.2'
 }
 
 dependencies {
@@ -53,5 +54,5 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
 
     // Splash screen
-    implementation "gr.pantrif:easy-android-splash-screen:$easySplashScreenVersion"
+    implementation "gr.pantrif:easy-android-splash-screen:$easy_splash_screen_version"
 }
