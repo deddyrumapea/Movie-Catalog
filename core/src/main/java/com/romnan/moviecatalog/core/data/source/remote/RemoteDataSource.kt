@@ -18,7 +18,7 @@ class RemoteDataSource(private val apiService: ApiService) {
     suspend fun getAllMovies(): Flow<ApiResponse<List<MovieResponse>>> {
         return flow {
             try {
-                val response = apiService.getPopularMovies(1) // TODO : implement pagination
+                val response = apiService.getDiscoverMovies(1) // TODO : implement pagination
                 val dataArray = response.results
                 if (dataArray.isNotEmpty()) {
                     emit(ApiResponse.Success(response.results))
@@ -35,7 +35,7 @@ class RemoteDataSource(private val apiService: ApiService) {
     fun getAllTvSeries(): Flow<ApiResponse<List<TvSeriesResponse>>> {
         return flow {
             try {
-                val response = apiService.getPopularTvSeries(1)// TODO : implement pagination
+                val response = apiService.getDiscoverTvSeries(1)// TODO : implement pagination
                 val dataArray = response.results
                 if (dataArray.isNotEmpty()) {
                     emit(ApiResponse.Success(response.results))

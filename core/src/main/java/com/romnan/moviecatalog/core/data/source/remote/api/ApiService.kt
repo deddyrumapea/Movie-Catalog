@@ -1,8 +1,8 @@
 package com.romnan.moviecatalog.core.data.source.remote.api
 
 import com.romnan.moviecatalog.core.data.source.remote.response.MovieResponse
-import com.romnan.moviecatalog.core.data.source.remote.response.PopularMovieResponse
-import com.romnan.moviecatalog.core.data.source.remote.response.PopularTvSeriesResponse
+import com.romnan.moviecatalog.core.data.source.remote.response.DiscoverMovieResponse
+import com.romnan.moviecatalog.core.data.source.remote.response.DiscoverTvSeriesResponse
 import com.romnan.moviecatalog.core.data.source.remote.response.TvSeriesResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -15,16 +15,16 @@ interface ApiService {
     }
 
     @GET("discover/movie")
-    suspend fun getPopularMovies(
+    suspend fun getDiscoverMovies(
         @Query("page") page: Int,
         @Query("api_key") apiKey: String = API_KEY
-    ): PopularMovieResponse
+    ): DiscoverMovieResponse
 
     @GET("discover/tv")
-    suspend fun getPopularTvSeries(
+    suspend fun getDiscoverTvSeries(
         @Query("page") page: Int,
         @Query("api_key") apiKey: String = API_KEY
-    ): PopularTvSeriesResponse
+    ): DiscoverTvSeriesResponse
 
     @GET("movie/{id}")
     suspend fun getMovieDetail(

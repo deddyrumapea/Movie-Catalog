@@ -2,7 +2,7 @@ package com.romnan.moviecatalog.core.data.source.remote.response
 
 import com.google.gson.annotations.SerializedName
 
-data class PopularTvSeriesResponse(
+data class DiscoverMovieResponse(
 
     @field:SerializedName("page")
     val page: Int,
@@ -11,7 +11,7 @@ data class PopularTvSeriesResponse(
     val totalPages: Int,
 
     @field:SerializedName("results")
-    val results: List<TvSeriesResponse>,
+    val results: List<MovieResponse>,
 
     @field:SerializedName("total_results")
     val totalResults: Int

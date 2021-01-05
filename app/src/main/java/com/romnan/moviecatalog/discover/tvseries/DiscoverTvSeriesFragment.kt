@@ -36,17 +36,17 @@ class DiscoverTvSeriesFragment : Fragment() {
             startActivity(intent)
         }
 
-        viewModel.popularTvSeries.observe(viewLifecycleOwner, { resource ->
+        viewModel.discoverTvSeries.observe(viewLifecycleOwner, { resource ->
             if (resource != null) {
                 when (resource) {
-                    is Resource.Loading -> progress_bar_popular_tv_series.visibility =
+                    is Resource.Loading -> progress_bar_discover_tv_series.visibility =
                         View.VISIBLE
                     is Resource.Success -> {
-                        progress_bar_popular_tv_series.visibility = View.GONE
+                        progress_bar_discover_tv_series.visibility = View.GONE
                         tvSeriesAdapter.setData(resource.data)
                     }
                     is Resource.Error -> {
-                        progress_bar_popular_tv_series.visibility = View.GONE
+                        progress_bar_discover_tv_series.visibility = View.GONE
                         tv_error_discover_tv_series.visibility = View.VISIBLE
                         tv_error_discover_tv_series.text = resource.message
                     }
@@ -59,13 +59,13 @@ class DiscoverTvSeriesFragment : Fragment() {
             override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {
                 super.onItemRangeInserted(positionStart, itemCount)
                 if (itemCount > 0) {
-                    progress_bar_popular_tv_series.visibility = View.GONE
+                    progress_bar_discover_tv_series.visibility = View.GONE
                     tvSeriesAdapter.unregisterAdapterDataObserver(this)
                 }
             }
         })
 
-        with(rv_popular_tv_series) {
+        with(rv_discover_tv_series) {
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
             adapter = tvSeriesAdapter

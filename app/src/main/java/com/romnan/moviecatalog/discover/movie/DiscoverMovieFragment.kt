@@ -37,18 +37,18 @@ class DiscoverMovieFragment : Fragment() {
             startActivity(intent)
         }
 
-        progress_bar_popular_movies.visibility = View.VISIBLE
+        progress_bar_discover_movies.visibility = View.VISIBLE
 
-        viewModel.popularMovies.observe(viewLifecycleOwner, { resource ->
+        viewModel.discoverMovies.observe(viewLifecycleOwner, { resource ->
             if (resource != null) {
                 when (resource) {
-                    is Resource.Loading -> progress_bar_popular_movies.visibility = View.VISIBLE
+                    is Resource.Loading -> progress_bar_discover_movies.visibility = View.VISIBLE
                     is Resource.Success -> {
-                        progress_bar_popular_movies.visibility = View.GONE
+                        progress_bar_discover_movies.visibility = View.GONE
                         moviesAdapter.setData(resource.data)
                     }
                     is Resource.Error -> {
-                        progress_bar_popular_movies.visibility = View.GONE
+                        progress_bar_discover_movies.visibility = View.GONE
                         tv_error_discover_movie.visibility = View.VISIBLE
                         tv_error_discover_movie.text = resource.message
                     }
@@ -60,13 +60,13 @@ class DiscoverMovieFragment : Fragment() {
             override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {
                 super.onItemRangeInserted(positionStart, itemCount)
                 if (itemCount > 0) {
-                    progress_bar_popular_movies.visibility = View.GONE
+                    progress_bar_discover_movies.visibility = View.GONE
                     moviesAdapter.unregisterAdapterDataObserver(this)
                 }
             }
         })
 
-        with(rv_popular_movies) {
+        with(rv_discover_movies) {
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
             adapter = moviesAdapter
