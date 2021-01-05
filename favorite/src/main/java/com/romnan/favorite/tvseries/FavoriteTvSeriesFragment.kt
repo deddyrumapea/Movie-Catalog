@@ -40,7 +40,7 @@ class FavoriteTvSeriesFragment : Fragment() {
             if (tvSeries != null) {
                 tvSeriesAdapter.setData(tvSeries)
                 progress_bar_favorite_tv_series.visibility = View.GONE
-                if (tvSeries.size < 1) tv_empty.visibility = View.VISIBLE
+                if (tvSeries.isEmpty()) tv_empty.visibility = View.VISIBLE
             }
         })
 
