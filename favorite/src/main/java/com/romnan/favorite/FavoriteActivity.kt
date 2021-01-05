@@ -24,6 +24,7 @@ class FavoriteActivity : AppCompatActivity() {
         // Action bar adjustments
         supportActionBar?.elevation = 0f
         supportActionBar?.setBackgroundDrawable(ColorDrawable(getColor(R.color.colorPrimaryDark)))
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
