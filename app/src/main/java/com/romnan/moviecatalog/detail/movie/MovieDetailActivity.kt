@@ -42,47 +42,46 @@ class MovieDetailActivity : AppCompatActivity() {
     }
 
     private fun showProgressBar(isLoading: Boolean) {
-        progress_bar_movie_detail.visibility = if (isLoading) View.VISIBLE else View.GONE
+        pb_movie_detail.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
     private fun showErrorDialog(message: String = getString(R.string.error_message)) {
-        progress_bar_movie_detail.visibility = View.GONE
+        pb_movie_detail.visibility = View.GONE
         val dialog = Dialog(this)
         dialog.setContentView(R.layout.dialog_error)
-        dialog.button_go_back.setOnClickListener { finish() }
+        dialog.btn_go_back.setOnClickListener { finish() }
         dialog.show()
     }
 
     private fun populateMovieDetails(movie: MoviePresentation) {
-        progress_bar_movie_detail.visibility = View.GONE
-
-        btn_favorite.isChecked = movie.isFavorite
-
-        btn_favorite.setOnCheckedChangeListener { buttonView, isChecked ->
-            viewModel.setFavoriteMovie(movie, isChecked)
-        }
-
-        progress_bar_movie_detail.visibility = View.GONE
-
         Glide.with(this)
             .load(String.format(getString(R.string.image_base_url), movie.posterPath))
-            .into(image_movie_poster)
+            .into(iv_movie_detail_poster)
 
         Glide.with(this)
             .load(String.format(getString(R.string.image_base_url), movie.backdropPath))
-            .into(image_movie_backdrop)
+            .into(iv_movie_detail_backdrop)
 
-        text_movie_title.text = movie.title
-        text_score.text = movie.voteAverage.toString()
-        progress_bar_score.progress = (movie.voteAverage * 10).roundToInt()
-        text_release_date.text = movie.releaseDate
-        text_duration.text = String.format(getString(R.string.runtime_format), movie.runtime)
-        text_tagline.text = movie.tagline
-        if (movie.tagline.isEmpty()) text_tagline.visibility = View.GONE
-        text_overview.text = movie.overview
-        text_movie_status.text = movie.status
-        text_budget.text = DecimalFormat("#,###").format(movie.budget)
-        text_revenue.text = DecimalFormat("#,###").format(movie.revenue)
+        tb_movie_detail_favorite.isChecked = movie.isFavorite
+        tb_movie_detail_favorite.setOnCheckedChangeListener { buttonView, isChecked ->
+            viewModel.setFavoriteMovie(movie, isChecked)
+        }
+
+        tv_movie_detail_title.text = movie.title
+
+        tv_movie_detail_score.text = movie.voteAverage.toString()
+        pb_movie_detail_score.progress = (movie.voteAverage * 10).roundToInt()
+
+        tv_movie_detail_release_date.text = movie.releaseDate
+        tv_movie_detail_duration.text = String.format(getString(R.string.runtime_format), movie.runtime)
+
+        tv_movie_detail_tagline.text = movie.tagline
+        if (movie.tagline.isEmpty()) tv_movie_detail_tagline.visibility = View.GONE
+
+        tv_movie_detail_overview.text = movie.overview
+        tv_movie_detail_movie_status.text = movie.status
+        tv_movie_detail_budget.text = DecimalFormat("#,###").format(movie.budget)
+        tv_movie_detail_revenue.text = DecimalFormat("#,###").format(movie.revenue)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

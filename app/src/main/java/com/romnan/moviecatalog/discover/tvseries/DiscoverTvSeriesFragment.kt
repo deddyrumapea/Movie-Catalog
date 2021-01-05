@@ -49,7 +49,7 @@ class DiscoverTvSeriesFragment : Fragment() {
     }
 
     private fun showProgressBar(isLoading: Boolean) {
-        progress_bar_discover_tv_series.visibility = if (isLoading) View.VISIBLE else View.GONE
+        pb_discover_tv_series.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
     private fun showErrorDialog(message: String) {

@@ -33,13 +33,13 @@ class FavoriteTvSeriesFragment : Fragment() {
             intent.putExtra(TvSeriesDetailActivity.EXTRA_TV_SERIES_ID, selected.id)
             startActivity(intent)
         }
-        progress_bar_favorite_tv_series.visibility = View.VISIBLE
+        pb_favorite_tv_series.visibility = View.VISIBLE
 
         viewModel.getFavoriteTvSeries()
         viewModel.favoriteTvSeries.observe(viewLifecycleOwner, { tvSeries ->
             if (tvSeries != null) {
                 tvSeriesAdapter.setData(tvSeries)
-                progress_bar_favorite_tv_series.visibility = View.GONE
+                pb_favorite_tv_series.visibility = View.GONE
                 if (tvSeries.isEmpty()) tv_empty.visibility = View.VISIBLE
             }
         })

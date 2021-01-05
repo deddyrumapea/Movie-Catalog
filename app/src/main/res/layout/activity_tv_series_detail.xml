@@ -7,14 +7,13 @@
     android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/layout_tv_series_detail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/ebony_clay"
         tools:context=".ui.detail.tvshow.tvshowDetailActivity">
 
         <ProgressBar
-            android:id="@+id/progress_bar_tv_series_detail"
+            android:id="@+id/pb_tv_series_detail"
             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -24,7 +23,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/image_tv_series_backdrop"
+            android:id="@+id/iv_tv_series_detail_backdrop"
             android:layout_width="wrap_content"
             android:layout_height="200dp"
             android:contentDescription="@string/background_image"
@@ -34,18 +33,18 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/image_tv_series_poster"
+            android:id="@+id/iv_tv_series_detail_poster"
             android:layout_width="100dp"
             android:layout_height="0dp"
             android:layout_marginVertical="@dimen/margin_16dp"
             android:layout_marginStart="@dimen/margin_32dp"
             android:contentDescription="@string/poster"
-            app:layout_constraintBottom_toBottomOf="@id/image_tv_series_backdrop"
-            app:layout_constraintLeft_toLeftOf="@id/image_tv_series_backdrop"
-            app:layout_constraintTop_toTopOf="@id/image_tv_series_backdrop" />
+            app:layout_constraintBottom_toBottomOf="@id/iv_tv_series_detail_backdrop"
+            app:layout_constraintLeft_toLeftOf="@id/iv_tv_series_detail_backdrop"
+            app:layout_constraintTop_toTopOf="@id/iv_tv_series_detail_backdrop" />
 
         <TextView
-            android:id="@+id/text_tv_series_title"
+            android:id="@+id/tv_tv_series_detail_name"
             style="@style/DisplayText.Bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -53,43 +52,43 @@
             android:padding="@dimen/padding_16dp"
             android:textAlignment="center"
             android:textSize="20sp"
-            app:layout_constraintTop_toBottomOf="@id/image_tv_series_backdrop"
+            app:layout_constraintTop_toBottomOf="@id/iv_tv_series_detail_backdrop"
             tools:text="Avengers : Infinity War (2016)" />
 
         <TextView
-            android:id="@+id/text_user_score"
+            android:id="@+id/tv_tv_series_detail_score_title"
             style="@style/DisplayText.Bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/user_score"
-            app:layout_constraintBottom_toBottomOf="@id/text_score"
+            app:layout_constraintBottom_toBottomOf="@id/tv_tv_series_detail_score"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@id/text_score"
-            app:layout_constraintTop_toTopOf="@id/text_score" />
+            app:layout_constraintRight_toLeftOf="@id/tv_tv_series_detail_score"
+            app:layout_constraintTop_toTopOf="@id/tv_tv_series_detail_score" />
 
         <TextView
-            android:id="@+id/text_score"
+            android:id="@+id/tv_tv_series_detail_score"
             style="@style/DisplayText.Bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_score"
             android:padding="@dimen/padding_16dp"
-            app:layout_constraintBottom_toBottomOf="@id/btn_favorite"
-            app:layout_constraintLeft_toRightOf="@id/text_user_score"
+            app:layout_constraintBottom_toBottomOf="@id/tb_tv_series_detail_favorite"
+            app:layout_constraintLeft_toRightOf="@id/tv_tv_series_detail_score_title"
             app:layout_constraintRight_toLeftOf="@id/divider"
-            app:layout_constraintTop_toBottomOf="@id/text_tv_series_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_tv_series_detail_name"
             tools:text="75" />
 
         <ProgressBar
-            android:id="@+id/progress_bar_score"
+            android:id="@+id/pb_tv_series_detail_score"
             style="?android:progressBarStyleHorizontal"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:progressDrawable="@drawable/circle"
-            app:layout_constraintBottom_toBottomOf="@id/text_score"
-            app:layout_constraintLeft_toLeftOf="@id/text_score"
-            app:layout_constraintRight_toRightOf="@id/text_score"
-            app:layout_constraintTop_toTopOf="@id/text_score"
+            app:layout_constraintBottom_toBottomOf="@id/tv_tv_series_detail_score"
+            app:layout_constraintLeft_toLeftOf="@id/tv_tv_series_detail_score"
+            app:layout_constraintRight_toRightOf="@id/tv_tv_series_detail_score"
+            app:layout_constraintTop_toTopOf="@id/tv_tv_series_detail_score"
             tools:progress="70" />
 
         <View
@@ -98,13 +97,13 @@
             android:layout_height="0dp"
             android:layout_marginVertical="@dimen/margin_8dp"
             android:background="@android:color/darker_gray"
-            app:layout_constraintBottom_toBottomOf="@id/btn_favorite"
+            app:layout_constraintBottom_toBottomOf="@id/tb_tv_series_detail_favorite"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/text_tv_series_title" />
+            app:layout_constraintTop_toBottomOf="@id/tv_tv_series_detail_name" />
 
         <ToggleButton
-            android:id="@+id/btn_favorite"
+            android:id="@+id/tb_tv_series_detail_favorite"
             android:layout_width="wrap_content"
             android:layout_height="36dp"
             android:background="@drawable/selector_toggle_button"
@@ -117,17 +116,17 @@
             android:textStyle="bold"
             app:layout_constraintLeft_toRightOf="@id/divider"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/text_tv_series_title" />
+            app:layout_constraintTop_toBottomOf="@id/tv_tv_series_detail_name" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:background="@color/mirage"
-            app:layout_constraintBottom_toBottomOf="@id/text_tagline"
-            app:layout_constraintTop_toTopOf="@id/text_season_count" />
+            app:layout_constraintBottom_toBottomOf="@id/tv_tv_series_detail_tagline"
+            app:layout_constraintTop_toTopOf="@id/tv_tv_series_detail_season_count" />
 
         <TextView
-            android:id="@+id/text_first_air_date"
+            android:id="@+id/tv_tv_series_detail_first_air_date"
             style="@style/DisplayText.Bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -137,12 +136,12 @@
             android:paddingVertical="@dimen/padding_16dp"
             app:drawableLeftCompat="@drawable/ic_date"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@id/text_season_count"
+            app:layout_constraintRight_toLeftOf="@id/tv_tv_series_detail_season_count"
             app:layout_constraintTop_toBottomOf="@id/divider"
             tools:text="04/27/2018" />
 
         <TextView
-            android:id="@+id/text_season_count"
+            android:id="@+id/tv_tv_series_detail_season_count"
             style="@style/DisplayText.Bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -151,13 +150,13 @@
             android:gravity="center"
             android:paddingVertical="@dimen/padding_16dp"
             app:drawableLeftCompat="@drawable/ic_season"
-            app:layout_constraintLeft_toRightOf="@id/text_first_air_date"
+            app:layout_constraintLeft_toRightOf="@id/tv_tv_series_detail_first_air_date"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/divider"
             tools:text="2 Seasons" />
 
         <TextView
-            android:id="@+id/text_tagline"
+            android:id="@+id/tv_tv_series_detail_tagline"
             style="@style/DisplayText.Bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -165,11 +164,11 @@
             android:paddingBottom="@dimen/padding_16dp"
             android:textSize="16sp"
             android:textStyle="italic"
-            app:layout_constraintTop_toBottomOf="@id/text_season_count"
+            app:layout_constraintTop_toBottomOf="@id/tv_tv_series_detail_season_count"
             tools:text="An entire universe. Once and for all." />
 
         <TextView
-            android:id="@+id/text_overview_title"
+            android:id="@+id/tv_tv_series_detail_overview_title"
             style="@style/DisplayText.Bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -178,27 +177,27 @@
             android:padding="@dimen/padding_16dp"
             android:text="@string/overview"
             android:textSize="18sp"
-            app:layout_constraintTop_toBottomOf="@id/text_tagline" />
+            app:layout_constraintTop_toBottomOf="@id/tv_tv_series_detail_tagline" />
 
         <TextView
-            android:id="@+id/text_overview"
+            android:id="@+id/tv_tv_series_detail_overview"
             style="@style/DisplayText.Bold"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingHorizontal="@dimen/padding_16dp"
             android:paddingBottom="@dimen/padding_32dp"
-            app:layout_constraintTop_toBottomOf="@id/text_overview_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_tv_series_detail_overview_title"
             tools:text="As the Avengers and their allies have continued to protect the world from threats too large for any one hero to handle, a new danger has emerged from the cosmic shadows: Thanos. A despot of intergalactic infamy, his goal is to collect all six Infinity Stones, artifacts of unimaginable power, and use them to inflict his twisted will on all of reality. Everything the Avengers have fought for has led up to this moment - the fate of Earth and existence itself has never been more uncertain." />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:background="@android:color/white"
-            app:layout_constraintBottom_toBottomOf="@id/text_type"
-            app:layout_constraintTop_toTopOf="@id/text_status_title" />
+            app:layout_constraintBottom_toBottomOf="@id/tv_tv_series_detail_type"
+            app:layout_constraintTop_toTopOf="@id/tv_tv_series_detail_status_title" />
 
         <TextView
-            android:id="@+id/text_status_title"
+            android:id="@+id/tv_tv_series_detail_status_title"
             style="@style/DisplayText.Bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -206,21 +205,21 @@
             android:paddingTop="@dimen/padding_16dp"
             android:text="@string/status"
             android:textColor="@color/black_text"
-            app:layout_constraintTop_toBottomOf="@id/text_overview"
+            app:layout_constraintTop_toBottomOf="@id/tv_tv_series_detail_overview"
             app:layout_goneMarginTop="@dimen/margin_16dp" />
 
         <TextView
-            android:id="@+id/text_tv_series_status"
+            android:id="@+id/tv_tv_series_detail_status"
             style="@style/DisplayText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingHorizontal="@dimen/padding_16dp"
             android:textColor="@color/black_text"
-            app:layout_constraintTop_toBottomOf="@id/text_status_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_tv_series_detail_status_title"
             tools:text="Released" />
 
         <TextView
-            android:id="@+id/text_type_title"
+            android:id="@+id/tv_tv_series_detail_type_title"
             style="@style/DisplayText.Bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -228,17 +227,17 @@
             android:paddingTop="@dimen/padding_16dp"
             android:text="@string/type"
             android:textColor="@color/black_text"
-            app:layout_constraintTop_toBottomOf="@id/text_tv_series_status" />
+            app:layout_constraintTop_toBottomOf="@id/tv_tv_series_detail_status" />
 
         <TextView
-            android:id="@+id/text_type"
+            android:id="@+id/tv_tv_series_detail_type"
             style="@style/DisplayText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingHorizontal="@dimen/padding_16dp"
             android:paddingBottom="@dimen/padding_32dp"
             android:textColor="@color/black_text"
-            app:layout_constraintTop_toBottomOf="@id/text_type_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_tv_series_detail_type_title"
             tools:text="Scripted" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -18,8 +18,8 @@ class FavoriteActivity : AppCompatActivity() {
         loadKoinModules(favoriteModule)
 
         val sectionsPagerAdapter = FavoritePagerAdapter(this, supportFragmentManager)
-        view_pager.adapter = sectionsPagerAdapter
-        tabs.setupWithViewPager(view_pager)
+        vp_discover.adapter = sectionsPagerAdapter
+        tl_discover.setupWithViewPager(vp_discover)
 
         // Action bar adjustments
         supportActionBar?.elevation = 0f

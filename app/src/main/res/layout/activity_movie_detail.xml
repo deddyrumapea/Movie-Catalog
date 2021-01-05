@@ -6,14 +6,13 @@
     android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/layout_movie_detail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/ebony_clay"
         tools:context=".detail.movie.MovieDetailActivity">
 
         <ProgressBar
-            android:id="@+id/progress_bar_movie_detail"
+            android:id="@+id/pb_movie_detail"
             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -23,7 +22,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/image_movie_backdrop"
+            android:id="@+id/iv_movie_detail_backdrop"
             android:layout_width="wrap_content"
             android:layout_height="200dp"
             android:contentDescription="@string/background_image"
@@ -33,18 +32,18 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/image_movie_poster"
+            android:id="@+id/iv_movie_detail_poster"
             android:layout_width="100dp"
             android:layout_height="0dp"
             android:layout_marginVertical="@dimen/margin_16dp"
             android:layout_marginStart="@dimen/margin_32dp"
             android:contentDescription="@string/poster"
-            app:layout_constraintBottom_toBottomOf="@id/image_movie_backdrop"
-            app:layout_constraintLeft_toLeftOf="@id/image_movie_backdrop"
-            app:layout_constraintTop_toTopOf="@id/image_movie_backdrop" />
+            app:layout_constraintBottom_toBottomOf="@id/iv_movie_detail_backdrop"
+            app:layout_constraintLeft_toLeftOf="@id/iv_movie_detail_backdrop"
+            app:layout_constraintTop_toTopOf="@id/iv_movie_detail_backdrop" />
 
         <TextView
-            android:id="@+id/text_movie_title"
+            android:id="@+id/tv_movie_detail_title"
             style="@style/DisplayText.Bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -52,43 +51,43 @@
             android:padding="@dimen/padding_16dp"
             android:textAlignment="center"
             android:textSize="20sp"
-            app:layout_constraintTop_toBottomOf="@id/image_movie_backdrop"
+            app:layout_constraintTop_toBottomOf="@id/iv_movie_detail_backdrop"
             tools:text="Avengers : Infinity War (2016)" />
 
         <TextView
-            android:id="@+id/text_user_score"
+            android:id="@+id/tv_movie_detail_score_title"
             style="@style/DisplayText.Bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/user_score"
-            app:layout_constraintBottom_toBottomOf="@id/text_score"
+            app:layout_constraintBottom_toBottomOf="@id/tv_movie_detail_score"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@id/text_score"
-            app:layout_constraintTop_toTopOf="@id/text_score" />
+            app:layout_constraintRight_toLeftOf="@id/tv_movie_detail_score"
+            app:layout_constraintTop_toTopOf="@id/tv_movie_detail_score" />
 
         <TextView
-            android:id="@+id/text_score"
+            android:id="@+id/tv_movie_detail_score"
             style="@style/DisplayText.Bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_score"
             android:padding="@dimen/padding_16dp"
-            app:layout_constraintBottom_toBottomOf="@id/btn_favorite"
-            app:layout_constraintLeft_toRightOf="@id/text_user_score"
+            app:layout_constraintBottom_toBottomOf="@id/tb_movie_detail_favorite"
+            app:layout_constraintLeft_toRightOf="@id/tv_movie_detail_score_title"
             app:layout_constraintRight_toLeftOf="@id/divider"
-            app:layout_constraintTop_toBottomOf="@id/text_movie_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_movie_detail_title"
             tools:text="75" />
 
         <ProgressBar
-            android:id="@+id/progress_bar_score"
+            android:id="@+id/pb_movie_detail_score"
             style="?android:progressBarStyleHorizontal"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:progressDrawable="@drawable/circle"
-            app:layout_constraintBottom_toBottomOf="@id/text_score"
-            app:layout_constraintLeft_toLeftOf="@id/text_score"
-            app:layout_constraintRight_toRightOf="@id/text_score"
-            app:layout_constraintTop_toTopOf="@id/text_score"
+            app:layout_constraintBottom_toBottomOf="@id/tv_movie_detail_score"
+            app:layout_constraintLeft_toLeftOf="@id/tv_movie_detail_score"
+            app:layout_constraintRight_toRightOf="@id/tv_movie_detail_score"
+            app:layout_constraintTop_toTopOf="@id/tv_movie_detail_score"
             tools:progress="70" />
 
         <View
@@ -97,13 +96,13 @@
             android:layout_height="0dp"
             android:layout_marginVertical="@dimen/margin_8dp"
             android:background="@android:color/darker_gray"
-            app:layout_constraintBottom_toBottomOf="@id/btn_favorite"
+            app:layout_constraintBottom_toBottomOf="@id/tb_movie_detail_favorite"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/text_movie_title" />
+            app:layout_constraintTop_toBottomOf="@id/tv_movie_detail_title" />
 
         <ToggleButton
-            android:id="@+id/btn_favorite"
+            android:id="@+id/tb_movie_detail_favorite"
             android:layout_width="wrap_content"
             android:layout_height="36dp"
             android:background="@drawable/selector_toggle_button"
@@ -116,17 +115,17 @@
             android:textStyle="bold"
             app:layout_constraintLeft_toRightOf="@id/divider"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/text_movie_title" />
+            app:layout_constraintTop_toBottomOf="@id/tv_movie_detail_title" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:background="@color/mirage"
-            app:layout_constraintBottom_toBottomOf="@id/text_tagline"
-            app:layout_constraintTop_toTopOf="@id/text_release_date" />
+            app:layout_constraintBottom_toBottomOf="@id/tv_movie_detail_tagline"
+            app:layout_constraintTop_toTopOf="@id/tv_movie_detail_release_date" />
 
         <TextView
-            android:id="@+id/text_release_date"
+            android:id="@+id/tv_movie_detail_release_date"
             style="@style/DisplayText.Bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -136,12 +135,12 @@
             android:paddingVertical="@dimen/padding_16dp"
             app:drawableLeftCompat="@drawable/ic_date"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@id/text_duration"
+            app:layout_constraintRight_toLeftOf="@id/tv_movie_detail_duration"
             app:layout_constraintTop_toBottomOf="@id/divider"
             tools:text="04/27/2018" />
 
         <TextView
-            android:id="@+id/text_duration"
+            android:id="@+id/tv_movie_detail_duration"
             style="@style/DisplayText.Bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -149,13 +148,13 @@
             android:gravity="center"
             android:paddingVertical="@dimen/padding_16dp"
             app:drawableLeftCompat="@drawable/ic_timer"
-            app:layout_constraintLeft_toRightOf="@id/text_release_date"
+            app:layout_constraintLeft_toRightOf="@id/tv_movie_detail_release_date"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@id/text_release_date"
+            app:layout_constraintTop_toTopOf="@id/tv_movie_detail_release_date"
             tools:text="2h 29m" />
 
         <TextView
-            android:id="@+id/text_tagline"
+            android:id="@+id/tv_movie_detail_tagline"
             style="@style/DisplayText.Bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -163,30 +162,30 @@
             android:paddingBottom="@dimen/padding_16dp"
             android:textSize="16sp"
             android:textStyle="italic"
-            app:layout_constraintTop_toBottomOf="@id/text_duration"
+            app:layout_constraintTop_toBottomOf="@id/tv_movie_detail_duration"
             tools:text="An entire universe. Once and for all." />
 
 
         <TextView
-            android:id="@+id/text_overview_title"
+            android:id="@+id/tv_movie_detail_overview_title"
             style="@style/DisplayText.Bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="start"
             android:layout_marginTop="@dimen/margin_16dp"
+            android:gravity="start"
             android:padding="@dimen/padding_16dp"
             android:text="@string/overview"
             android:textSize="18sp"
-            app:layout_constraintTop_toBottomOf="@id/text_tagline" />
+            app:layout_constraintTop_toBottomOf="@id/tv_movie_detail_tagline" />
 
         <TextView
-            android:id="@+id/text_overview"
+            android:id="@+id/tv_movie_detail_overview"
             style="@style/DisplayText.Bold"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingHorizontal="@dimen/padding_16dp"
             android:paddingBottom="@dimen/padding_32dp"
-            app:layout_constraintTop_toBottomOf="@id/text_overview_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_movie_detail_overview_title"
             tools:text="As the Avengers and their allies have continued to protect the world from threats too large for any one hero to handle, a new danger has emerged from the cosmic shadows: Thanos. A despot of intergalactic infamy, his goal is to collect all six Infinity Stones, artifacts of unimaginable power, and use them to inflict his twisted will on all of reality. Everything the Avengers have fought for has led up to this moment - the fate of Earth and existence itself has never been more uncertain." />
 
         <View
@@ -194,10 +193,10 @@
             android:layout_height="0dp"
             android:background="@android:color/white"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="@id/text_status_title" />
+            app:layout_constraintTop_toTopOf="@id/tv_movie_detail_status_title" />
 
         <TextView
-            android:id="@+id/text_status_title"
+            android:id="@+id/tv_movie_detail_status_title"
             style="@style/DisplayText.Bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -205,21 +204,21 @@
             android:paddingTop="@dimen/padding_16dp"
             android:text="@string/status"
             android:textColor="@color/black_text"
-            app:layout_constraintTop_toBottomOf="@id/text_overview"
+            app:layout_constraintTop_toBottomOf="@id/tv_movie_detail_overview"
             app:layout_goneMarginTop="@dimen/margin_16dp" />
 
         <TextView
-            android:id="@+id/text_movie_status"
+            android:id="@+id/tv_movie_detail_movie_status"
             style="@style/DisplayText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingHorizontal="@dimen/padding_16dp"
             android:textColor="@color/black_text"
-            app:layout_constraintTop_toBottomOf="@id/text_status_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_movie_detail_status_title"
             tools:text="Released" />
 
         <TextView
-            android:id="@+id/text_budget_title"
+            android:id="@+id/tv_movie_detail_budget_title"
             style="@style/DisplayText.Bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -227,20 +226,20 @@
             android:paddingTop="@dimen/padding_16dp"
             android:text="@string/budget"
             android:textColor="@color/black_text"
-            app:layout_constraintTop_toBottomOf="@id/text_movie_status" />
+            app:layout_constraintTop_toBottomOf="@id/tv_movie_detail_movie_status" />
 
         <TextView
-            android:id="@+id/text_budget"
+            android:id="@+id/tv_movie_detail_budget"
             style="@style/DisplayText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingHorizontal="@dimen/padding_16dp"
             android:textColor="@color/black_text"
-            app:layout_constraintTop_toBottomOf="@id/text_budget_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_movie_detail_budget_title"
             tools:text="$300,000,000.00" />
 
         <TextView
-            android:id="@+id/text_revenue_title"
+            android:id="@+id/tv_movie_detail_revenue_title"
             style="@style/DisplayText.Bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -248,17 +247,17 @@
             android:paddingTop="@dimen/padding_16dp"
             android:text="@string/revenue"
             android:textColor="@color/black_text"
-            app:layout_constraintTop_toBottomOf="@id/text_budget" />
+            app:layout_constraintTop_toBottomOf="@id/tv_movie_detail_budget" />
 
         <TextView
-            android:id="@+id/text_revenue"
+            android:id="@+id/tv_movie_detail_revenue"
             style="@style/DisplayText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingHorizontal="@dimen/padding_16dp"
             android:paddingBottom="@dimen/padding_32dp"
             android:textColor="@color/black_text"
-            app:layout_constraintTop_toBottomOf="@id/text_revenue_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_movie_detail_revenue_title"
             tools:text="$2,046,239,637.00" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

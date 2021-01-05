@@ -5,7 +5,7 @@
     android:padding="@dimen/padding_16dp">
 
     <ImageView
-        android:id="@+id/image_error_icon"
+        android:id="@+id/iv_error_icon"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_centerHorizontal="true"
@@ -13,10 +13,10 @@
         android:src="@drawable/ic_error" />
 
     <TextView
-        android:id="@+id/text_error_title"
+        android:id="@+id/tv_error_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/image_error_icon"
+        android:layout_below="@id/iv_error_icon"
         android:layout_marginTop="@dimen/margin_16dp"
         android:fontFamily="@font/source_sans_pro_regular"
         android:gravity="center"
@@ -26,18 +26,18 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/text_error_message"
+        android:id="@+id/tv_error_message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/text_error_title"
+        android:layout_below="@id/tv_error_title"
         android:gravity="center"
         android:text="@string/error_message" />
 
     <Button
-        android:id="@+id/button_go_back"
+        android:id="@+id/btn_go_back"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/text_error_message"
+        android:layout_below="@id/tv_error_message"
         android:layout_marginTop="@dimen/margin_16dp"
         android:layout_marginBottom="@dimen/margin_8dp"
         android:background="@color/colorAccent"

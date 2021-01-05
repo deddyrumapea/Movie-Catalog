@@ -41,49 +41,49 @@ class TvSeriesDetailActivity : AppCompatActivity() {
     }
 
     private fun showProgressBar(isLoading: Boolean) {
-        progress_bar_tv_series_detail.visibility = if (isLoading) View.VISIBLE else View.GONE
+        pb_tv_series_detail.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
     private fun showErrorDialog(message: String = getString(R.string.error_message)) {
         val dialog = Dialog(this)
         dialog.setContentView(R.layout.dialog_error)
-        dialog.text_error_message.text = message
-        dialog.button_go_back.setOnClickListener { finish() }
+        dialog.tv_error_message.text = message
+        dialog.btn_go_back.setOnClickListener { finish() }
         dialog.show()
     }
 
     private fun populateTvSeriesDetails(tvSeries: TvSeriesPresentation) {
-        btn_favorite.isChecked = tvSeries.isFavorite
+        Glide.with(this)
+            .load(String.format(getString(R.string.image_base_url), tvSeries.posterPath))
+            .into(iv_tv_series_detail_poster)
+        Glide.with(this)
+            .load(String.format(getString(R.string.image_base_url), tvSeries.backdropPath))
+            .into(iv_tv_series_detail_backdrop)
 
-        btn_favorite.setOnCheckedChangeListener { buttonView, isChecked ->
+        tb_tv_series_detail_favorite.isChecked = tvSeries.isFavorite
+        tb_tv_series_detail_favorite.setOnCheckedChangeListener { _, isChecked ->
             viewModel.setFavoriteTvSeries(tvSeries, isChecked)
         }
 
-        progress_bar_tv_series_detail.visibility = View.GONE
+        tv_tv_series_detail_name.text = tvSeries.name
 
-        Glide.with(this)
-            .load(String.format(getString(R.string.image_base_url), tvSeries.posterPath))
-            .into(image_tv_series_poster)
+        tv_tv_series_detail_score.text = tvSeries.voteAverage.toString()
+        pb_tv_series_detail_score.progress = (tvSeries.voteAverage * 10).roundToInt()
 
-        Glide.with(this)
-            .load(String.format(getString(R.string.image_base_url), tvSeries.backdropPath))
-            .into(image_tv_series_backdrop)
+        tv_tv_series_detail_first_air_date.text = tvSeries.firstAirDate
 
-        text_tv_series_title.text = tvSeries.name
-        text_score.text = tvSeries.voteAverage.toString()
-        progress_bar_score.progress = (tvSeries.voteAverage * 10).roundToInt()
-        text_first_air_date.text = tvSeries.firstAirDate
-        text_season_count.text =
-            resources.getQuantityString(
-                R.plurals.seasons,
-                tvSeries.numberOfSeasons,
-                tvSeries.numberOfSeasons
-            )
-        text_tagline.text = tvSeries.tagline
-        if (tvSeries.tagline.isEmpty()) text_tagline.visibility = View.GONE
-        text_overview.text = tvSeries.overview
-        text_tv_series_status.text = tvSeries.status
-        text_type.text = tvSeries.type
+        tv_tv_series_detail_season_count.text = resources.getQuantityString(
+            R.plurals.seasons,
+            tvSeries.numberOfSeasons,
+            tvSeries.numberOfSeasons
+        )
+
+        tv_tv_series_detail_tagline.text = tvSeries.tagline
+        if (tvSeries.tagline.isEmpty()) tv_tv_series_detail_tagline.visibility = View.GONE
+
+        tv_tv_series_detail_overview.text = tvSeries.overview
+        tv_tv_series_detail_status.text = tvSeries.status
+        tv_tv_series_detail_type.text = tvSeries.type
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

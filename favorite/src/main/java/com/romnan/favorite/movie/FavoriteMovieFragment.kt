@@ -35,13 +35,13 @@ class FavoriteMovieFragment : Fragment() {
             startActivity(intent)
         }
 
-        progress_bar_favorite_movie.visibility = View.VISIBLE
+        pb_favorite_movie.visibility = View.VISIBLE
 
         viewModel.getFavoriteMovies()
         viewModel.favoriteMovies.observe(viewLifecycleOwner, { movies ->
             if (movies != null) {
                 moviesAdapter.setData(movies)
-                progress_bar_favorite_movie.visibility = View.GONE
+                pb_favorite_movie.visibility = View.GONE
                 if (movies.isEmpty()) tv_empty.visibility = View.VISIBLE
             }
         })

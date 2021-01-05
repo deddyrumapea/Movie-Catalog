@@ -19,8 +19,8 @@ class DiscoverActivity : AppCompatActivity() {
         setContentView(R.layout.activity_discover)
 
         val sectionsPagerAdapter = DiscoverPagerAdapter(this, supportFragmentManager)
-        view_pager.adapter = sectionsPagerAdapter
-        tabs.setupWithViewPager(view_pager)
+        vp_discover.adapter = sectionsPagerAdapter
+        tl_discover.setupWithViewPager(vp_discover)
 
         // Action bar adjustments
         supportActionBar?.elevation = 0f
