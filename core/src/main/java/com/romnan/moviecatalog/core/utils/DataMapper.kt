@@ -7,8 +7,8 @@ import com.romnan.moviecatalog.core.data.source.remote.response.TvSeriesResponse
 import com.romnan.moviecatalog.core.domain.model.movie.Movie
 import com.romnan.moviecatalog.core.domain.model.tvseries.TvSeries
 
-object DataMapper {
-    fun mapMovieResponsesToMovieEntities(input: List<MovieResponse>): List<MovieEntity> {
+object MovieMapper {
+    fun responsesToEntities(input: List<MovieResponse>): List<MovieEntity> {
         val moviesList = ArrayList<MovieEntity>()
         input.map {
             val movie = MovieEntity(
@@ -30,7 +30,7 @@ object DataMapper {
         return moviesList
     }
 
-    fun mapMovieEntitiesToMovies(input: List<MovieEntity>): List<Movie> =
+    fun entitiesToDomains(input: List<MovieEntity>): List<Movie> =
         input.map {
             Movie(
                 id = it.id,
@@ -49,7 +49,7 @@ object DataMapper {
             )
         }
 
-    fun mapMovieToMovieEntity(input: Movie): MovieEntity = MovieEntity(
+    fun domainToEntity(input: Movie): MovieEntity = MovieEntity(
         id = input.id,
         posterPath = input.posterPath,
         title = input.title,
@@ -65,7 +65,7 @@ object DataMapper {
         isFavorite = input.isFavorite
     )
 
-    fun mapMovieEntityToMovie(input: MovieEntity): Movie = Movie(
+    fun entityToDomain(input: MovieEntity): Movie = Movie(
         id = input.id,
         posterPath = input.posterPath,
         title = input.title,
@@ -80,8 +80,10 @@ object DataMapper {
         status = input.status,
         isFavorite = input.isFavorite
     )
+}
 
-    fun mapTvSeriesResponsesToTvSeriesEntities(input: List<TvSeriesResponse>): List<TvSeriesEntity> {
+object TvSeriesMapper {
+    fun responsesToEntities(input: List<TvSeriesResponse>): List<TvSeriesEntity> {
         val tvSeriesList = ArrayList<TvSeriesEntity>()
         input.map {
             val tvSeries = TvSeriesEntity(
@@ -102,7 +104,7 @@ object DataMapper {
         return tvSeriesList
     }
 
-    fun mapTvSeriesEntitiesToTvSeries(input: List<TvSeriesEntity>): List<TvSeries> =
+    fun entitiesToDomains(input: List<TvSeriesEntity>): List<TvSeries> =
         input.map {
             TvSeries(
                 id = it.id,
@@ -120,7 +122,7 @@ object DataMapper {
             )
         }
 
-    fun mapTvSeriesToTvSeriesEntity(input: TvSeries): TvSeriesEntity = TvSeriesEntity(
+    fun domainToEntity(input: TvSeries): TvSeriesEntity = TvSeriesEntity(
         id = input.id,
         posterPath = input.posterPath,
         name = input.name,
@@ -135,7 +137,7 @@ object DataMapper {
         isFavorite = input.isFavorite
     )
 
-    fun mapTvSeriesEntityToTvSeries(input: TvSeriesEntity): TvSeries = TvSeries(
+    fun entityToDomain(input: TvSeriesEntity): TvSeries = TvSeries(
         id = input.id,
         posterPath = input.posterPath,
         name = input.name,
