@@ -3,4 +3,5 @@
     <string name="movies">Movies</string>
     <string name="tv_series">TV Series</string>
     <string name="favorite">Favorite</string>
+    <string name="empty">It\'s empty</string>
 </resources>

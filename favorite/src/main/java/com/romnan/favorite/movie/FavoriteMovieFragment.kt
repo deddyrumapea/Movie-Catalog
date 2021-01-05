@@ -43,6 +43,7 @@ class FavoriteMovieFragment : Fragment() {
             if (movies != null) {
                 moviesAdapter.setData(movies)
                 progress_bar_favorite_movie.visibility = View.GONE
+                if (movies.size < 1) tv_empty.visibility = View.VISIBLE
             }
         })
 
