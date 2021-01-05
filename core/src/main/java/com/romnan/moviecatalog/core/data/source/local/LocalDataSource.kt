@@ -7,9 +7,9 @@ import kotlinx.coroutines.flow.Flow
 
 class LocalDataSource(private val movieCatalogDao: MovieCatalogDao) {
 
-    fun getAllMovies(): Flow<List<MovieEntity>> = movieCatalogDao.getAllMovies()
+    fun getDiscoverMovies(): Flow<List<MovieEntity>> = movieCatalogDao.getDiscoverMovies()
 
-    fun getAllTvSeries(): Flow<List<TvSeriesEntity>> = movieCatalogDao.getAllTvSeries()
+    fun getDiscoverTvSeries(): Flow<List<TvSeriesEntity>> = movieCatalogDao.getDiscoverTvSeries()
 
     fun getFavoriteMovies(): Flow<List<MovieEntity>> = movieCatalogDao.getFavoriteMovies()
 

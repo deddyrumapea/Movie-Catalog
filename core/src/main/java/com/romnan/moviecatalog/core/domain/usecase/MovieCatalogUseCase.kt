@@ -6,9 +6,9 @@ import com.romnan.moviecatalog.core.domain.model.tvseries.TvSeries
 import kotlinx.coroutines.flow.Flow
 
 interface MovieCatalogUseCase {
-    fun getAllMovies(): Flow<Resource<List<Movie>>>
+    fun getDiscoverMovies(): Flow<Resource<List<Movie>>>
 
-    fun getAllTvSeries(): Flow<Resource<List<TvSeries>>>
+    fun getDiscoverTvSeries(): Flow<Resource<List<TvSeries>>>
 
     fun getFavoriteMovies(): Flow<List<Movie>>
 

@@ -8,9 +8,9 @@ import kotlinx.coroutines.flow.Flow
 
 interface IMovieCatalogRepository {
 
-    fun getAllMovies(): Flow<Resource<List<Movie>>>
+    fun getDiscoverMovies(): Flow<Resource<List<Movie>>>
 
-    fun getAllTvSeries(): Flow<Resource<List<TvSeries>>>
+    fun getDiscoverTvSeries(): Flow<Resource<List<TvSeries>>>
 
     fun getMovieDetail(movieId: Int): Flow<Resource<Movie>>
 

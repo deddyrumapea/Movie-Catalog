@@ -6,5 +6,5 @@ import com.romnan.moviecatalog.core.domain.usecase.MovieCatalogUseCase
 
 class DiscoverMovieViewModel(useCase: MovieCatalogUseCase) : ViewModel() {
 
-    val discoverMovies = useCase.getAllMovies().asLiveData()
+    val discoverMovies = useCase.getDiscoverMovies().asLiveData()
 }

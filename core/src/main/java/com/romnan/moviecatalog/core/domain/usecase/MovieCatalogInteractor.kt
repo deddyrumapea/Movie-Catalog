@@ -9,9 +9,9 @@ import kotlinx.coroutines.flow.Flow
 
 class MovieCatalogInteractor(private val repository: IMovieCatalogRepository) :
     MovieCatalogUseCase {
-    override fun getAllMovies(): Flow<Resource<List<Movie>>> = repository.getAllMovies()
+    override fun getDiscoverMovies(): Flow<Resource<List<Movie>>> = repository.getDiscoverMovies()
 
-    override fun getAllTvSeries(): Flow<Resource<List<TvSeries>>> = repository.getAllTvSeries()
+    override fun getDiscoverTvSeries(): Flow<Resource<List<TvSeries>>> = repository.getDiscoverTvSeries()
 
     override fun getFavoriteMovies(): Flow<List<Movie>> = repository.getFavoriteMovies()
 

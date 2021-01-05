@@ -15,7 +15,7 @@ class RemoteDataSource(private val apiService: ApiService) {
         private const val TAG = "RemoteDataSource"
     }
 
-    suspend fun getAllMovies(): Flow<ApiResponse<List<MovieResponse>>> {
+    suspend fun getDiscoverMovies(): Flow<ApiResponse<List<MovieResponse>>> {
         return flow {
             try {
                 val response = apiService.getDiscoverMovies(1) // TODO : implement pagination
@@ -27,12 +27,12 @@ class RemoteDataSource(private val apiService: ApiService) {
                 }
             } catch (e: Exception) {
                 emit(ApiResponse.Error(e.message.toString()))
-                Log.e(TAG, "getAllMovies: $e")
+                Log.e(TAG, "getDiscoverMovies: $e")
             }
         }.flowOn(Dispatchers.IO)
     }
 
-    fun getAllTvSeries(): Flow<ApiResponse<List<TvSeriesResponse>>> {
+    fun getDiscoverTvSeries(): Flow<ApiResponse<List<TvSeriesResponse>>> {
         return flow {
             try {
                 val response = apiService.getDiscoverTvSeries(1)// TODO : implement pagination
@@ -44,7 +44,7 @@ class RemoteDataSource(private val apiService: ApiService) {
                 }
             } catch (e: Exception) {
                 emit(ApiResponse.Error(e.message.toString()))
-                Log.e(TAG, "getAllTvSeries: $e")
+                Log.e(TAG, "getDiscoverTvSeries: $e")
             }
         }.flowOn(Dispatchers.IO)
     }

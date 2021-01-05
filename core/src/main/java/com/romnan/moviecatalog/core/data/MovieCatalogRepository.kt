@@ -20,15 +20,15 @@ class MovieCatalogRepository(
     private val appExecutors: AppExecutors
 ) : IMovieCatalogRepository {
 
-    override fun getAllMovies(): Flow<Resource<List<Movie>>> =
+    override fun getDiscoverMovies(): Flow<Resource<List<Movie>>> =
         object : NetworkBoundResource<List<Movie>, List<MovieResponse>>() {
             override fun loadFromDB(): Flow<List<Movie>> =
-                localDataSource.getAllMovies().map { DataMapper.mapMovieEntitiesToDomain(it) }
+                localDataSource.getDiscoverMovies().map { DataMapper.mapMovieEntitiesToDomain(it) }
 
             override fun shouldFetch(data: List<Movie>?): Boolean = data == null || data.isEmpty()
 
             override suspend fun createCall(): Flow<ApiResponse<List<MovieResponse>>> =
-                remoteDataSource.getAllMovies()
+                remoteDataSource.getDiscoverMovies()
 
             override suspend fun saveCallResult(data: List<MovieResponse>) {
                 val moviesList = DataMapper.mapMoviesResponsesToEntities(data)
@@ -36,17 +36,17 @@ class MovieCatalogRepository(
             }
         }.asFlow()
 
-    override fun getAllTvSeries(): Flow<Resource<List<TvSeries>>> =
+    override fun getDiscoverTvSeries(): Flow<Resource<List<TvSeries>>> =
         object :
             NetworkBoundResource<List<TvSeries>, List<TvSeriesResponse>>() {
             override fun loadFromDB(): Flow<List<TvSeries>> =
-                localDataSource.getAllTvSeries().map { DataMapper.mapTvSeriesEntitiesToDomain(it) }
+                localDataSource.getDiscoverTvSeries().map { DataMapper.mapTvSeriesEntitiesToDomain(it) }
 
             override fun shouldFetch(data: List<TvSeries>?): Boolean =
                 data == null || data.isEmpty()
 
             override suspend fun createCall(): Flow<ApiResponse<List<TvSeriesResponse>>> =
-                remoteDataSource.getAllTvSeries()
+                remoteDataSource.getDiscoverTvSeries()
 
             override suspend fun saveCallResult(data: List<TvSeriesResponse>) {
                 val tvSeriesList = DataMapper.mapTvSeriesResponsesToEntities(data)
@@ -66,7 +66,7 @@ class MovieCatalogRepository(
                 remoteDataSource.getMovieDetail(movieId)
 
             override suspend fun saveCallResult(data: MovieResponse) {
-                val movie = DataMapper.mapMoviesResponsesToEntities(arrayListOf(data))
+                val movie = DataMapper.mapMoviesResponsesToEntities(listOf(data))
                 localDataSource.insertMovies(movie)
             }
         }.asFlow()
@@ -84,7 +84,7 @@ class MovieCatalogRepository(
                 remoteDataSource.getTvSeriesDetail(tvSeriesId)
 
             override suspend fun saveCallResult(data: TvSeriesResponse) {
-                val tvSeries = DataMapper.mapTvSeriesResponsesToEntities(arrayListOf(data))
+                val tvSeries = DataMapper.mapTvSeriesResponsesToEntities(listOf(data))
                 localDataSource.insertTvSeries(tvSeries)
             }
         }.asFlow()
