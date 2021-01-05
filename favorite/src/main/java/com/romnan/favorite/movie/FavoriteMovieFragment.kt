@@ -13,7 +13,6 @@ import com.romnan.moviecatalog.detail.movie.MovieDetailActivity
 import kotlinx.android.synthetic.main.fragment_favorite_movie.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
-
 class FavoriteMovieFragment : Fragment() {
 
     private val viewModel: FavoriteMovieViewModel by viewModel()
@@ -24,7 +23,6 @@ class FavoriteMovieFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? =
         inflater.inflate(R.layout.fragment_favorite_movie, container, false)
-
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -39,6 +37,7 @@ class FavoriteMovieFragment : Fragment() {
 
         progress_bar_favorite_movie.visibility = View.VISIBLE
 
+        viewModel.getFavoriteMovies()
         viewModel.favoriteMovies.observe(viewLifecycleOwner, { movies ->
             if (movies != null) {
                 moviesAdapter.setData(movies)

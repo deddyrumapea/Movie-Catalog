@@ -6,8 +6,11 @@ import com.romnan.moviecatalog.core.data.source.remote.response.MovieResponse
 import com.romnan.moviecatalog.core.data.source.remote.response.TvSeriesResponse
 import com.romnan.moviecatalog.core.domain.model.movie.Movie
 import com.romnan.moviecatalog.core.domain.model.tvseries.TvSeries
+import com.romnan.moviecatalog.core.presentation.MoviePresentation
+import com.romnan.moviecatalog.core.presentation.TvSeriesPresentation
 
 object MovieMapper {
+    //    TODO : DELETE THIS
     fun responsesToEntities(input: List<MovieResponse>): List<MovieEntity> {
         val moviesList = ArrayList<MovieEntity>()
         input.map {
@@ -30,6 +33,7 @@ object MovieMapper {
         return moviesList
     }
 
+    // TODO : DELETE THIS
     fun entitiesToDomains(input: List<MovieEntity>): List<Movie> =
         input.map {
             Movie(
@@ -80,9 +84,42 @@ object MovieMapper {
         status = input.status,
         isFavorite = input.isFavorite
     )
+
+    fun domainToPresentation(input: Movie): MoviePresentation = MoviePresentation(
+        id = input.id,
+        posterPath = input.posterPath,
+        title = input.title,
+        releaseDate = input.releaseDate,
+        overview = input.overview,
+        backdropPath = input.backdropPath,
+        revenue = input.revenue,
+        budget = input.budget,
+        runtime = input.runtime,
+        voteAverage = input.voteAverage,
+        tagline = input.tagline,
+        status = input.status,
+        isFavorite = input.isFavorite
+    )
+
+    fun presentationToDomain(input: MoviePresentation): Movie = Movie(
+        id = input.id,
+        posterPath = input.posterPath,
+        title = input.title,
+        releaseDate = input.releaseDate,
+        overview = input.overview,
+        backdropPath = input.backdropPath,
+        revenue = input.revenue,
+        budget = input.budget,
+        runtime = input.runtime,
+        voteAverage = input.voteAverage,
+        tagline = input.tagline,
+        status = input.status,
+        isFavorite = input.isFavorite
+    )
 }
 
 object TvSeriesMapper {
+    //    Delete this
     fun responsesToEntities(input: List<TvSeriesResponse>): List<TvSeriesEntity> {
         val tvSeriesList = ArrayList<TvSeriesEntity>()
         input.map {
@@ -104,6 +141,7 @@ object TvSeriesMapper {
         return tvSeriesList
     }
 
+    //    TODO : delete this
     fun entitiesToDomains(input: List<TvSeriesEntity>): List<TvSeries> =
         input.map {
             TvSeries(
@@ -138,6 +176,36 @@ object TvSeriesMapper {
     )
 
     fun entityToDomain(input: TvSeriesEntity): TvSeries = TvSeries(
+        id = input.id,
+        posterPath = input.posterPath,
+        name = input.name,
+        firstAirDate = input.firstAirDate,
+        overview = input.overview,
+        backdropPath = input.backdropPath,
+        voteAverage = input.voteAverage,
+        tagline = input.tagline,
+        numberOfSeasons = input.numberOfSeasons,
+        status = input.status,
+        type = input.type,
+        isFavorite = input.isFavorite
+    )
+
+    fun domainToPresentation(input: TvSeries): TvSeriesPresentation = TvSeriesPresentation(
+        id = input.id,
+        posterPath = input.posterPath,
+        name = input.name,
+        firstAirDate = input.firstAirDate,
+        overview = input.overview,
+        backdropPath = input.backdropPath,
+        voteAverage = input.voteAverage,
+        tagline = input.tagline,
+        numberOfSeasons = input.numberOfSeasons,
+        status = input.status,
+        type = input.type,
+        isFavorite = input.isFavorite
+    )
+
+    fun presentationToDomain(input: TvSeriesPresentation): TvSeries = TvSeries(
         id = input.id,
         posterPath = input.posterPath,
         name = input.name,

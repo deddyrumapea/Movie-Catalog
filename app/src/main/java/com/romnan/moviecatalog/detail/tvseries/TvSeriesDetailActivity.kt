@@ -5,13 +5,12 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
-import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.romnan.moviecatalog.R
-import com.romnan.moviecatalog.core.data.Resource
-import com.romnan.moviecatalog.core.domain.model.tvseries.TvSeries
+import com.romnan.moviecatalog.core.presentation.TvSeriesPresentation
 import kotlinx.android.synthetic.main.activity_tv_series_detail.*
+import kotlinx.android.synthetic.main.dialog_error.*
 import org.koin.android.viewmodel.ext.android.viewModel
 import kotlin.math.roundToInt
 
@@ -20,7 +19,7 @@ class TvSeriesDetailActivity : AppCompatActivity() {
     private val viewModel: TvSeriesDetailViewModel by viewModel()
 
     companion object {
-        const val EXTRA_TV_SERIES_ID = "extra_tvShow_id"
+        const val EXTRA_TV_SERIES_ID = "extra_tv_series_id"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,30 +32,27 @@ class TvSeriesDetailActivity : AppCompatActivity() {
         // Get tv series
         val tvSeriesId = intent.extras?.getInt(EXTRA_TV_SERIES_ID, 0)
         if (tvSeriesId != null && tvSeriesId != 0) {
-            viewModel.getTvSeriesDetail(tvSeriesId).observe(this, { resource ->
-                if (resource != null) {
-                    when (resource) {
-                        is Resource.Loading -> progress_bar_tv_series_detail.visibility =
-                            View.VISIBLE
-                        is Resource.Success -> populateTvSeriesDetails(resource.data)
-                        is Resource.Error -> showErrorDialog()
-                    }
-                }
-            })
+            viewModel.getTvSeriesDetail(tvSeriesId)
         } else showErrorDialog()
+
+        viewModel.tvSeries.observe(this, { populateTvSeriesDetails(it) })
+        viewModel.isLoading.observe(this, { showProgressBar(it) })
+        viewModel.errorMessage.observe(this, { showErrorDialog(it) })
     }
 
-    private fun showErrorDialog() {
+    private fun showProgressBar(isLoading: Boolean) {
+        progress_bar_tv_series_detail.visibility = if (isLoading) View.VISIBLE else View.GONE
+    }
+
+    private fun showErrorDialog(message: String = getString(R.string.error_message)) {
         val dialog = Dialog(this)
         dialog.setContentView(R.layout.dialog_error)
-        val btnGoBack = dialog.findViewById<Button>(R.id.button_go_back)
-        btnGoBack.setOnClickListener { finish() }
+        dialog.text_error_message.text = message
+        dialog.button_go_back.setOnClickListener { finish() }
         dialog.show()
     }
 
-    private fun populateTvSeriesDetails(tvSeries: TvSeries?) {
-        if (tvSeries == null) return
-
+    private fun populateTvSeriesDetails(tvSeries: TvSeriesPresentation) {
         btn_favorite.isChecked = tvSeries.isFavorite
 
         btn_favorite.setOnCheckedChangeListener { buttonView, isChecked ->

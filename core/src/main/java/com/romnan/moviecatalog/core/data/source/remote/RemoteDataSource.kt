@@ -59,7 +59,7 @@ class RemoteDataSource(private val apiService: ApiService) {
                     emit(ApiResponse.Empty)
                 }
             } catch (e: Exception) {
-                emit(ApiResponse.Error(e.toString()))
+                emit(ApiResponse.Error(e.message.toString()))
                 Log.e(TAG, "getMovieDetail: $e")
             }
         }.flowOn(Dispatchers.IO)
@@ -75,7 +75,7 @@ class RemoteDataSource(private val apiService: ApiService) {
                     emit(ApiResponse.Empty)
                 }
             } catch (e: Exception) {
-                emit(ApiResponse.Error(e.toString()))
+                emit(ApiResponse.Error(e.message.toString()))
                 Log.e(TAG, "getTvSeriesDetail: $e")
             }
         }.flowOn(Dispatchers.IO)

@@ -8,8 +8,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.romnan.moviecatalog.R
-import com.romnan.moviecatalog.core.data.Resource
-import com.romnan.moviecatalog.core.domain.model.movie.Movie
+import com.romnan.moviecatalog.core.presentation.MoviePresentation
 import kotlinx.android.synthetic.main.activity_movie_detail.*
 import kotlinx.android.synthetic.main.dialog_error.*
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -34,21 +33,27 @@ class MovieDetailActivity : AppCompatActivity() {
         // Get movie
         val movieId = intent.extras?.getInt(EXTRA_MOVIE_ID, 0)
         if (movieId != null && movieId != 0) {
-            viewModel.getMovieDetail(movieId).observe(this, { resource ->
-                if (resource != null) {
-                    when (resource) {
-                        is Resource.Loading -> progress_bar_movie_detail.visibility = View.VISIBLE
-                        is Resource.Success -> populateMovieDetails(resource.data)
-                        is Resource.Error -> showErrorDialog()
-                    }
-                }
-            })
+            viewModel.getMovieDetail(movieId)
         } else showErrorDialog()
+
+        viewModel.movie.observe(this, { populateMovieDetails(it) })
+        viewModel.isLoading.observe(this, { showProgressBar(it) })
+        viewModel.errorMessage.observe(this, { showErrorDialog(it) })
     }
 
-    private fun populateMovieDetails(movie: Movie?) {
-        if (movie == null) return
+    private fun showProgressBar(isLoading: Boolean) {
+        progress_bar_movie_detail.visibility = if (isLoading) View.VISIBLE else View.GONE
+    }
 
+    private fun showErrorDialog(message: String = getString(R.string.error_message)) {
+        progress_bar_movie_detail.visibility = View.GONE
+        val dialog = Dialog(this)
+        dialog.setContentView(R.layout.dialog_error)
+        dialog.button_go_back.setOnClickListener { finish() }
+        dialog.show()
+    }
+
+    private fun populateMovieDetails(movie: MoviePresentation) {
         progress_bar_movie_detail.visibility = View.GONE
 
         btn_favorite.isChecked = movie.isFavorite
@@ -78,14 +83,6 @@ class MovieDetailActivity : AppCompatActivity() {
         text_movie_status.text = movie.status
         text_budget.text = DecimalFormat("#,###").format(movie.budget)
         text_revenue.text = DecimalFormat("#,###").format(movie.revenue)
-    }
-
-    private fun showErrorDialog() {
-        progress_bar_movie_detail.visibility = View.GONE
-        val dialog = Dialog(this)
-        dialog.setContentView(R.layout.dialog_error)
-        dialog.button_go_back.setOnClickListener { finish() }
-        dialog.show()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

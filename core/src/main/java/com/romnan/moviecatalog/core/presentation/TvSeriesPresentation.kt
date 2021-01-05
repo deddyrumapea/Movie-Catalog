@@ -1,17 +1,16 @@
-package com.romnan.moviecatalog.core.domain.model.movie
+package com.romnan.moviecatalog.core.presentation
 
-data class Movie(
+data class TvSeriesPresentation(
     val id: Int,
     val posterPath: String,
-    val title: String,
-    val releaseDate: String,
+    val name: String,
+    val firstAirDate: String,
     val overview: String,
     val backdropPath: String,
-    val revenue: Int,
-    val budget: Int,
-    val runtime: Int,
     val voteAverage: Double,
     val tagline: String,
+    val numberOfSeasons: Int,
     val status: String,
+    val type: String,
     val isFavorite: Boolean
 )

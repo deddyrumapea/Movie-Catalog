@@ -24,7 +24,6 @@ class FavoriteTvSeriesFragment : Fragment() {
     ): View? =
         inflater.inflate(R.layout.fragment_favorite_tv_series, container, false)
 
-
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         if (activity == null) return
@@ -36,6 +35,7 @@ class FavoriteTvSeriesFragment : Fragment() {
         }
         progress_bar_favorite_tv_series.visibility = View.VISIBLE
 
+        viewModel.getFavoriteTvSeries()
         viewModel.favoriteTvSeries.observe(viewLifecycleOwner, { tvSeries ->
             if (tvSeries != null) {
                 tvSeriesAdapter.setData(tvSeries)
