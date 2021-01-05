@@ -23,7 +23,7 @@ class MovieCatalogRepository(
     override fun getDiscoverMovies(): Flow<Resource<List<Movie>>> =
         object : NetworkBoundResource<List<Movie>, List<MovieResponse>>() {
             override fun loadFromDB(): Flow<List<Movie>> =
-                localDataSource.getDiscoverMovies().map { DataMapper.mapMovieEntitiesToDomain(it) }
+                localDataSource.getDiscoverMovies().map { DataMapper.mapMovieEntitiesToMovies(it) }
 
             override fun shouldFetch(data: List<Movie>?): Boolean = data == null || data.isEmpty()
 
@@ -31,7 +31,7 @@ class MovieCatalogRepository(
                 remoteDataSource.getDiscoverMovies()
 
             override suspend fun saveCallResult(data: List<MovieResponse>) {
-                val moviesList = DataMapper.mapMoviesResponsesToEntities(data)
+                val moviesList = DataMapper.mapMovieResponsesToMovieEntities(data)
                 localDataSource.insertMovies(moviesList)
             }
         }.asFlow()
@@ -40,7 +40,7 @@ class MovieCatalogRepository(
         object :
             NetworkBoundResource<List<TvSeries>, List<TvSeriesResponse>>() {
             override fun loadFromDB(): Flow<List<TvSeries>> =
-                localDataSource.getDiscoverTvSeries().map { DataMapper.mapTvSeriesEntitiesToDomain(it) }
+                localDataSource.getDiscoverTvSeries().map { DataMapper.mapTvSeriesEntitiesToTvSeries(it) }
 
             override fun shouldFetch(data: List<TvSeries>?): Boolean =
                 data == null || data.isEmpty()
@@ -49,7 +49,7 @@ class MovieCatalogRepository(
                 remoteDataSource.getDiscoverTvSeries()
 
             override suspend fun saveCallResult(data: List<TvSeriesResponse>) {
-                val tvSeriesList = DataMapper.mapTvSeriesResponsesToEntities(data)
+                val tvSeriesList = DataMapper.mapTvSeriesResponsesToTvSeriesEntities(data)
                 localDataSource.insertTvSeries(tvSeriesList)
             }
         }.asFlow()
@@ -58,7 +58,7 @@ class MovieCatalogRepository(
         object :
             NetworkBoundResource<Movie, MovieResponse>() {
             override fun loadFromDB(): Flow<Movie> = localDataSource.getMovieDetail(movieId)
-                .map { DataMapper.mapMovieEntityToDomain(it) }
+                .map { DataMapper.mapMovieEntityToMovie(it) }
 
             override fun shouldFetch(data: Movie?): Boolean = data?.tagline == "null"
 
@@ -66,7 +66,7 @@ class MovieCatalogRepository(
                 remoteDataSource.getMovieDetail(movieId)
 
             override suspend fun saveCallResult(data: MovieResponse) {
-                val movie = DataMapper.mapMoviesResponsesToEntities(listOf(data))
+                val movie = DataMapper.mapMovieResponsesToMovieEntities(listOf(data))
                 localDataSource.insertMovies(movie)
             }
         }.asFlow()
@@ -76,7 +76,7 @@ class MovieCatalogRepository(
             NetworkBoundResource<TvSeries, TvSeriesResponse>() {
             override fun loadFromDB(): Flow<TvSeries> =
                 localDataSource.getTvSeriesDetail(tvSeriesId)
-                    .map { DataMapper.mapTvSeriesEntityToDomain(it) }
+                    .map { DataMapper.mapTvSeriesEntityToTvSeries(it) }
 
             override fun shouldFetch(data: TvSeries?): Boolean = data?.tagline == "null"
 
@@ -84,24 +84,24 @@ class MovieCatalogRepository(
                 remoteDataSource.getTvSeriesDetail(tvSeriesId)
 
             override suspend fun saveCallResult(data: TvSeriesResponse) {
-                val tvSeries = DataMapper.mapTvSeriesResponsesToEntities(listOf(data))
+                val tvSeries = DataMapper.mapTvSeriesResponsesToTvSeriesEntities(listOf(data))
                 localDataSource.insertTvSeries(tvSeries)
             }
         }.asFlow()
 
     override fun getFavoriteMovies(): Flow<List<Movie>> =
-        localDataSource.getFavoriteMovies().map { DataMapper.mapMovieEntitiesToDomain(it) }
+        localDataSource.getFavoriteMovies().map { DataMapper.mapMovieEntitiesToMovies(it) }
 
     override fun getFavoriteTvSeries(): Flow<List<TvSeries>> =
-        localDataSource.getFavoriteTvSeries().map { DataMapper.mapTvSeriesEntitiesToDomain(it) }
+        localDataSource.getFavoriteTvSeries().map { DataMapper.mapTvSeriesEntitiesToTvSeries(it) }
 
     override fun setFavoriteMovie(movie: Movie, state: Boolean) {
-        val movieEntity = DataMapper.mapMovieDomainToEntity(movie)
+        val movieEntity = DataMapper.mapMovieToMovieEntity(movie)
         appExecutors.diskIO().execute { localDataSource.setFavoriteMovie(movieEntity, state) }
     }
 
     override fun setFavoriteTvSeries(tvSeries: TvSeries, state: Boolean) {
-        val tvSeriesEntity = DataMapper.mapTvSeriesDomainToEntity(tvSeries)
+        val tvSeriesEntity = DataMapper.mapTvSeriesToTvSeriesEntity(tvSeries)
         appExecutors.diskIO().execute { localDataSource.setFavoriteTvSeries(tvSeriesEntity, state) }
     }
 }
