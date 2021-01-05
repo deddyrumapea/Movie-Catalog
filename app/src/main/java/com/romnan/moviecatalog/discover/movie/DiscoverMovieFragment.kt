@@ -27,10 +27,8 @@ class DiscoverMovieFragment : Fragment() {
     ): View? =
         inflater.inflate(R.layout.fragment_discover_movie, container, false)
 
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        if (activity == null) return
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         val moviesAdapter = MovieAdapter()
         moviesAdapter.onItemClick = { selected ->
@@ -40,7 +38,6 @@ class DiscoverMovieFragment : Fragment() {
         }
 
         progress_bar_popular_movies.visibility = View.VISIBLE
-
 
         viewModel.popularMovies.observe(viewLifecycleOwner, { resource ->
             if (resource != null) {
@@ -74,5 +71,6 @@ class DiscoverMovieFragment : Fragment() {
             setHasFixedSize(true)
             adapter = moviesAdapter
         }
+
     }
 }

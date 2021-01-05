@@ -27,11 +27,8 @@ class DiscoverTvSeriesFragment : Fragment() {
     ): View? =
         inflater.inflate(R.layout.fragment_discover_tv_series, container, false)
 
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        if (activity == null) return
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         val tvSeriesAdapter = TvSeriesAdapter()
         tvSeriesAdapter.onItemClick = { selected ->
             val intent = Intent(requireActivity(), TvSeriesDetailActivity::class.java)
