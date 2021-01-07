@@ -39,7 +39,7 @@
         android:textSize="18sp"
         android:textStyle="bold"
         android:visibility="gone"
-        app:drawableTopCompat="@drawable/ic_empty_white_box"
+        app:drawableTopCompat="@drawable/ic_wind"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:visibility="visible" />
