@@ -85,16 +85,16 @@ object MovieMapper {
     )
 
     fun responseToEntity(input: MovieResponse): MovieEntity = MovieEntity(
-        id = if (input.id != null) input.id else 0,
+        id = input.id ?: 0,
         posterPath = input.posterPath.toString(),
         title = input.title.toString(),
         releaseDate = input.releaseDate.toString(),
         overview = input.overview.toString(),
         backdropPath = input.backdropPath.toString(),
-        revenue = if (input.revenue != null) input.revenue else 0,
-        budget = if (input.budget != null) input.budget else 0,
-        runtime = if (input.runtime != null) input.runtime else 0,
-        voteAverage = if (input.voteAverage != null) input.voteAverage else 0.0,
+        revenue = input.revenue ?: 0,
+        budget = input.budget ?: 0,
+        runtime = input.runtime ?: 0,
+        voteAverage = input.voteAverage ?: 0.0,
         tagline = input.tagline.toString(),
         status = input.status.toString(),
     )
@@ -171,15 +171,15 @@ object TvSeriesMapper {
     )
 
     fun responseToEntity(input: TvSeriesResponse): TvSeriesEntity = TvSeriesEntity(
-        id = if (input.id != null) input.id else 0,
+        id = input.id ?: 0,
         posterPath = input.posterPath.toString(),
         name = input.name.toString(),
         firstAirDate = input.firstAirDate.toString(),
         overview = input.overview.toString(),
         backdropPath = input.backdropPath.toString(),
-        voteAverage = if (input.voteAverage != null) input.voteAverage else 0.0,
+        voteAverage = input.voteAverage ?: 0.0,
         tagline = input.tagline.toString(),
-        numberOfSeasons = if (input.numberOfSeasons != null) input.numberOfSeasons else 0,
+        numberOfSeasons = input.numberOfSeasons ?: 0,
         status = input.status.toString(),
         type = input.type.toString(),
     )
