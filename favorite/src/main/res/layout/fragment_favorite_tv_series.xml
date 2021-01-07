@@ -16,9 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/item_show">
-
-    </androidx.recyclerview.widget.RecyclerView>
+        tools:listitem="@layout/item_show" />
 
     <ProgressBar
         android:id="@+id/pb_favorite_tv_series"
