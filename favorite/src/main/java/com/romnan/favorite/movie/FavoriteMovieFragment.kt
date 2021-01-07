@@ -24,10 +24,10 @@ class FavoriteMovieFragment : Fragment() {
     ): View? =
         inflater.inflate(R.layout.fragment_favorite_movie, container, false)
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        if (activity == null) return
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
+        // Setup adapter
         val moviesAdapter = MovieAdapter()
         moviesAdapter.onItemClick = { selected ->
             val intent = Intent(requireActivity(), MovieDetailActivity::class.java)
@@ -35,8 +35,14 @@ class FavoriteMovieFragment : Fragment() {
             startActivity(intent)
         }
 
-        pb_favorite_movie.visibility = View.VISIBLE
+        // Setup RecyclerView
+        with(rv_favorite_movies) {
+            layoutManager = LinearLayoutManager(context)
+            setHasFixedSize(true)
+            adapter = moviesAdapter
+        }
 
+        // Get Favorite Movies
         viewModel.getFavoriteMovies()
         viewModel.favoriteMovies.observe(viewLifecycleOwner, { movies ->
             if (movies != null) {
@@ -45,11 +51,5 @@ class FavoriteMovieFragment : Fragment() {
                 if (movies.isEmpty()) tv_empty.visibility = View.VISIBLE
             }
         })
-
-        with(rv_favorite_movies) {
-            layoutManager = LinearLayoutManager(context)
-            setHasFixedSize(true)
-            adapter = moviesAdapter
-        }
     }
 }

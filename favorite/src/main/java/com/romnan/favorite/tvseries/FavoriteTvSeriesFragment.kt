@@ -24,17 +24,25 @@ class FavoriteTvSeriesFragment : Fragment() {
     ): View? =
         inflater.inflate(R.layout.fragment_favorite_tv_series, container, false)
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        if (activity == null) return
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // Setup Adapter
         val tvSeriesAdapter = TvSeriesAdapter()
         tvSeriesAdapter.onItemClick = { selected ->
             val intent = Intent(requireActivity(), TvSeriesDetailActivity::class.java)
             intent.putExtra(TvSeriesDetailActivity.EXTRA_TV_SERIES_ID, selected.id)
             startActivity(intent)
         }
-        pb_favorite_tv_series.visibility = View.VISIBLE
 
+        // Setup RecyclerView
+        with(rv_favorite_tv_series) {
+            layoutManager = LinearLayoutManager(context)
+            setHasFixedSize(true)
+            adapter = tvSeriesAdapter
+        }
+
+        // Get favorite TvSeries
         viewModel.getFavoriteTvSeries()
         viewModel.favoriteTvSeries.observe(viewLifecycleOwner, { tvSeries ->
             if (tvSeries != null) {
@@ -43,11 +51,5 @@ class FavoriteTvSeriesFragment : Fragment() {
                 if (tvSeries.isEmpty()) tv_empty.visibility = View.VISIBLE
             }
         })
-
-        with(rv_favorite_tv_series) {
-            layoutManager = LinearLayoutManager(context)
-            setHasFixedSize(true)
-            adapter = tvSeriesAdapter
-        }
     }
 }
