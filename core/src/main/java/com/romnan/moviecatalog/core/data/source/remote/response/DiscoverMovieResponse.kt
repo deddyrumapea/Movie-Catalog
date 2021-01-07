@@ -4,15 +4,16 @@ import com.google.gson.annotations.SerializedName
 
 data class DiscoverMovieResponse(
 
-    @field:SerializedName("page")
-    val page: Int,
-
-    @field:SerializedName("total_pages")
-    val totalPages: Int,
+// Keep it here for future paging implementation
+//    @field:SerializedName("page")
+//    val page: Int,
+//
+//    @field:SerializedName("total_pages")
+//    val totalPages: Int,
+//
+//    @field:SerializedName("total_results")
+//    val totalResults: Int,
 
     @field:SerializedName("results")
-    val results: List<MovieResponse>,
-
-    @field:SerializedName("total_results")
-    val totalResults: Int
+    val results: List<MovieResponse>
 )
