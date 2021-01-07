@@ -8,7 +8,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.romnan.moviecatalog.R
-import com.romnan.moviecatalog.core.presentation.TvSeriesPresentation
+import com.romnan.moviecatalog.core.presentation.tvseries.TvSeriesDetail
 import kotlinx.android.synthetic.main.activity_tv_series_detail.*
 import kotlinx.android.synthetic.main.dialog_error.*
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -52,7 +52,7 @@ class TvSeriesDetailActivity : AppCompatActivity() {
         dialog.show()
     }
 
-    private fun populateTvSeriesDetails(tvSeries: TvSeriesPresentation) {
+    private fun populateTvSeriesDetails(tvSeries: TvSeriesDetail) {
         Glide.with(this)
             .load(String.format(getString(R.string.image_base_url), tvSeries.posterPath))
             .into(iv_tv_series_detail_poster)

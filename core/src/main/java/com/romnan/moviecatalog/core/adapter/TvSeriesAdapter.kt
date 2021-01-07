@@ -8,17 +8,17 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.romnan.moviecatalog.core.R
 import com.romnan.moviecatalog.core.databinding.ItemShowBinding
-import com.romnan.moviecatalog.core.presentation.TvSeriesPresentation
+import com.romnan.moviecatalog.core.presentation.tvseries.TvSeriesBrief
 
 class TvSeriesAdapter : RecyclerView.Adapter<TvSeriesAdapter.TvSeriesViewHolder>() {
 
-    private var tvSeriesList = ArrayList<TvSeriesPresentation>()
-    var onItemClick: ((TvSeriesPresentation) -> Unit)? = null
+    private var tvSeriesList = ArrayList<TvSeriesBrief>()
+    var onItemClick: ((TvSeriesBrief) -> Unit)? = null
 
-    fun setData(tvSeries: List<TvSeriesPresentation>?) {
-        if (tvSeries == null) return
+    fun setData(data: List<TvSeriesBrief>?) {
+        if (data == null) return
         tvSeriesList.clear()
-        tvSeriesList.addAll(tvSeries)
+        tvSeriesList.addAll(data)
         notifyDataSetChanged()
     }
 
@@ -38,7 +38,7 @@ class TvSeriesAdapter : RecyclerView.Adapter<TvSeriesAdapter.TvSeriesViewHolder>
     inner class TvSeriesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val binding = ItemShowBinding.bind(itemView)
         private val context = itemView.context
-        fun bind(data: TvSeriesPresentation) {
+        fun bind(data: TvSeriesBrief) {
             with(binding) {
                 Glide.with(context)
                     .load(

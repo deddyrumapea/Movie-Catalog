@@ -6,14 +6,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.romnan.moviecatalog.core.data.Resource
 import com.romnan.moviecatalog.core.domain.usecase.MovieCatalogUseCase
-import com.romnan.moviecatalog.core.presentation.MoviePresentation
+import com.romnan.moviecatalog.core.presentation.movie.MovieDetail
 import com.romnan.moviecatalog.core.utils.MovieMapper
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class MovieDetailViewModel(private val useCase: MovieCatalogUseCase) : ViewModel() {
-    private val _movie = MutableLiveData<MoviePresentation>()
-    val movie: LiveData<MoviePresentation> = _movie
+    private val _movie = MutableLiveData<MovieDetail>()
+    val movie: LiveData<MovieDetail> = _movie
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
@@ -27,7 +27,7 @@ class MovieDetailViewModel(private val useCase: MovieCatalogUseCase) : ViewModel
                 when (resource) {
                     is Resource.Loading -> _isLoading.postValue(true)
                     is Resource.Success -> {
-                        val data = resource.data?.let { MovieMapper.domainToPresentation(it) }
+                        val data = resource.data?.let { MovieMapper.domainToDetail(it) }
                         _movie.postValue(data)
                         _isLoading.postValue(false)
                     }
@@ -40,8 +40,8 @@ class MovieDetailViewModel(private val useCase: MovieCatalogUseCase) : ViewModel
         }
     }
 
-    fun setFavoriteMovie(moviePresented: MoviePresentation, newState: Boolean) {
-        val movie = MovieMapper.presentationToDomain(moviePresented)
+    fun setFavoriteMovie(moviePresented: MovieDetail, newState: Boolean) {
+        val movie = MovieMapper.detailToDomain(moviePresented)
         useCase.setFavoriteMovie(movie, newState)
     }
 }

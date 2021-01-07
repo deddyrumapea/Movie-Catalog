@@ -8,7 +8,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.romnan.moviecatalog.R
-import com.romnan.moviecatalog.core.presentation.MoviePresentation
+import com.romnan.moviecatalog.core.presentation.movie.MovieDetail
 import kotlinx.android.synthetic.main.activity_movie_detail.*
 import kotlinx.android.synthetic.main.dialog_error.*
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -53,7 +53,7 @@ class MovieDetailActivity : AppCompatActivity() {
         dialog.show()
     }
 
-    private fun populateMovieDetails(movie: MoviePresentation) {
+    private fun populateMovieDetails(movie: MovieDetail) {
         Glide.with(this)
             .load(String.format(getString(R.string.image_base_url), movie.posterPath))
             .into(iv_movie_detail_poster)

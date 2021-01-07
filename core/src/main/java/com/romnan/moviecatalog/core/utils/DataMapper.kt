@@ -6,27 +6,13 @@ import com.romnan.moviecatalog.core.data.source.remote.response.MovieResponse
 import com.romnan.moviecatalog.core.data.source.remote.response.TvSeriesResponse
 import com.romnan.moviecatalog.core.domain.model.movie.Movie
 import com.romnan.moviecatalog.core.domain.model.tvseries.TvSeries
-import com.romnan.moviecatalog.core.presentation.MoviePresentation
-import com.romnan.moviecatalog.core.presentation.TvSeriesPresentation
+import com.romnan.moviecatalog.core.presentation.movie.MovieBrief
+import com.romnan.moviecatalog.core.presentation.movie.MovieDetail
+import com.romnan.moviecatalog.core.presentation.tvseries.TvSeriesBrief
+import com.romnan.moviecatalog.core.presentation.tvseries.TvSeriesDetail
 
 object MovieMapper {
     fun domainToEntity(input: Movie): MovieEntity = MovieEntity(
-        id = input.id,
-        posterPath = input.posterPath,
-        title = input.title,
-        releaseDate = input.releaseDate,
-        overview = input.overview,
-        backdropPath = input.backdropPath,
-        revenue = input.revenue,
-        budget = input.budget,
-        runtime = input.runtime,
-        voteAverage = input.voteAverage,
-        tagline = input.tagline,
-        status = input.status,
-        isFavorite = input.isFavorite
-    )
-
-    fun domainToPresentation(input: Movie): MoviePresentation = MoviePresentation(
         id = input.id,
         posterPath = input.posterPath,
         title = input.title,
@@ -58,7 +44,7 @@ object MovieMapper {
         isFavorite = input.isFavorite
     )
 
-    fun presentationToDomain(input: MoviePresentation): Movie = Movie(
+    fun domainToDetail(input: Movie): MovieDetail = MovieDetail(
         id = input.id,
         posterPath = input.posterPath,
         title = input.title,
@@ -72,6 +58,30 @@ object MovieMapper {
         tagline = input.tagline,
         status = input.status,
         isFavorite = input.isFavorite
+    )
+
+    fun detailToDomain(input: MovieDetail): Movie = Movie(
+        id = input.id,
+        posterPath = input.posterPath,
+        title = input.title,
+        releaseDate = input.releaseDate,
+        overview = input.overview,
+        backdropPath = input.backdropPath,
+        revenue = input.revenue,
+        budget = input.budget,
+        runtime = input.runtime,
+        voteAverage = input.voteAverage,
+        tagline = input.tagline,
+        status = input.status,
+        isFavorite = input.isFavorite
+    )
+
+    fun domainToBrief(input: Movie): MovieBrief = MovieBrief(
+        id = input.id,
+        posterPath = input.posterPath,
+        title = input.title,
+        releaseDate = input.releaseDate,
+        overview = input.overview
     )
 
     fun responseToEntity(input: MovieResponse): MovieEntity = MovieEntity(
@@ -107,21 +117,6 @@ object TvSeriesMapper {
         isFavorite = input.isFavorite
     )
 
-    fun domainToPresentation(input: TvSeries): TvSeriesPresentation = TvSeriesPresentation(
-        id = input.id,
-        posterPath = input.posterPath,
-        name = input.name,
-        firstAirDate = input.firstAirDate,
-        overview = input.overview,
-        backdropPath = input.backdropPath,
-        voteAverage = input.voteAverage,
-        tagline = input.tagline,
-        numberOfSeasons = input.numberOfSeasons,
-        status = input.status,
-        type = input.type,
-        isFavorite = input.isFavorite
-    )
-
     fun entityToDomain(input: TvSeriesEntity): TvSeries = TvSeries(
         id = input.id,
         posterPath = input.posterPath,
@@ -137,7 +132,7 @@ object TvSeriesMapper {
         isFavorite = input.isFavorite
     )
 
-    fun presentationToDomain(input: TvSeriesPresentation): TvSeries = TvSeries(
+    fun domainToDetail(input: TvSeries): TvSeriesDetail = TvSeriesDetail(
         id = input.id,
         posterPath = input.posterPath,
         name = input.name,
@@ -150,6 +145,29 @@ object TvSeriesMapper {
         status = input.status,
         type = input.type,
         isFavorite = input.isFavorite
+    )
+
+    fun detailToDomain(input: TvSeriesDetail): TvSeries = TvSeries(
+        id = input.id,
+        posterPath = input.posterPath,
+        name = input.name,
+        firstAirDate = input.firstAirDate,
+        overview = input.overview,
+        backdropPath = input.backdropPath,
+        voteAverage = input.voteAverage,
+        tagline = input.tagline,
+        numberOfSeasons = input.numberOfSeasons,
+        status = input.status,
+        type = input.type,
+        isFavorite = input.isFavorite
+    )
+
+    fun domainToBrief(input: TvSeries): TvSeriesBrief = TvSeriesBrief(
+        id = input.id,
+        posterPath = input.posterPath,
+        name = input.name,
+        firstAirDate = input.firstAirDate,
+        overview = input.overview
     )
 
     fun responseToEntity(input: TvSeriesResponse): TvSeriesEntity = TvSeriesEntity(

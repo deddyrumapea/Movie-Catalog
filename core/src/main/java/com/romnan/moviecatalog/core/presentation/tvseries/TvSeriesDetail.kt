@@ -1,6 +1,6 @@
-package com.romnan.moviecatalog.core.presentation
+package com.romnan.moviecatalog.core.presentation.tvseries
 
-data class TvSeriesPresentation(
+data class TvSeriesDetail(
     val id: Int,
     val posterPath: String,
     val name: String,

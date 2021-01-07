@@ -6,15 +6,15 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.romnan.moviecatalog.core.data.Resource
 import com.romnan.moviecatalog.core.domain.usecase.MovieCatalogUseCase
-import com.romnan.moviecatalog.core.presentation.TvSeriesPresentation
+import com.romnan.moviecatalog.core.presentation.tvseries.TvSeriesBrief
 import com.romnan.moviecatalog.core.utils.TvSeriesMapper
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class DiscoverTvSeriesViewModel(private val useCase: MovieCatalogUseCase) : ViewModel() {
 
-    private val _discoverTvSeries = MutableLiveData<List<TvSeriesPresentation>>()
-    val discoverTvSeries: LiveData<List<TvSeriesPresentation>> = _discoverTvSeries
+    private val _discoverTvSeries = MutableLiveData<List<TvSeriesBrief>>()
+    val discoverTvSeries: LiveData<List<TvSeriesBrief>> = _discoverTvSeries
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
@@ -29,7 +29,7 @@ class DiscoverTvSeriesViewModel(private val useCase: MovieCatalogUseCase) : View
                     is Resource.Loading -> _isLoading.postValue(true)
                     is Resource.Success -> {
                         val data = resource.data?.let { tvSeries ->
-                            tvSeries.map { TvSeriesMapper.domainToPresentation(it) }
+                            tvSeries.map { TvSeriesMapper.domainToBrief(it) }
                         }
                         _discoverTvSeries.postValue(data)
                         _isLoading.postValue(false)

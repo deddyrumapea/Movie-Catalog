@@ -8,17 +8,17 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.romnan.moviecatalog.core.R
 import com.romnan.moviecatalog.core.databinding.ItemShowBinding
-import com.romnan.moviecatalog.core.presentation.MoviePresentation
+import com.romnan.moviecatalog.core.presentation.movie.MovieBrief
 
 class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
-    private var moviesList = ArrayList<MoviePresentation>()
-    var onItemClick: ((MoviePresentation) -> Unit)? = null
+    private var moviesList = ArrayList<MovieBrief>()
+    var onItemClick: ((MovieBrief) -> Unit)? = null
 
-    fun setData(movies: List<MoviePresentation>?) {
-        if (movies == null) return
+    fun setData(data: List<MovieBrief>?) {
+        if (data == null) return
         moviesList.clear()
-        moviesList.addAll(movies)
+        moviesList.addAll(data)
         notifyDataSetChanged()
     }
 
@@ -38,7 +38,7 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
     inner class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val binding = ItemShowBinding.bind(itemView)
         private val context = itemView.context
-        fun bind(data: MoviePresentation) {
+        fun bind(data: MovieBrief) {
             with(binding) {
                 Glide.with(context)
                     .load(

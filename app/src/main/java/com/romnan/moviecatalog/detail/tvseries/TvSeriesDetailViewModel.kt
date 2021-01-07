@@ -6,14 +6,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.romnan.moviecatalog.core.data.Resource
 import com.romnan.moviecatalog.core.domain.usecase.MovieCatalogUseCase
-import com.romnan.moviecatalog.core.presentation.TvSeriesPresentation
+import com.romnan.moviecatalog.core.presentation.tvseries.TvSeriesDetail
 import com.romnan.moviecatalog.core.utils.TvSeriesMapper
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class TvSeriesDetailViewModel(private val useCase: MovieCatalogUseCase) : ViewModel() {
-    private val _tvSeries = MutableLiveData<TvSeriesPresentation>()
-    val tvSeries: LiveData<TvSeriesPresentation> = _tvSeries
+    private val _tvSeries = MutableLiveData<TvSeriesDetail>()
+    val tvSeries: LiveData<TvSeriesDetail> = _tvSeries
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
@@ -27,7 +27,7 @@ class TvSeriesDetailViewModel(private val useCase: MovieCatalogUseCase) : ViewMo
                 when (resource) {
                     is Resource.Loading -> _isLoading.postValue(true)
                     is Resource.Success -> {
-                        val data = resource.data?.let { TvSeriesMapper.domainToPresentation(it) }
+                        val data = resource.data?.let { TvSeriesMapper.domainToDetail(it) }
                         _tvSeries.postValue(data)
                         _isLoading.postValue(false)
                     }
@@ -40,8 +40,8 @@ class TvSeriesDetailViewModel(private val useCase: MovieCatalogUseCase) : ViewMo
         }
     }
 
-    fun setFavoriteTvSeries(tvSeriesPresented: TvSeriesPresentation, newState: Boolean) {
-        val tvSeries = TvSeriesMapper.presentationToDomain(tvSeriesPresented)
+    fun setFavoriteTvSeries(tvSeriesPresented: TvSeriesDetail, newState: Boolean) {
+        val tvSeries = TvSeriesMapper.detailToDomain(tvSeriesPresented)
         useCase.setFavoriteTvSeries(tvSeries, newState)
     }
 }
