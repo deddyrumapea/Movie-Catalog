@@ -1,5 +1,5 @@
 dependencies {
-//    // Testing
+//    // Testing - Uncomment to implement testing
 //    androidTestImplementation "androidx.test:core:$androidXTestVersion"
 //    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
 //    testImplementation "junit:junit:$junitVersion"
