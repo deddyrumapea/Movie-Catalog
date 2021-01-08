@@ -1,7 +1,7 @@
 ##---------------Begin: proguard configuration for SQLCipher  ----------
 -keep,includedescriptorclasses class net.sqlcipher.** { *; }
 -keep,includedescriptorclasses interface net.sqlcipher.** { *; }
-
+##---------------End: proguard configuration for SQLCipher  ----------
 
 ##---------------Begin: proguard configuration for Gson  ----------
 # Gson uses generic type information stored in a class file when working with fields. Proguard
@@ -29,7 +29,7 @@
 -keepclassmembers,allowobfuscation class * {
   @com.google.gson.annotations.SerializedName <fields>;
 }
-
+##---------------End: proguard configuration for Gson  ----------
 
 ##---------------Begin: proguard configuration for Retrofit  ----------
 # Retrofit does reflection on generic parameters. InnerClasses is required to use Signature and
@@ -63,7 +63,7 @@
 -keep,allowobfuscation interface <1>
 
 -dontwarn kotlinx.**
-
+##---------------End: proguard configuration for Retrofit  ----------
 
 ##---------------Begin: proguard configuration for Glide  ----------
 -keep public class * implements com.bumptech.glide.module.GlideModule
@@ -77,11 +77,4 @@
 -keep class com.bumptech.glide.load.data.ParcelFileDescriptorRewinder$InternalRewinder {
   *** rewind();
 }
-
-# Uncomment for DexGuard only
-#-keepresourcexmlelements manifest/application/meta-data@value=GlideModule
-
-
-##---------------Begin: proguard configuration for RxJava  ----------
-# Uncomment if you use RxJava
-#-dontwarn java.util.concurrent.Flow*
+##---------------End: proguard configuration for Glide  ----------
