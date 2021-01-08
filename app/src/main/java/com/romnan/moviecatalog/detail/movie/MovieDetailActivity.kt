@@ -38,15 +38,14 @@ class MovieDetailActivity : AppCompatActivity() {
 
         viewModel.movie.observe(this, { populateMovieDetails(it) })
         viewModel.isLoading.observe(this, { showProgressBar(it) })
-        viewModel.errorMessage.observe(this, { showErrorDialog(it) })
+        viewModel.errorMessage.observe(this, { showErrorDialog() })
     }
 
     private fun showProgressBar(isLoading: Boolean) {
         pb_movie_detail.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
-    private fun showErrorDialog(message: String = getString(R.string.error_message)) {
-        pb_movie_detail.visibility = View.GONE
+    private fun showErrorDialog() {
         val dialog = Dialog(this)
         dialog.setContentView(R.layout.dialog_error)
         dialog.btn_go_back.setOnClickListener { finish() }
@@ -63,7 +62,7 @@ class MovieDetailActivity : AppCompatActivity() {
             .into(iv_movie_detail_backdrop)
 
         tb_movie_detail_favorite.isChecked = movie.isFavorite
-        tb_movie_detail_favorite.setOnCheckedChangeListener { buttonView, isChecked ->
+        tb_movie_detail_favorite.setOnCheckedChangeListener { _, isChecked ->
             viewModel.setFavoriteMovie(movie, isChecked)
         }
 
@@ -73,7 +72,8 @@ class MovieDetailActivity : AppCompatActivity() {
         pb_movie_detail_score.progress = (movie.voteAverage * 10).roundToInt()
 
         tv_movie_detail_release_date.text = movie.releaseDate
-        tv_movie_detail_duration.text = String.format(getString(R.string.runtime_format), movie.runtime)
+        tv_movie_detail_duration.text =
+            String.format(getString(R.string.runtime_format), movie.runtime)
 
         tv_movie_detail_tagline.text = movie.tagline
         if (movie.tagline.isEmpty()) tv_movie_detail_tagline.visibility = View.GONE

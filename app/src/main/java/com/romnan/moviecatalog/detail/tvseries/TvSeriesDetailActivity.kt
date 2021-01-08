@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.romnan.moviecatalog.R
 import com.romnan.moviecatalog.core.presentation.tvseries.TvSeriesDetail
+import kotlinx.android.synthetic.main.activity_movie_detail.*
 import kotlinx.android.synthetic.main.activity_tv_series_detail.*
 import kotlinx.android.synthetic.main.dialog_error.*
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -37,17 +38,16 @@ class TvSeriesDetailActivity : AppCompatActivity() {
 
         viewModel.tvSeries.observe(this, { populateTvSeriesDetails(it) })
         viewModel.isLoading.observe(this, { showProgressBar(it) })
-        viewModel.errorMessage.observe(this, { showErrorDialog(it) })
+        viewModel.errorMessage.observe(this, { showErrorDialog() })
     }
 
     private fun showProgressBar(isLoading: Boolean) {
         pb_tv_series_detail.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
-    private fun showErrorDialog(message: String = getString(R.string.error_message)) {
+    private fun showErrorDialog() {
         val dialog = Dialog(this)
         dialog.setContentView(R.layout.dialog_error)
-        dialog.tv_error_message.text = message
         dialog.btn_go_back.setOnClickListener { finish() }
         dialog.show()
     }
