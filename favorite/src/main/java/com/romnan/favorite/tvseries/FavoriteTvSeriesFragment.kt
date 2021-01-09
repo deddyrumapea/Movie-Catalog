@@ -7,13 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.romnan.favorite.R
+import com.romnan.favorite.databinding.FragmentFavoriteTvSeriesBinding
 import com.romnan.moviecatalog.core.adapter.TvSeriesAdapter
 import com.romnan.moviecatalog.detail.tvseries.TvSeriesDetailActivity
-import kotlinx.android.synthetic.main.fragment_favorite_tv_series.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class FavoriteTvSeriesFragment : Fragment() {
+
+    private var _binding: FragmentFavoriteTvSeriesBinding? = null
+    private val binding get() = _binding!!
 
     private val viewModel: FavoriteTvSeriesViewModel by viewModel()
 
@@ -21,8 +23,10 @@ class FavoriteTvSeriesFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? =
-        inflater.inflate(R.layout.fragment_favorite_tv_series, container, false)
+    ): View {
+        _binding = FragmentFavoriteTvSeriesBinding.inflate(inflater)
+        return binding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -36,7 +40,7 @@ class FavoriteTvSeriesFragment : Fragment() {
         }
 
         // Setup RecyclerView
-        with(rv_favorite_tv_series) {
+        with(binding.rvFavoriteTvSeries) {
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
             adapter = tvSeriesAdapter
@@ -47,8 +51,8 @@ class FavoriteTvSeriesFragment : Fragment() {
         viewModel.favoriteTvSeries.observe(viewLifecycleOwner, { tvSeries ->
             if (tvSeries != null) {
                 tvSeriesAdapter.setData(tvSeries)
-                pb_favorite_tv_series.visibility = View.GONE
-                if (tvSeries.isEmpty()) tv_empty.visibility = View.VISIBLE
+                binding.pbFavoriteTvSeries.visibility = View.GONE
+                if (tvSeries.isEmpty()) binding.tvEmpty.visibility = View.VISIBLE
             }
         })
     }

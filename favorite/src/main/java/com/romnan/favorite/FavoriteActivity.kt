@@ -4,22 +4,25 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import com.romnan.favorite.databinding.ActivityFavoriteBinding
 import com.romnan.favorite.di.favoriteModule
-import kotlinx.android.synthetic.main.activity_favorite.*
 import org.koin.core.context.loadKoinModules
 
 
 class FavoriteActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityFavoriteBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_favorite)
+        binding = ActivityFavoriteBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         loadKoinModules(favoriteModule)
 
         val sectionsPagerAdapter = FavoritePagerAdapter(this, supportFragmentManager)
-        vp_discover.adapter = sectionsPagerAdapter
-        tl_discover.setupWithViewPager(vp_discover)
+        binding.vpFavorite.adapter = sectionsPagerAdapter
+        binding.tlFavorite.setupWithViewPager(binding.vpFavorite)
 
         // Action bar adjustments
         supportActionBar?.elevation = 0f

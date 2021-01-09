@@ -7,13 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.romnan.moviecatalog.R
 import com.romnan.moviecatalog.core.adapter.MovieAdapter
+import com.romnan.moviecatalog.databinding.FragmentDiscoverMovieBinding
 import com.romnan.moviecatalog.detail.movie.MovieDetailActivity
-import kotlinx.android.synthetic.main.fragment_discover_movie.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class DiscoverMovieFragment : Fragment() {
+
+    private var _binding: FragmentDiscoverMovieBinding? = null
+    private val binding get() = _binding!!
 
     private val viewModel: DiscoverMovieViewModel by viewModel()
 
@@ -21,8 +23,15 @@ class DiscoverMovieFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? =
-        inflater.inflate(R.layout.fragment_discover_movie, container, false)
+    ): View {
+        _binding = FragmentDiscoverMovieBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -36,7 +45,7 @@ class DiscoverMovieFragment : Fragment() {
         }
 
         // Setup RecyclerView
-        with(rv_discover_movies) {
+        with(binding.rvDiscoverMovies) {
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
             adapter = moviesAdapter
@@ -49,11 +58,11 @@ class DiscoverMovieFragment : Fragment() {
     }
 
     private fun showProgressBar(isLoading: Boolean) {
-        pb_discover_movies.visibility = if (isLoading) View.VISIBLE else View.GONE
+        binding.pbDiscoverMovies.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
     private fun showErrorDialog(message: String) {
-        tv_error_discover_movie.visibility = View.VISIBLE
-        tv_error_discover_movie.text = message
+        binding.tvErrorDiscoverMovie.visibility = View.VISIBLE
+        binding.tvErrorDiscoverMovie.text = message
     }
 }

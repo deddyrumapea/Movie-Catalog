@@ -10,17 +10,20 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.romnan.moviecatalog.R
-import kotlinx.android.synthetic.main.activity_discover.*
+import com.romnan.moviecatalog.databinding.ActivityDiscoverBinding
 
 class DiscoverActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityDiscoverBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_discover)
+        binding = ActivityDiscoverBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         val sectionsPagerAdapter = DiscoverPagerAdapter(this, supportFragmentManager)
-        vp_discover.adapter = sectionsPagerAdapter
-        tl_discover.setupWithViewPager(vp_discover)
+        binding.vpDiscover.adapter = sectionsPagerAdapter
+        binding.tlDiscover.setupWithViewPager(binding.vpDiscover)
 
         // Action bar adjustments
         supportActionBar?.elevation = 0f

@@ -7,13 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.romnan.moviecatalog.R
 import com.romnan.moviecatalog.core.adapter.TvSeriesAdapter
+import com.romnan.moviecatalog.databinding.FragmentDiscoverTvSeriesBinding
 import com.romnan.moviecatalog.detail.tvseries.TvSeriesDetailActivity
-import kotlinx.android.synthetic.main.fragment_discover_tv_series.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class DiscoverTvSeriesFragment : Fragment() {
+
+    private var _binding: FragmentDiscoverTvSeriesBinding? = null
+    private val binding get() = _binding!!
 
     private val viewModel: DiscoverTvSeriesViewModel by viewModel()
 
@@ -21,8 +23,10 @@ class DiscoverTvSeriesFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? =
-        inflater.inflate(R.layout.fragment_discover_tv_series, container, false)
+    ): View {
+        _binding = FragmentDiscoverTvSeriesBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -36,7 +40,7 @@ class DiscoverTvSeriesFragment : Fragment() {
         }
 
         // Setup RecyclerView
-        with(rv_discover_tv_series) {
+        with(binding.rvDiscoverTvSeries) {
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
             adapter = tvSeriesAdapter
@@ -49,11 +53,11 @@ class DiscoverTvSeriesFragment : Fragment() {
     }
 
     private fun showProgressBar(isLoading: Boolean) {
-        pb_discover_tv_series.visibility = if (isLoading) View.VISIBLE else View.GONE
+        binding.pbDiscoverTvSeries.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
     private fun showErrorDialog(message: String) {
-        tv_error_discover_tv_series.visibility = View.VISIBLE
-        tv_error_discover_tv_series.text = message
+        binding.tvErrorDiscoverTvSeries.visibility = View.VISIBLE
+        binding.tvErrorDiscoverTvSeries.text = message
     }
 }
