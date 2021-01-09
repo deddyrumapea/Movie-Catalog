@@ -1,17 +1,17 @@
 dependencies {
-//    // Testing - Uncomment to implement testing libraries
-//    androidTestImplementation "androidx.test:core:$android_x_test_version"
-//    androidTestImplementation "androidx.test.ext:junit:$ext_junit_version"
-//    testImplementation "junit:junit:$junit_version"
-//    androidTestImplementation "junit:junit:$junit_version"
-//    androidTestImplementation "androidx.test:rules:$test_rules_version"
-//    testImplementation "org.mockito:mockito-core:$mockito_version"
-//    testImplementation "org.mockito:mockito-inline:$mockito_version"
-//    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockito_kotlin_version"
-//    testImplementation "androidx.arch.core:core-testing:2.1.0"
-//    androidTestImplementation "androidx.test.espresso:espresso-contrib:$espresso_version"
-//    debugImplementation "com.android.support.test.espresso:espresso-idling-resource:$idling_resource_version"
-//    androidTestImplementation "androidx.test.espresso:espresso-core:3.3.0"
+    // Testing - Uncomment to implement testing libraries
+    androidTestImplementation "androidx.test:core:$android_x_test_version"
+    androidTestImplementation "androidx.test.ext:junit:$ext_junit_version"
+    testImplementation "junit:junit:$junit_version"
+    androidTestImplementation "junit:junit:$junit_version"
+    androidTestImplementation "androidx.test:rules:$test_rules_version"
+    testImplementation "org.mockito:mockito-core:$mockito_version"
+    testImplementation "org.mockito:mockito-inline:$mockito_version"
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockito_kotlin_version"
+    testImplementation "androidx.arch.core:core-testing:2.1.0"
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:$espresso_version"
+    debugImplementation "com.android.support.test.espresso:espresso-idling-resource:$idling_resource_version"
+    androidTestImplementation "androidx.test.espresso:espresso-core:3.3.0"
 
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
