@@ -7,7 +7,7 @@ import com.romnan.moviecatalog.core.data.source.local.room.MovieCatalogDatabase
 import com.romnan.moviecatalog.core.data.source.remote.RemoteDataSource
 import com.romnan.moviecatalog.core.data.source.remote.api.ApiService
 import com.romnan.moviecatalog.core.domain.repository.IMovieCatalogRepository
-import com.romnan.moviecatalog.core.utils.AppExecutors
+import com.romnan.moviecatalog.core.util.AppExecutors
 import net.sqlcipher.database.SQLiteDatabase
 import net.sqlcipher.database.SupportFactory
 import okhttp3.CertificatePinner

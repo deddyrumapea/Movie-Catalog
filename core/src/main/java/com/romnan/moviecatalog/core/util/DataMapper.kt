@@ -1,4 +1,4 @@
-package com.romnan.moviecatalog.core.utils
+package com.romnan.moviecatalog.core.util
 
 import com.romnan.moviecatalog.core.data.source.local.entity.MovieEntity
 import com.romnan.moviecatalog.core.data.source.local.entity.TvSeriesEntity

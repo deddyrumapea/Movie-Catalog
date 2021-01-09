@@ -8,9 +8,9 @@ import com.romnan.moviecatalog.core.data.source.remote.response.TvSeriesResponse
 import com.romnan.moviecatalog.core.domain.model.movie.Movie
 import com.romnan.moviecatalog.core.domain.model.tvseries.TvSeries
 import com.romnan.moviecatalog.core.domain.repository.IMovieCatalogRepository
-import com.romnan.moviecatalog.core.utils.AppExecutors
-import com.romnan.moviecatalog.core.utils.MovieMapper
-import com.romnan.moviecatalog.core.utils.TvSeriesMapper
+import com.romnan.moviecatalog.core.util.AppExecutors
+import com.romnan.moviecatalog.core.util.MovieMapper
+import com.romnan.moviecatalog.core.util.TvSeriesMapper
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 

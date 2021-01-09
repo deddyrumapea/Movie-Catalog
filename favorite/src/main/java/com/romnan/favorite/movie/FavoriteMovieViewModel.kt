@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.romnan.moviecatalog.core.domain.usecase.MovieCatalogUseCase
 import com.romnan.moviecatalog.core.presentation.movie.MovieBrief
-import com.romnan.moviecatalog.core.utils.MovieMapper
+import com.romnan.moviecatalog.core.util.MovieMapper
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 

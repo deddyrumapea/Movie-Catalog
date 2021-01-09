@@ -1,4 +1,4 @@
-package com.romnan.moviecatalog.core.utils
+package com.romnan.moviecatalog.core.util
 
 import androidx.annotation.VisibleForTesting
 import java.util.concurrent.Executor

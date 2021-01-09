@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.romnan.moviecatalog.core.data.Resource
 import com.romnan.moviecatalog.core.domain.usecase.MovieCatalogUseCase
 import com.romnan.moviecatalog.core.presentation.tvseries.TvSeriesDetail
-import com.romnan.moviecatalog.core.utils.TvSeriesMapper
+import com.romnan.moviecatalog.core.util.TvSeriesMapper
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
