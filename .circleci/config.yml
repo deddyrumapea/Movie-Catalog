@@ -11,7 +11,7 @@ jobs:
       - restore_cache:
           key: android-orb-v1-
       - run:
-          name: Chmod permissions
+          name: Grant Execution Permission
           command: sudo chmod +x ./gradlew
       - run:
           name: Download Dependencies
@@ -22,7 +22,7 @@ jobs:
             - ~/.android/build-cache
             - ~/.android/cache
       - run:
-          name: Run Build
+          name: Build Project
           command: ./gradlew build
       - store_artifacts: 
           path: app/build/reports
@@ -30,8 +30,13 @@ jobs:
       - run:
           name: Run Tests
           command: ./gradlew lint test
+      - run:
+          name: Collect Test Results
+          command: |
+            mkdir -p ~/test-results/junit/
+            find . -type f -regex ".*/build/test-results/.*xml" -exec cp {} ~/test-results/junit/ \;
+          when: always
       - store_test_results:
-          path: app/build/test-results
-      - store_artifacts:  
-          path: app/build/outputs/apk/debug/
-          destination: artifact-file
+          path: ~/test-results
+      - store_artifacts:
+          path: ~/test-results/junit
