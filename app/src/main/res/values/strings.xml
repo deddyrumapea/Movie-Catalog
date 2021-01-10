@@ -14,7 +14,6 @@
     <string name="about_message">Developed by Deddy Romnan Rumapea\n\nIcons made by Freepik from Flaticon\n\nThis product uses the TMDb API but is not endorsed or certified by TMDb</string>
     <string name="error">Error</string>
     <string name="error_message">Oops, something went wrong</string>
-    <string name="go_back">Go back</string>
     <string name="runtime_format">%s minutes</string>
     <string name="about">About</string>
     <string name="favorite">Favorite</string>
