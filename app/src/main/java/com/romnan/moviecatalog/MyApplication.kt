@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package com.romnan.moviecatalog
 
 import android.app.Application
