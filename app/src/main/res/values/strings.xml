@@ -19,6 +19,7 @@
     <string name="about">About</string>
     <string name="favorite">Favorite</string>
     <string name="favorited">Favorited</string>
+    <string name="retry">Retry</string>
     <plurals name="seasons">
         <item quantity="one">%d Season</item>
         <item quantity="other">%d Seasons</item>
