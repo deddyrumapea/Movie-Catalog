@@ -5,8 +5,8 @@ dependencies {
     testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockito_kotlin_version"
     testImplementation "org.mockito:mockito-inline:$mockito_version"
 //    testImplementation "androidx.arch.core:core-testing:2.1.0"
-//    androidTestImplementation "androidx.test.espresso:espresso-contrib:$espresso_version"
 //    debugImplementation "com.android.support.test.espresso:espresso-idling-resource:$idling_resource_version"
+//    androidTestImplementation "androidx.test.espresso:espresso-contrib:$espresso_version"
 //    androidTestImplementation "androidx.test.espresso:espresso-core:3.3.0"
 //    androidTestImplementation "junit:junit:$junit_version"
 //    androidTestImplementation "androidx.test:rules:$test_rules_version"
@@ -36,4 +36,7 @@ dependencies {
 
     // Leak Canary
     debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakcanary_version"
+
+    // Lottie
+    implementation "com.airbnb.android:lottie:$lottie_version"
 }
