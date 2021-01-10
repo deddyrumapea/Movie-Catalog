@@ -33,26 +33,33 @@ class MovieDetailActivity : AppCompatActivity() {
         // Action bar adjustments
         supportActionBar?.setBackgroundDrawable(ColorDrawable(getColor(R.color.colorPrimaryDark)))
 
-        // Get movie
+        getMovieDetail()
+
+        viewModel.movie.observe(this, { populateMovieDetails(it) })
+        viewModel.isLoading.observe(this, { showProgressBar(it) })
+        viewModel.errorMessage.observe(this, { showErrorDialog(it) })
+    }
+
+    private fun getMovieDetail() {
         val movieId = intent.extras?.getInt(EXTRA_MOVIE_ID, 0)
         if (movieId != null && movieId != 0) {
             viewModel.getMovieDetail(movieId)
         } else showErrorDialog()
-
-        viewModel.movie.observe(this, { populateMovieDetails(it) })
-        viewModel.isLoading.observe(this, { showProgressBar(it) })
-        viewModel.errorMessage.observe(this, { showErrorDialog() })
     }
 
     private fun showProgressBar(isLoading: Boolean) {
         binding.pbMovieDetail.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
-    private fun showErrorDialog() {
+    private fun showErrorDialog(message: String = getString(R.string.error_message)) {
         val dialog = Dialog(this)
         val dialogErrorBinding = DialogErrorBinding.inflate(layoutInflater)
         dialog.setContentView(dialogErrorBinding.root)
-        dialogErrorBinding.btnGoBack.setOnClickListener { finish() }
+        dialogErrorBinding.btnRetry.setOnClickListener {
+            getMovieDetail()
+            dialog.dismiss()
+        }
+        dialogErrorBinding.tvErrorMessage.text = message
         dialog.show()
     }
 

@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="@dimen/padding_16dp">
 
-    <ImageView
-        android:id="@+id/iv_error_icon"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/la_error"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_centerHorizontal="true"
-        android:contentDescription="@string/error"
-        android:src="@drawable/ic_error" />
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="lottie_error.json" />
 
     <TextView
         android:id="@+id/tv_error_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/iv_error_icon"
+        android:layout_below="@id/la_error"
         android:layout_marginTop="@dimen/margin_16dp"
         android:fontFamily="@font/source_sans_pro_regular"
         android:gravity="center"
@@ -34,14 +35,14 @@
         android:text="@string/error_message" />
 
     <Button
-        android:id="@+id/btn_go_back"
+        android:id="@+id/btn_retry"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_error_message"
         android:layout_marginTop="@dimen/margin_16dp"
         android:layout_marginBottom="@dimen/margin_8dp"
         android:background="@color/colorAccent"
-        android:text="@string/go_back"
+        android:text="@string/retry"
         android:textColor="@android:color/white"
         android:textStyle="bold" />
 

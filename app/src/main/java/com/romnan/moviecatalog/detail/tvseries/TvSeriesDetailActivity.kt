@@ -32,26 +32,33 @@ class TvSeriesDetailActivity : AppCompatActivity() {
         // Action bar adjustments
         supportActionBar?.setBackgroundDrawable(ColorDrawable(getColor(R.color.colorPrimaryDark)))
 
-        // Get tv series
+        getTvSeriesDetail()
+
+        viewModel.tvSeries.observe(this, { populateTvSeriesDetails(it) })
+        viewModel.isLoading.observe(this, { showProgressBar(it) })
+        viewModel.errorMessage.observe(this, { showErrorDialog(it) })
+    }
+
+    private fun getTvSeriesDetail() {
         val tvSeriesId = intent.extras?.getInt(EXTRA_TV_SERIES_ID, 0)
         if (tvSeriesId != null && tvSeriesId != 0) {
             viewModel.getTvSeriesDetail(tvSeriesId)
         } else showErrorDialog()
-
-        viewModel.tvSeries.observe(this, { populateTvSeriesDetails(it) })
-        viewModel.isLoading.observe(this, { showProgressBar(it) })
-        viewModel.errorMessage.observe(this, { showErrorDialog() })
     }
 
     private fun showProgressBar(isLoading: Boolean) {
         binding.pbTvSeriesDetail.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
-    private fun showErrorDialog() {
+    private fun showErrorDialog(message: String = getString(R.string.error_message)) {
         val dialog = Dialog(this)
         val dialogErrorBinding = DialogErrorBinding.inflate(layoutInflater)
         dialog.setContentView(dialogErrorBinding.root)
-        dialogErrorBinding.btnGoBack.setOnClickListener { finish() }
+        dialogErrorBinding.btnRetry.setOnClickListener {
+            getTvSeriesDetail()
+            dialog.dismiss()
+        }
+        dialogErrorBinding.tvErrorMessage.text = message
         dialog.show()
     }
 
