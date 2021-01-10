@@ -19,7 +19,18 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
 
+        // TMDB API Config
+        buildConfigField("String", "TMDB_BASE_URL", '"https://api.themoviedb.org/3/"')
         buildConfigField("String", "TMDB_API_KEY", '"51a6c6939964995030fb073e1bc86edf"')
+        buildConfigField("String", "TMDB_HOSTNAME", '"api.themoviedb.org"')
+        buildConfigField("String", "TMDB_PIN1", '"sha256/+vqZVAzTqUP8BGkfl88yU7SQ3C8J2uNEa55B7RZjEg0="')
+        buildConfigField("String", "TMDB_PIN2", '"sha256/JSMzqOOrtyOT1kmau6zKhgT676hGgczD5VMdRMyJZFA="')
+        buildConfigField("String", "TMDB_PIN3", '"sha256/++MBgDH5WGvL9Bcn5Be30cRcL0f5O+NyoXuWtQdX1aI="')
+        buildConfigField("String", "TMDB_PIN4", '"sha256/KwccWaCgrnaw6tsrrSO61FgLacNgG2MMLq8GE6+oP5I="')
+
+        // Database Encryption Config
+        buildConfigField("String", "SQL_CIPHER_PHRASE", '"romnan"')
+        buildConfigField("String", "DATABASE_NAME", '"MovieCatalog.db"')
     }
 
     buildTypes {

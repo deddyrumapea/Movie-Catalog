@@ -1,6 +1,7 @@
 package com.romnan.moviecatalog.core.di
 
 import androidx.room.Room
+import com.romnan.moviecatalog.core.BuildConfig
 import com.romnan.moviecatalog.core.data.MovieCatalogRepository
 import com.romnan.moviecatalog.core.data.source.local.LocalDataSource
 import com.romnan.moviecatalog.core.data.source.local.room.MovieCatalogDatabase
@@ -22,8 +23,8 @@ import java.util.concurrent.TimeUnit
 val databaseModule = module {
     factory { get<MovieCatalogDatabase>().movieCatalogDao() }
     single {
-        val databaseName = "MovieCatalog.db"
-        val phrase = "romnan".toCharArray()
+        val databaseName = BuildConfig.DATABASE_NAME
+        val phrase = BuildConfig.SQL_CIPHER_PHRASE.toCharArray()
 
         val passPhrase: ByteArray = SQLiteDatabase.getBytes(phrase)
         val factory = SupportFactory(passPhrase)
@@ -37,15 +38,13 @@ val databaseModule = module {
 
 val networkModule = module {
     single {
-        val hostname = "api.themoviedb.org"
-
         val certificatePinner = CertificatePinner.Builder()
             .add(
-                hostname,
-                "sha256/+vqZVAzTqUP8BGkfl88yU7SQ3C8J2uNEa55B7RZjEg0=",
-                "sha256/JSMzqOOrtyOT1kmau6zKhgT676hGgczD5VMdRMyJZFA=",
-                "sha256/++MBgDH5WGvL9Bcn5Be30cRcL0f5O+NyoXuWtQdX1aI=",
-                "sha256/KwccWaCgrnaw6tsrrSO61FgLacNgG2MMLq8GE6+oP5I="
+                BuildConfig.TMDB_HOSTNAME,
+                BuildConfig.TMDB_PIN1,
+                BuildConfig.TMDB_PIN2,
+                BuildConfig.TMDB_PIN3,
+                BuildConfig.TMDB_PIN4
             )
             .build()
 
@@ -58,10 +57,8 @@ val networkModule = module {
     }
 
     single {
-        val baseUrl = "https://api.themoviedb.org/3/"
-
         val retrofit = Retrofit.Builder()
-            .baseUrl(baseUrl)
+            .baseUrl(BuildConfig.TMDB_BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(get())
             .build()
