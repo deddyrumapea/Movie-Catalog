@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:padding="@dimen/padding_16dp"
+    android:visibility="gone"
+    tools:visibility="visible">
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/la_error"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_centerHorizontal="true"
+        android:alpha="0.8"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="lottie_error.json" />
+
+    <TextView
+        android:id="@+id/tv_error_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/la_error"
+        android:fontFamily="@font/source_sans_pro_regular"
+        android:gravity="center"
+        android:text="@string/error"
+        android:textColor="@color/black_text"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_error_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_error_title"
+        android:gravity="center"
+        android:text="@string/error_message"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/btn_retry"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_error_message"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/margin_16dp"
+        android:layout_marginBottom="@dimen/margin_8dp"
+        android:background="@color/colorAccent"
+        android:text="@string/retry"
+        android:textColor="@android:color/white"
+        android:textStyle="bold" />
+
+</RelativeLayout>

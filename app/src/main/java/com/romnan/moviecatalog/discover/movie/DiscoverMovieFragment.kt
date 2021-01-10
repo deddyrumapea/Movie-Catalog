@@ -54,15 +54,20 @@ class DiscoverMovieFragment : Fragment() {
         viewModel.getDiscoverMovies()
         viewModel.discoverMovies.observe(viewLifecycleOwner, { moviesAdapter.setData(it) })
         viewModel.isLoading.observe(viewLifecycleOwner, { showProgressBar(it) })
-        viewModel.errorMessage.observe(viewLifecycleOwner, { showErrorDialog(it) })
+        viewModel.errorMessage.observe(viewLifecycleOwner, { showErrorView(it) })
+    }
+
+    private fun showErrorView(message: String) {
+        val errorView = binding.vErrorDiscoverMovie
+        errorView.root.visibility = View.VISIBLE
+        errorView.tvErrorMessage.text = message
+        errorView.btnRetry.setOnClickListener {
+            errorView.root.visibility = View.GONE
+            viewModel.getDiscoverMovies()
+        }
     }
 
     private fun showProgressBar(isLoading: Boolean) {
-        binding.pbDiscoverMovies.visibility = if (isLoading) View.VISIBLE else View.GONE
-    }
-
-    private fun showErrorDialog(message: String) {
-        binding.tvErrorDiscoverMovie.visibility = View.VISIBLE
-        binding.tvErrorDiscoverMovie.text = message
+        binding.laLoadingDiscoverMovie.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 }

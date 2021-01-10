@@ -51,8 +51,9 @@ class FavoriteTvSeriesFragment : Fragment() {
         viewModel.favoriteTvSeries.observe(viewLifecycleOwner, { tvSeries ->
             if (tvSeries != null) {
                 tvSeriesAdapter.setData(tvSeries)
-                binding.pbFavoriteTvSeries.visibility = View.GONE
-                if (tvSeries.isEmpty()) binding.tvEmpty.visibility = View.VISIBLE
+                binding.laLoadingFavoriteMovie.visibility = View.GONE
+                if (tvSeries.isEmpty()) binding.vEmptyFavoriteTvSeries.root.visibility =
+                    View.VISIBLE
             }
         })
     }
