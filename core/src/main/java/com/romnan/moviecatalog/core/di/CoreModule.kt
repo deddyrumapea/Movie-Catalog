@@ -48,12 +48,17 @@ val networkModule = module {
             )
             .build()
 
-        OkHttpClient.Builder()
-            .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+        val client = OkHttpClient.Builder()
             .connectTimeout(120, TimeUnit.SECONDS)
             .readTimeout(120, TimeUnit.SECONDS)
             .certificatePinner(certificatePinner)
-            .build()
+
+        if (BuildConfig.DEBUG) {
+            val interceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+            client.addInterceptor(interceptor)
+        }
+
+        client.build()
     }
 
     single {
