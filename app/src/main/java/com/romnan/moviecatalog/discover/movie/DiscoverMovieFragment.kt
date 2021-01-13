@@ -14,8 +14,7 @@ import org.koin.android.viewmodel.ext.android.viewModel
 
 class DiscoverMovieFragment : Fragment() {
 
-    private var _binding: FragmentDiscoverMovieBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding: FragmentDiscoverMovieBinding
 
     private val viewModel: DiscoverMovieViewModel by viewModel()
 
@@ -24,13 +23,8 @@ class DiscoverMovieFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentDiscoverMovieBinding.inflate(inflater, container, false)
+        binding = FragmentDiscoverMovieBinding.inflate(inflater, container, false)
         return binding.root
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

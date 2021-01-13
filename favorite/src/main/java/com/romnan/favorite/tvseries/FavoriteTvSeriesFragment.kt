@@ -14,8 +14,7 @@ import org.koin.android.viewmodel.ext.android.viewModel
 
 class FavoriteTvSeriesFragment : Fragment() {
 
-    private var _binding: FragmentFavoriteTvSeriesBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding: FragmentFavoriteTvSeriesBinding
 
     private val viewModel: FavoriteTvSeriesViewModel by viewModel()
 
@@ -24,7 +23,7 @@ class FavoriteTvSeriesFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentFavoriteTvSeriesBinding.inflate(inflater)
+        binding = FragmentFavoriteTvSeriesBinding.inflate(inflater)
         return binding.root
     }
 

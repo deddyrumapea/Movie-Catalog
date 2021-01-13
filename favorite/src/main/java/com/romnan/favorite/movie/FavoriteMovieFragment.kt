@@ -14,8 +14,7 @@ import org.koin.android.viewmodel.ext.android.viewModel
 
 class FavoriteMovieFragment : Fragment() {
 
-    private var _binding: FragmentFavoriteMovieBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding: FragmentFavoriteMovieBinding
 
     private val viewModel: FavoriteMovieViewModel by viewModel()
 
@@ -24,7 +23,7 @@ class FavoriteMovieFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentFavoriteMovieBinding.inflate(inflater)
+        binding = FragmentFavoriteMovieBinding.inflate(inflater)
         return binding.root
     }
 

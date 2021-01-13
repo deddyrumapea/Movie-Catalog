@@ -14,8 +14,7 @@ import org.koin.android.viewmodel.ext.android.viewModel
 
 class DiscoverTvSeriesFragment : Fragment() {
 
-    private var _binding: FragmentDiscoverTvSeriesBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding: FragmentDiscoverTvSeriesBinding
 
     private val viewModel: DiscoverTvSeriesViewModel by viewModel()
 
@@ -24,7 +23,7 @@ class DiscoverTvSeriesFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentDiscoverTvSeriesBinding.inflate(inflater, container, false)
+        binding = FragmentDiscoverTvSeriesBinding.inflate(inflater, container, false)
         return binding.root
     }
 
