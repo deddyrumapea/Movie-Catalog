@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class DiscoverMovieResponse(
 
-// Keep it here for future paging implementation
+    // TODO : Implement pagination
 //    @field:SerializedName("page")
 //    val page: Int,
 //
